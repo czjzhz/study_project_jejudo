@@ -10,7 +10,7 @@
 
 프로젝트 시작 페이지 <br>
 
-	<a href="home.do">홈화면 이동@@@</a>
+	<a href="home.do">홈화면 이동</a>
 	
 <script>
 //	location.href="./home.do";
