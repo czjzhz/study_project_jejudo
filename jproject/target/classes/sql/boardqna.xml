@@ -14,7 +14,7 @@
 	
 	<select id="list" parameterType="bqb" resultMap="boardqna">
  		select * from (select a.*, rowNum rn from(
- 			select * from qboard
+ 			select * from boardqna
 			<where>
 			<if test="keyword != null and search != 'subcon'">
 				${search} like '%'||#{keyword}||'%'
@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id="getTotal" parameterType="bqb" resultType="int">
-		select count(*) from qboard 
+		select count(*) from boardqna 
 		<where>
 			<if test="keyword != null and search !='subcon'">
 				${search} like '%'||#{keyword}||'%'
