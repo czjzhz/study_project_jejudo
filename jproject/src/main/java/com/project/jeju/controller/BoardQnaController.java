@@ -2,6 +2,8 @@ package com.project.jeju.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,4 +53,24 @@ public class BoardQnaController {
 		
 		return "boardqna/boardqnalist";
 	}
+	
+	@RequestMapping("qboardinsertForm.do")				// QnA 글작성 폼이동
+	public String insertForm(String pageNum, Model model) {
+		model.addAttribute("pageNum", pageNum);
+		return "/boardqna/boardqnainsertform";
+	}
+	
+	@RequestMapping("qboardinsert.do")					// QnA 글작성
+	public String insert(BoardQnaBean boardqna, Model model, HttpServletRequest requset) {
+		int qno = boardqna.getQno();	
+		String qip = requset.getRemoteAddr();
+		boardqna.setQip(qip);
+		int result = bqs.insert(boardqna);
+		model.addAttribute("result",result);
+			
+		return "boardqna/boardqnainsert";
+	}
+	
+	
+	
 }

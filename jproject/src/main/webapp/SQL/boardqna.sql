@@ -16,8 +16,9 @@ maxvalue 99999;
 
 select * from boardqna
 
-insert into boardqna values(boardqna_seq.nextval,'test12','test cont11',sysdate,'n','aaa','',0);
+insert into boardqna values(boardqna_seq.nextval,'test12','test cont11',sysdate,'n','bbb','',0,'닉네임');
+
 
 drop table qboard;
 
-insert into member values('aaa','1234','1234','홍길동','길동이','20','1','111','111','111','22@22.com','010-1111-1111','','',sysdate,'0')
+insert into member values('bbb','1234','1234','홍길동','닉네임','20','1','111','111','111','22@22.com','010-1111-1111','','',sysdate,'0')

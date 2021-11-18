@@ -12,6 +12,8 @@ public class BoardQnaBean {
 	private String qfile;
 	private int qreadcount;
 	private String id;
+	private String nickname;
+	private String qip;
 	
 	// page
 	private int startRow;
@@ -92,5 +94,17 @@ public class BoardQnaBean {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getQip() {
+		return qip;
+	}
+	public void setQip(String qip) {
+		this.qip = qip;
 	}
 }

@@ -22,5 +22,9 @@ public class BoardQnaService {
 		return bqdao.getTotel(boardqna);
 	}
 
+	public int insert(BoardQnaBean boardqna) {
+		return bqdao.insert(boardqna);
+	}
+
 
 }

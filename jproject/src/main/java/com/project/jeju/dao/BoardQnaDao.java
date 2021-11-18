@@ -21,6 +21,10 @@ public class BoardQnaDao {
 	public int getTotel(BoardQnaBean boardqna) {
 		return sst.selectOne("bqns.getTotal", boardqna);
 	}
+
+	public int insert(BoardQnaBean boardqna) {
+		return sst.insert("bqns.insert", boardqna);
+	}
 	
 	
 }

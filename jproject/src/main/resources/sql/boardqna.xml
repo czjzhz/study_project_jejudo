@@ -8,8 +8,11 @@
 		<result property="qcont" column="qcont"/>
 		<result property="qreg" column="qreg"/>
 		<result property="qdel" column="qdel"/>
+		<result property="id" column="id"/>
 		<result property="qfile" column="qfile"/>
 		<result property="qreadcount" column="qreadcount"/>
+		<result property="nickname" column="nickname"/>
+		<result property="qip" column="qip"/>
 	</resultMap>
 	
 	<select id="list" parameterType="bqb" resultMap="boardqna">
@@ -39,5 +42,13 @@
 				content like '%'||#{keyword}||'%'
 			</if>
 		</where>
-</select>
+	</select>
+	
+	<insert id="insert" parameterType="bqb">
+	 	insert into boardqna values (boardqna_seq.nextval,#{qsub},#{qcont},sysdate,n,#{id},#{qfile},0,#{nickname},#{qip})
+	</insert>
+
+
+
+
 </mapper>
