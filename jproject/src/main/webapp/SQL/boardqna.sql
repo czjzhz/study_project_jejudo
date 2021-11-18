@@ -16,7 +16,7 @@ maxvalue 99999;
 
 select * from boardqna
 
-insert into boardqna values(boardqna_seq.nextval,'test11','test cont11',sysdate,'n','aaa','',0);
+insert into boardqna values(boardqna_seq.nextval,'test12','test cont11',sysdate,'n','aaa','',0);
 
 drop table qboard;
 

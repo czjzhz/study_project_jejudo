@@ -11,6 +11,7 @@ public class BoardQnaBean {
 	private String qdel;
 	private String qfile;
 	private int qreadcount;
+	private String id;
 	
 	// page
 	private int startRow;
@@ -85,5 +86,11 @@ public class BoardQnaBean {
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }

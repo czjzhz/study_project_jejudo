@@ -108,22 +108,22 @@
 								</tr>
 							</c:if>
 							<c:if test="${not empty qboardlist }">
-								<c:set var="no1" value="${qno }"></c:set>
+								<c:set var="no1" value="${no }"></c:set>
 								<c:forEach var="q" items="${qboardlist }">
 									<tr>
-										<td>${no1 }</td>
+										<td>${no1}</td>
 											<c:if test="${q.qdel =='y' }">
 												<td colspan="5">삭제된 글입니다.</td>
 											</c:if>
 											<c:if test="${q.qdel == 'n' }">	
-												<td><a href="./qnaview.do">${q.qsub }</a></td>
-												<td>작성자</td>
-												<td>${q.qreg }</td>
-												<td><fmt:formatDate value="${q.qreadcount}" pattern="yyyy-MM-dd HH:mm:ss"/>${q.qreadcount }</td>
+												<td><a href="">${q.qsub }</a></td>
+												<td>${q.id }</td>
+												<td><fmt:formatDate value="${q.qreg }" pattern="yyyy-MM-dd " /></td>
+												<td>${q.qreadcount}</td>
 											</c:if>
 									</tr>
-								</c:forEach>
 								<c:set var="no1" value="${no1 - 1}"/>
+								</c:forEach>
 							</c:if>
 						</tbody>
 					</table>
