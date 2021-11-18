@@ -16,6 +16,8 @@
 		<typeAlias type="com.project.jeju.model.BoardQnaReplyBean" alias="bqrb"></typeAlias>
 		<typeAlias type="com.project.jeju.model.BoardReviewBean" alias="brb"></typeAlias>
 		<typeAlias type="com.project.jeju.model.BoardReviewReplyBean" alias="brrb"></typeAlias>
+		
+		<typeAlias type="com.project.jeju.model.MemberBean" alias="mb"></typeAlias>
 	</typeAliases>
 
 </configuration>
