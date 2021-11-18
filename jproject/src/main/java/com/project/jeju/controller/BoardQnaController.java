@@ -71,6 +71,15 @@ public class BoardQnaController {
 		return "boardqna/boardqnainsert";
 	}
 	
+	@RequestMapping("boardqnaview.do")					// QnA 상세페이지
+	public String view(int qno, String pageNum, Model model) {
+		bqs.selectUpdate(qno);							// QnA 조회수 증가
+		BoardQnaBean boardqna = bqs.select(qno);
+		model.addAttribute("boardqna", boardqna);
+		model.addAttribute("pageNum", pageNum);
+		return "boardqna/boardqnaview";
+	}
+		
 	
 	
 }

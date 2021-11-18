@@ -106,7 +106,7 @@
 												<td colspan="5">삭제된 글입니다.</td>
 											</c:if>
 											<c:if test="${q.qdel == 'n' }">	
-												<td><a href="">${q.qsub }</a></td>
+												<td><a href="boardqnaview.do">${q.qsub }</a></td>
 												<td>${q.nickname }</td>
 												<td><fmt:formatDate value="${q.qreg }" pattern="yyyy-MM-dd " /></td>
 												<td>${q.qreadcount}</td>

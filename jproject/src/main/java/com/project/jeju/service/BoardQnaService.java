@@ -26,5 +26,13 @@ public class BoardQnaService {
 		return bqdao.insert(boardqna);
 	}
 
+	public BoardQnaBean select(int qno) {
+		return bqdao.select(qno);
+	}
+
+	public void selectUpdate(int qno) {
+		bqdao.selectUpudate(qno);
+	}
+
 
 }

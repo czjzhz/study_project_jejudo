@@ -25,6 +25,14 @@ public class BoardQnaDao {
 	public int insert(BoardQnaBean boardqna) {
 		return sst.insert("bqns.insert", boardqna);
 	}
+
+	public BoardQnaBean select(int qno) {
+		return sst.selectOne("bqns.select", qno);
+	}
+
+	public void selectUpudate(int qno) {
+		sst.update("bqns.selectUpdate", qno);
+	}
 	
 	
 }
