@@ -12,7 +12,17 @@
 					values(  #{id} 
 					         #{passwd1}
 					         #{name})		
-	
-	
+					         
 	</insert>
+					         
+	<!-- 로그인 -->
+	<select id="Login" resultType="mb">
+		Select id, passwd1
+		from member
+		where id=#{id}
+		and passwd1=#{passwd1}
+	</select>
+	
+	
+	
 </mapper>

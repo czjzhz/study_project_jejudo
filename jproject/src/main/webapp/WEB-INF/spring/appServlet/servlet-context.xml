@@ -25,7 +25,7 @@
 	<context:component-scan base-package="com.project.jeju" />
 	
 	<!-- 인터셉터 설정 -->	
-	<beans:bean id="sessionCk" class="controller.SessionCheckInt"/>	
+	<beans:bean id="sessionCk" class="com.project.jeju.controller.SessionCheckInt"/>	
 	 <interceptors>
 		<interceptor>
 			<mapping path="/memberEdit.do"/>
@@ -36,5 +36,10 @@
 			<beans:ref bean="sessionCk"/>
 		</interceptor>
 	</interceptors>	 
+	
+	<!-- 파일 업로드  설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10000000"/>	
+	</beans:bean>	
 	
 </beans:beans>

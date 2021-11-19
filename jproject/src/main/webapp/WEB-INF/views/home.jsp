@@ -36,7 +36,7 @@
 				</div>
 				<div class="nav-login">
 					<c:if test="${sessionScope.id == null }">
-						<a href="./login.do"><i class="fa fa-lock"></i>로그인</a>
+						<a href="./memberLogin.do"><i class="fa fa-lock"></i>로그인</a>
 						<a href="./join.do"><i class="fa fa-user"></i>회원가입</a>
 					</c:if>
 					<c:if test="${sessionScope.id != null }">
@@ -46,9 +46,11 @@
 				</div>
 				<br>
 				<ul class="nav">
-					<li><a href="" title=""><i class="fa fa-user-plus"></i> 동행찾기</a></li>
+					<li><a href="" title=""><i class="fa fa-user-plus"></i>
+							동행찾기</a></li>
 					<li><a href="" title=""><i class="fa fa-pencil"></i> 여행 리뷰</a></li>
-					<li><a href="" title=""><i class="fa fa-tree"></i> 여행 추천 장소</a></li>
+					<li><a href="" title=""><i class="fa fa-tree"></i> 여행 추천
+							장소</a></li>
 					<li><a href="qboardlist.do" title=""><i
 							class="fa fa-question-circle"></i> Q&A</a></li>
 					<li><a href="" title=""><i class="fa fa-bullhorn"></i>
