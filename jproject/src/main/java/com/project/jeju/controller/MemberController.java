@@ -6,14 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.jeju.service.MemberService;
 
-	@Controller public class MemberController {
+@Controller
+public class MemberController {
 
-		@Autowired
-		private MemberService memberService;
-	
-	@RequestMapping("/member_login.do")
-	public String member_login() {
-		return "member/member_login";
-		// member 폴더의 member_login.jsp 뷰 페이지 실행
+	@Autowired
+	private MemberService ms;
+
+	@RequestMapping("/memberLogin.do")
+	public String memberLogin() {
+		return "member/memberLogin";
+		// member폴더의 memberLogin.jsp 뷰 페이지 실행
 	}
 }

@@ -21,8 +21,20 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- Component, Controller, Service, Repository	어노테이션이 붙은 클래스의 빈을 자동 생성하도록 설정 -->
 	<context:component-scan base-package="com.project.jeju" />
 	
-	
+	<!-- 인터셉터 설정 -->	
+	<beans:bean id="sessionCk" class="controller.SessionCheckInt"/>	
+	 <interceptors>
+		<interceptor>
+			<mapping path="/memberEdit.do"/>
+			<mapping path="/memberEdit_ok.do"/>			
+			<mapping path="/memberDel.do"/>
+			<mapping path="/memberDel_ok.do"/>
+			<mapping path="/memberLogout.do"/>
+			<beans:ref bean="sessionCk"/>
+		</interceptor>
+	</interceptors>	 
 	
 </beans:beans>
