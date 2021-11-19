@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.jeju.model.BoardQnaBean;
 import com.project.jeju.service.BoardQnaService;
@@ -67,30 +68,22 @@ public class BoardQnaController {
 	}
 	
 	@RequestMapping("qboardinsert.do")					// QnA 글작성
-	public String insert(@RequestParam("boardqnafile") 
-							MultipartFile mf,
+	public String insert(@RequestParam("boardqnafile") MultipartFile mf,
 							BoardQnaBean boardqna, 
-							HttpServletRequest requset,
+							HttpServletRequest request,
+//							MultipartHttpServletRequest multirequset,
 							Model model	) throws Exception {
+		System.out.println("upload in");
 //		int qno = boardqna.getQno();	
-		String qip = requset.getRemoteAddr();
+		String qip = request.getRemoteAddr();
 		
 		String filename = mf.getOriginalFilename();
-		String extension = filename.substring(filename.lastIndexOf("."), filename.length());		
-		
-		System.out.println("extension:"+extension);
-
-		UUID uuid = UUID.randomUUID();
-		System.out.println("uuid:"+uuid);
-		
-		String newfilename = uuid.toString() + extension;
-		System.out.println("newfilename:"+newfilename);
-		
+				
 		int size = (int) mf.getSize();
 		
-		String path = requset.getRealPath("upload");
+		String path = request.getRealPath("upload");
 		System.out.println("mf=" + mf);
-		System.out.println("newfilename=" + newfilename);
+		System.out.println("filename=" + filename);
 		System.out.println("size=" + size);
 		System.out.println("Path=" + path);
 		
@@ -98,7 +91,18 @@ public class BoardQnaController {
 		
 		String file[] = new String[2];
 		
-		if(newfilename != "") {
+		String newfilename = "";
+		
+		if(filename != "") {
+			
+			String extension = filename.substring(filename.lastIndexOf("."), filename.length());		
+			System.out.println("extension:"+extension);
+
+			UUID uuid = UUID.randomUUID();
+			System.out.println("uuid:"+uuid);
+			
+			newfilename = uuid.toString() + extension;
+			System.out.println("newfilename:"+newfilename);
 			
 			StringTokenizer st = new StringTokenizer(newfilename, ".");
 			file[0] = st.nextToken();		

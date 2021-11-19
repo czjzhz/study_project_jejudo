@@ -12,7 +12,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("QnA 작성 성공");
-			location.href = "list.do";
+			location.href = "qboardlist.do";
 		</script>
 	</c:if>
 	<c:if test="${result <= 0 }">
