@@ -48,11 +48,11 @@
 	 	insert into boardqna values (boardqna_seq.nextval,#{qsub},#{qcont},sysdate,n,#{id},#{qfile},0,#{nickname},#{qip})
 	</insert>
 
-	<select id="select" parameterType="int" resultType="bqb">
+	<select id="select" parameterType="int" resultMap="boardqna">
 		select * from boardqna where qno=#{qno}
 	</select>
 
-	<update id="selectUpdate" parameterType="int" >
+	<update id="selectUpdate" parameterType="bqb" >
 		update boardqna set qreadcount = qreadcount+1 where qno=#{qno}
 	</update>
 

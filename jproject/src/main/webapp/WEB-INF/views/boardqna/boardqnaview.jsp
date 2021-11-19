@@ -1,15 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
-<title>QnA 게시판 글작성</title>
+<title>QnA 상세 페이지</title>
+<script type="text/javascript">
+	$(function() {
+		$('#boardqnalist').load('qboardlist.do?pageNum=${pageNum}');
+	});
+</script>
 </head>
 <body>
-<header class="">
+	<header class="">
 		<div class="navbar navbar-default visible-xs">
 			<button type="button" class="navbar-toggle collapsed">
 				<span class="sr-only">JEJU FRIEND</span> <span class="icon-bar"></span>
@@ -41,7 +46,7 @@
 				</div>
 				<br>
 				<ul class="nav">
-					<li><a href="" title=""><iclass="fa fa-user-plus"></i> 동행 찾기</a></li>
+					<li><a href="" title=""><iclass ="fafa-user-plus"></i> 동행 찾기</a></li>
 					<li><a href="" title=""><i class="fa fa-pencil"></i>여행 리뷰</a></li>
 					<li><a href="" title=""><i class="fa fa-tree"></i> 여행 추천 장소</a></li>
 					<li><a href="qboardlist.do" title=""><i class="fa fa-question-circle"></i>Q&A</a></li>
@@ -71,39 +76,43 @@
 			</div>
 		</nav>
 	</header>
+
 	<main class="" id="main-collapse">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<h3>Q & A 글쓰기</h3>
-					<br>
-					<form action="boardqnainsert.do" method="post">
-						<table class="table table-hover" >
-							<tr>
-								<td>제목</td>
-								<td><input type="text" name="subject" required="required"></td>
-							</tr>
-							<tr>
-								<td>내용</td>
-								<td><textarea rows="5" cols="30" name="content"
-										required="required"></textarea></td>
-							</tr>
-							<tr>
-								<td>파일첨부</td>
-								<td>
-									<input name="boardqnafile" type="file"/>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2" align="center">
-									<input type="submit" value="글작성" class="btn btn-md btn-warning" style="background-color: #FF8000;">
-								</td>
-							</tr>
-						</table>
-					</form>
+					<h3>Q & A 상세페이지</h3>
+					<table class="table table-bordered">
+						<tr>
+							<td width="150px;">제목</td>
+							<td>${boardqna.qsub}</td>
+						</tr>
+						<tr>
+							<td>내용</td>
+							<td><pre>${boardqna.cont}</pre></td>
+						</tr>
+						<tr>
+							<td>첨부 파일</td>
+							<td>
+								<!-- 첨부파일이 있을때만 첨부파일 출력 --> 
+								<c:if test="${boardqna.qfile != null}">
+									<a href="./board/file_down.jsp?file_name=${boardqna.qfile}">
+										${boardqna.qfile} 
+									</a>
+								</c:if>
+
+							</td>
+						</tr>
+					</table>
+					<textarea class="form-control" id="exampleFormControlTextarea1"
+						rows="3"></textarea>
+					<button type="button" class="btn btn-md btn-warning"
+						style="background-color: #FF8000;">댓글 작성</button>
 				</div>
 			</div>
+			<div id="boardqnalist"></div>
 		</div>
 	</main>
+
 </body>
 </html>

@@ -82,6 +82,8 @@
 						style="background-color: #FF8000;"
 						onclick="location.href='qboardinsertForm.do'">글작성</button>
 					<table class="table table-hover">
+						<input type="hidden" name="id" value="" >
+						<input type="hidden" name="nickname" value="" >
 						<thead>
 							<tr>
 								<th>번호</th>

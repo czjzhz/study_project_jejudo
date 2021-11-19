@@ -21,4 +21,4 @@ insert into boardqna values(boardqna_seq.nextval,'test12','test cont11',sysdate,
 
 drop table qboard;
 
-insert into member values('bbb','1234','1234','홍길동','닉네임','20','1','111','111','111','22@22.com','010-1111-1111','','',sysdate,'0')
+insert into member values('bbbb','1234','1234','홍길동','teseeee','20','1','111','111','111','22@22.com','010-1111-1111','','',sysdate,'0','','','');

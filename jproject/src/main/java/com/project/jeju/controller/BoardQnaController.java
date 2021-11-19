@@ -1,6 +1,10 @@
 package com.project.jeju.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.StringTokenizer;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.jeju.model.BoardQnaBean;
 import com.project.jeju.service.BoardQnaService;
@@ -61,10 +67,70 @@ public class BoardQnaController {
 	}
 	
 	@RequestMapping("qboardinsert.do")					// QnA 글작성
-	public String insert(BoardQnaBean boardqna, Model model, HttpServletRequest requset) {
-		int qno = boardqna.getQno();	
+	public String insert(@RequestParam("boardqnafile") 
+							MultipartFile mf,
+							BoardQnaBean boardqna, 
+							HttpServletRequest requset,
+							Model model	) throws Exception {
+//		int qno = boardqna.getQno();	
 		String qip = requset.getRemoteAddr();
+		
+		String filename = mf.getOriginalFilename();
+		String extension = filename.substring(filename.lastIndexOf("."), filename.length());		
+		
+		System.out.println("extension:"+extension);
+
+		UUID uuid = UUID.randomUUID();
+		System.out.println("uuid:"+uuid);
+		
+		String newfilename = uuid.toString() + extension;
+		System.out.println("newfilename:"+newfilename);
+		
+		int size = (int) mf.getSize();
+		
+		String path = requset.getRealPath("upload");
+		System.out.println("mf=" + mf);
+		System.out.println("newfilename=" + newfilename);
+		System.out.println("size=" + size);
+		System.out.println("Path=" + path);
+		
+		int qresult=0;
+		
+		String file[] = new String[2];
+		
+		if(newfilename != "") {
+			
+			StringTokenizer st = new StringTokenizer(newfilename, ".");
+			file[0] = st.nextToken();		
+			file[1] = st.nextToken();		// 확장자	
+			
+			if(size > 200000){
+				qresult=1;
+				model.addAttribute("qresult", qresult);
+			
+				return "boardqna/quploadResult";
+			
+			}else if(!file[1].equals("jpg") &&
+					 !file[1].equals("gif") &&
+					 !file[1].equals("png") ){
+				
+				qresult=2;
+				model.addAttribute("qresult", qresult);
+				
+				return "boardqna/quploadResult";
+			}
+		}
+
+		if (size > 0) { // 첨부파일이 전송된 경우
+
+			mf.transferTo(new File(path + "/" + newfilename));
+
+		}
+		
+//		boardqna.setId(id);
+//		boardqna.setNickname(nickname);
 		boardqna.setQip(qip);
+		boardqna.setQfile(newfilename);
 		int result = bqs.insert(boardqna);
 		model.addAttribute("result",result);
 			
