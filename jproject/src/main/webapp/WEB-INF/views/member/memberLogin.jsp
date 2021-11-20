@@ -5,18 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 로그인 폼</title>
 </head>
 
-<script>
-	function check() {
-		if ($.trim($("#id").val()) == "") {
-			alert("로그인 아이디를 입력하세요!");
+<script> 
+	function check() {                      
+		if ($.trim($("#id").val()) == "") { // ID 유효성 검사
+			alert("로그인 ID를 입력하세요.");
 			$("#id").val("").focus();
 			return false;
 		}
-		if ($.trim($("#passwd1").val()) == "") {
-			alert("비밀번호를 입력하세요!");
+		if ($.trim($("#passwd1").val()) == "") { // PW 유효성 검사
+			alert("비밀번호를 입력하세요.");
 			$("#passwd1").val("").focus();
 			return false;
 		}
@@ -34,7 +34,7 @@
 	<div id="login_wrap">
 		<h2 class="login_title">로그인</h2>
 		<form method="post" action="memberLogin_ok.do"
-			onsubmit="return check()">
+	          onsubmit="return check()">
 			<table id="login_table">
 				<tr>
 					<th>ID</th>
@@ -48,10 +48,9 @@
 				</tr>
 			</table>
 			<div id="login_menu">
-				<input type="submit" value="로그인" class="input_button" /> <input
-					type="button" value="비번찾기" class="input_button" onclick="pwdFind()" />
-				<input type="button" value="회원가입" class="input_button"
-					onclick="location='memberJoin.do'" />
+				<input type="submit" value="로그인" class="input_button" /> 
+				<input type="button" value="비번찾기" class="input_button" onclick="pwdFind()" />
+				<input type="button" value="회원가입" class="input_button" onclick="location='memberJoin.do'" />
 			</div>
 		</form>
 	</div>

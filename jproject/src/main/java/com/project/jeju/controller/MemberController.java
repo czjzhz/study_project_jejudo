@@ -6,7 +6,10 @@ import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.jeju.service.MemberService;
 
@@ -22,9 +25,24 @@ public class MemberController {
 		
 		return "member/memberLogin";
 		// member폴더의 memberLogin.jsp 뷰 페이지 실행
-		
-//		memberLogin_ok.do
-		
-		
 	}
+	
+//	// ID중복검사 ajax함수로 처리부분
+//	@RequestMapping(value = "/memberIdc.do", method = RequestMethod.POST)
+//	public String memberIdc(@RequestParam("mid") String id, Model model) throws Exception {
+//		System.out.println("id:"+id);
+//		
+//		int result = MemberService.checkMemberId(id);
+//		model.addAttribute("result", result);
+//
+//		return "member/idcResult";
+		
+	
+	// 회원가입 폼 뷰
+	@RequestMapping(value = "/memberJoin.do")
+	public String memberJoin() {
+		return "member/memberJoin";
+		// member 폴더의 memberJoin.jsp 뷰 페이지 실행
+	}
+	
 }

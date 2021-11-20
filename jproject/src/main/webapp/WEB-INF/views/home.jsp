@@ -46,17 +46,16 @@
 				</div>
 				<br>
 				<ul class="nav">
-					<li><a href="" title=""><i class="fa fa-user-plus"></i>
-							동행찾기</a></li>
+					<li><a href="" title=""><i class="fa fa-user-plus"></i> 여행 동행찾기</a></li>
 					<li><a href="" title=""><i class="fa fa-pencil"></i> 여행 리뷰</a></li>
 					<li><a href="" title=""><i class="fa fa-tree"></i> 여행 추천
 							장소</a></li>
 					<li><a href="qboardlist.do" title=""><i
-							class="fa fa-question-circle"></i> Q&A</a></li>
+							class="fa fa-question-circle"></i> 여행 Q&A</a></li>
 					<li><a href="" title=""><i class="fa fa-bullhorn"></i>
 							공지사항</a></li>
 					<li><a href="calendargo.do" title=""><i
-							class="fa fa-bullhorn"></i> 달력</a></li>
+							class="fa fa-bullhorn"></i> 여행 일정</a></li>
 
 				</ul>
 

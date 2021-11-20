@@ -225,6 +225,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<!-- profile image upload용 -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
