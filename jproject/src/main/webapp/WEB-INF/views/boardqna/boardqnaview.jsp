@@ -22,6 +22,9 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3>Q & A 상세페이지</h3>
+					<button type="button" class="btn btn-md btn-warning"
+							style="background-color: #FF8000;"
+							onclick="location.href='qboardupdate.do'">수정</button>
 					<table class="table table-bordered">
 						<tr>
 							<td width="150px;">제목</td>

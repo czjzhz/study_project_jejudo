@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.jeju.model.BoardQnaBean;
+import com.project.jeju.model.MemberBean;
 import com.project.jeju.service.BoardQnaService;
 import com.project.jeju.service.PagingPgm;
 
@@ -141,7 +143,7 @@ public class BoardQnaController {
 		return "boardqna/boardqnainsert";
 	}
 	
-	@RequestMapping("boardqnaview.do")					// QnA 상세페이지
+	@RequestMapping("qboardview.do")					// QnA 상세페이지
 	public String view(int qno, String pageNum, Model model) {
 		bqs.selectUpdate(qno);							// QnA 조회수 증가
 		BoardQnaBean boardqna = bqs.select(qno);
@@ -150,6 +152,17 @@ public class BoardQnaController {
 		return "boardqna/boardqnaview";
 	}
 		
-	
+	@RequestMapping("qboardupdate.do")						// 수정폼
+	public String updateform(int qno, String pageNum, Model model, HttpSession session) throws Exception{
+//		String id = (String) session.getAttribute("id");
+				
+//		MemberBean editm = memberService.userCheck(id);		
+		System.out.println("update in");
+		BoardQnaBean boardqna = bqs.select(qno);
+		model.addAttribute("boardqna", boardqna);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "boardqna/boardqnaupdateform";
+	}
 	
 }
