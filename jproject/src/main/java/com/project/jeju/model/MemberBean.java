@@ -4,8 +4,7 @@ import java.sql.Date;
 
 public class MemberBean {
 	private String id;
-	private String passwd1;
-	private String passwd2;
+	private String passwd;
 	private String name;
 	private String nickname;
 	private String age;
@@ -31,20 +30,12 @@ public class MemberBean {
 		this.id = id;
 	}
 
-	public String getPasswd1() {
-		return passwd1;
+	public String getPasswd() {
+		return passwd;
 	}
 
-	public void setPasswd1(String passwd1) {
-		this.passwd1 = passwd1;
-	}
-
-	public String getPasswd2() {
-		return passwd2;
-	}
-
-	public void setPasswd2(String passwd2) {
-		this.passwd2 = passwd2;
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
 	}
 
 	public String getName() {

@@ -1,4 +1,4 @@
-/** 유효성 체크 및 Ajax 아이디 체크 * */
+/** 유효성 체크 및 Ajax 아이디 체크 **/
 
 function check() {
 	if ($.trim($("#id").val()) == "") {
@@ -47,6 +47,7 @@ function check() {
 		$("#gender").val("").focus();
 		return false;
 	}
+	
 	if ($.trim($("#address1").val()) == "") {
 		alert("주소를 입력하세요.");
 		$("#address1").val("").focus();
@@ -61,7 +62,6 @@ function check() {
 		alert("휴대폰 번호를 입력하세요.");
 		$("#phone").val("").focus();
 		return false;
-
 	}
 	if ($.trim($("#email").val()) == "") {
 		alert("이메일을 입력하세요.");
@@ -82,36 +82,38 @@ function post_check() {
 
 
 /* 아이디 중복 체크 */
-function id_check() {
+function idCheck() {
 	$("#idcheck").hide();// idcheck span 아이디 영역을 숨긴다.
-	var memid = $("#join_id").val();
+	var mid = $("#Id").val();
 
-	// 1.입력글자 길이 체크
-	if ($.trim($("#join_id").val()).length < 4) {
+	// ID 입력글자 길이 체크
+	if ($.trim($("#Id").val()).length < 4) {
 		var newtext = '<font color="red">아이디는 4자 이상이어야 합니다.</font>';
 		$("#idcheck").text('');
 		$("#idcheck").show();
 		$("#idcheck").append(newtext);// span 아이디 영역에 경고문자 추가
-		$("#join_id").val("").focus();
+		$("#Id").val("").focus();
 		return false;
 	}
 	;
-	if ($.trim($("#join_id").val()).length > 12) {
+	
+	if ($.trim($("#Id").val()).length > 12) {
 		var newtext = '<font color="red">아이디는 12자 이하이어야 합니다.</font>';
 		$("#idcheck").text('');
 		$("#idcheck").show();
-		$("#idcheck").append(newtext);// span 아이디 영역에 경고문자 추가
-		$("#join_id").val("").focus();
+		$("#idcheck").append(newtext);  // span 아이디 영역에 경고문자 추가
+		$("#Id").val("").focus();
 		return false;
 	}
 	;
+	
 	// 입력아이디 유효성 검사
-	if (!(validate_userid(memid))) {
-		var newtext = '<font color="red">아이디는 영문소문자,숫자,_ 조합만 가능합니다.</font>';
-		$("#idcheck").text('');// 문자 초기화
-		$("#idcheck").show();// span 아이디 영역을 보이게 한다.
+	if (!(validateid(mid))) {
+		var newtext = '<font color="red">아이디는 영문 소문자,숫자,_ 조합만 가능합니다.</font>';
+		$("#idcheck").text('');         // 문자 초기화
+		$("#idcheck").show();           // span 아이디 영역을 보이게 한다.
 		$("#idcheck").append(newtext);
-		$("#join_id").val("").focus();
+		$("#Id").val("").focus();
 		return false;
 	}
 	;
@@ -119,18 +121,18 @@ function id_check() {
 	// 아이디 중복확인
 	$.ajax({
 		type : "POST",
-		url : "member_idcheck.nhn",
+		url : "memberIdc.do",
 		data : {
-			"memid" : memid
+			"mid" : mid
 		},
 		success : function(data) {
 			alert("return success=" + data);
-			if (data == 1) { // 중복 ID
+			if (data == 1) { 	// 중복 ID
 				var newtext = '<font color="red">중복 아이디입니다.</font>';
 				$("#idcheck").text('');
 				$("#idcheck").show();
 				$("#idcheck").append(newtext);
-				$("#join_id").val('').focus();
+				$("#Id").val('').focus();
 				return false;
 
 			} else { // 사용 가능한 ID
@@ -144,18 +146,19 @@ function id_check() {
 		error : function(e) {
 			alert("data error" + e);
 		}
-	});// $.ajax
+	});	// $.ajax
 };
+
 /* 아이디 중복 체크 끝 */
 
-function validate_userid(memid) {
+function validate_Id(mid) {
 	var pattern = new RegExp(/^[a-z0-9_]+$/);
 	// 영문 소문자,숫자 ,_가능,정규표현식
-	return pattern.test(memid);
+	return pattern.test(mid);
 };
 
 function domain_list() {
-	var num = f.mail_list.selectedIndex;
+	var num = f.email_list.selectedIndex;
 	/*
 	 * selectedIndex속성은 select객체하위의 속성으로서 해당리스트 목록번호를 반환
 	 */
@@ -163,7 +166,7 @@ function domain_list() {
 		// num==-1은 해당 리스트목록이 없다
 		return true;
 	}
-	if (f.mail_list.value == "0") // 직접입력
+	if (f.email_list.value == "0") // 직접입력
 	{
 		/* 리스트에서 직접입력을 선택했을때 */
 		f.join_maildomain.value = "";
@@ -188,73 +191,63 @@ function domain_list() {
 
 /* 회원정보 수정 경고창 */
 function edit_check() {
-	if ($.trim($("#join_pwd1").val()) == "") {
-		alert("회원비번을 입력하세요!");
-		$("#join_pwd1").val("").focus();
+	if ($.trim($("#passwd1").val()) == "") {
+		alert("비밀번호를 입력하세요.");
+		$("#passwd1").val("").focus();
 		return false;
 	}
-	if ($.trim($("#join_pwd2").val()) == "") {
-		alert("회원비번확인을 입력하세요!");
-		$("#join_pwd2").val("").focus();
+	if ($.trim($("#passwd2").val()) == "") {
+		alert("비밀번호를 한번 더 입력하세요.");
+		$("#passwd2").val("").focus();
 		return false;
 	}
-	if ($.trim($("#join_pwd1").val()) != $.trim($("#join_pwd2").val())) {
+	if ($.trim($("#passwd1").val()) != $.trim($("#join_pwd2").val())) {
 		// !=같지않다 연산. 비번이 다를 경우
-		alert("비번이 다릅니다!");
-		$("#join_pwd1").val("");
-		$("#join_pwd2").val("");
-		$("#join_pwd1").focus();
+		alert("비빌번호가 다릅니다!");
+		$("#passwd1").val("");
+		$("#passwd1").val("");
+		$("#passwd1").focus();
 		return false;
 	}
-	if ($.trim($("#join_name").val()) == "") {
-		alert("회원이름을 입력하세요!");
-		$("#join_name").val("").focus();
+	if ($.trim($("#name").val()) == "") {
+		alert("이름을 입력하세요.");
+		$("#name").val("").focus();
 		return false;
 	}
-	/*
-	 * if($.trim($("#join_zip1").val())==""){ alert("우편번호를 입력하세요!");
-	 * $("#join_zip1").val("").focus(); return false; }
-	 * if($.trim($("#join_zip2").val())==""){ alert("우편번호를 입력하세요!");
-	 * $("#join_zip2").val("").focus(); return false; }
-	 */
-	if ($.trim($("#join_addr1").val()) == "") {
-		alert("주소를 입력하세요!");
-		$("#join_addr1").val("").focus();
+	if ($.trim($("#nickname").val()) == "") {
+		alert("닉네임을 입력하세요.");
+		$("#nickname").val("").focus();
 		return false;
 	}
-	if ($.trim($("#join_addr2").val()) == "") {
-		alert("나머지 주소를 입력하세요!");
-		$("#join_addr2").val("").focus();
+	if ($.trim($("#age").val()) == "") {
+		alert("나이를 설정하세요.");
+		$("#age").val("").focus();
 		return false;
 	}
-	if ($.trim($("#join_tel2").val()) == "") {
-		alert("전화번호를 입력하세요!");
-		$("#join_tel2").val("").focus();
+	if ($.trim($("#gender").val()) == "") {
+		alert("성별을 설정하세요.");
+		$("#gender").val("").focus();
 		return false;
 	}
-	if ($.trim($("#join_tel3").val()) == "") {
-		alert("전화번호를 입력하세요!");
-		$("#join_tel3").val("").focus();
+	if ($.trim($("#address1").val()) == "") {
+		alert("주소를 입력하세요.");
+		$("#address1").val("").focus();
 		return false;
 	}
-	if ($.trim($("#join_phone2").val()) == "") {
-		alert("휴대전화번호를 입력하세요!");
-		$("#join_phone2").val("").focus();
+	if ($.trim($("#address2").val()) == "") {
+		alert("상세 주소를 입력하세요.");
+		$("address2").val("").focus();
 		return false;
 	}
-	if ($.trim($("#join_phone3").val()) == "") {
-		alert("휴대전화번호를 입력하세요!");
-		$("#join_phone3").val("").focus();
+	if ($.trim($("#phone").val()) == "") {
+		alert("휴대폰 번호를 입력하세요.");
+		$("#phone").val("").focus();
 		return false;
 	}
-	if ($.trim($("#join_mailid").val()) == "") {
-		alert("메일 아이디를 입력하세요!");
-		$("#join_mailid").val("").focus();
-		return false;
-	}
-	if ($.trim($("#join_maildomain").val()) == "") {
-		alert("메일 주소를 입력하세요!");
-		$("#join_maildomain").val("").focus();
+	if ($.trim($("#email").val()) == "") {
+		alert("이메일을 입력하세요.");
+		$("#email").val("").focus();
 		return false;
 	}
 }
+	
