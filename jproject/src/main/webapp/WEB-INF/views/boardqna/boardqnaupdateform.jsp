@@ -18,11 +18,11 @@
 					<h3>Q & A 수정</h3>
 					<br>
 					<form action="qboardupdate.do" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="qno" value="${boardqna.qno } }">
-						<input type="hidden" name="pageNum" value="${pageNum } }">		
-						<input type="hidden" name="id" value="${boardqna.id }">
-						<input type="hidden" name="nickname" value="${boardqna.nickname }">
-						<table class="table table-hover">
+						<input type="hidden" name="qno" value="${boardqna.qno }">
+						<input type="hidden" name="pageNum" value="${pageNum }">		
+<!-- 						<input type="hidden" name="id" value="bbb">
+						<input type="hidden" name="nickname" value="닉네임"> 
+ -->						<table class="table table-hover">
 							<tr>
 								<td>제목</td>
 								<td>
@@ -39,13 +39,22 @@
 							<tr>
 								<td>파일첨부</td>
 								<td>
-									<input name="boardqnafile" type="file"/>
+									<c:if test="${boardqna.qfile != null}">
+									<img src="<%=request.getContextPath() %>/upload/${boardqna.qfile}" height="500" width="500" />
+										<br>
+										${boardqna.qfile}
+										<br>
+									</c:if>
+									<input name="boardqnafile" type="file"/> 
+									<%-- <c:if test="${boardqna.qfile != null}">
+										${boardqna.qfile} 
+									</c:if> --%>
 								</td>
 							</tr>
 							<tr>
 								<td colspan="2" align="center">
 									<input type="submit" value="수정" class="btn btn-md btn-warning" style="background-color: #FF8000;">
-									<input type="button" value="취소" onclick="location.href='qboardview.do?qno=${q.qno }&pageNum=${pp.currentPage}'"
+									<input type="button" value="취소" onclick="location.href='qboardview.do?qno=${boardqna.qno }&pageNum=${pageNum}'"
 										class="btn btn-md btn-warning" style="background-color: #FF8000;">
 								</td>
 							</tr>

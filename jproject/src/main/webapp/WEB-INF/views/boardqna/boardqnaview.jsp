@@ -24,8 +24,13 @@
 					<h3>Q & A 상세페이지</h3>
 					<button type="button" class="btn btn-md btn-warning"
 							style="background-color: #FF8000;"
-							onclick="location.href='qboardupdate.do'">수정</button>
+							onclick="location.href='qboardupdateform.do?qno=${boardqna.qno }&pageNum=${pageNum}'">수정</button>
 					<table class="table table-bordered">
+					<input type="hidden" name="qno" value="${boardqna.qno }">
+					<input type="hidden" name="pageNum" value="${pageNum }">
+					<input type="hidden" name="id" value="" >
+					<input type="hidden" name="nickname" value="" >
+							
 						<tr>
 							<td width="150px;">제목</td>
 							<td>${boardqna.qsub}</td>
@@ -39,8 +44,11 @@
 							<td>
 								<!-- 첨부파일이 있을때만 첨부파일 출력 --> 
 								<c:if test="${boardqna.qfile != null}">
-									<a href="./board/file_down.jsp?file_name=${boardqna.qfile}">
-										${boardqna.qfile} 
+									<img src="<%=request.getContextPath() %>/upload/${boardqna.qfile}" height="500" width="500" />
+									<br>
+									다운로드:
+									<a href="filedown.do?boardqnafile=${boardqna.qfile}">
+										  ${boardqna.qfile} 
 									</a>
 								</c:if>
 

@@ -73,7 +73,7 @@ public class BoardQnaController {
 	public String insert(@RequestParam("boardqnafile") MultipartFile mf,
 							BoardQnaBean boardqna, 
 							HttpServletRequest request,
-//							MultipartHttpServletRequest multirequset,
+							HttpSession session,
 							Model model	) throws Exception {
 		System.out.println("upload in");
 //		int qno = boardqna.getQno();	
@@ -144,7 +144,7 @@ public class BoardQnaController {
 	}
 	
 	@RequestMapping("qboardview.do")					// QnA 상세페이지
-	public String view(int qno, String pageNum, Model model) {
+	public String view(int qno, String pageNum, Model model, HttpSession session) {
 		bqs.selectUpdate(qno);							// QnA 조회수 증가
 		BoardQnaBean boardqna = bqs.select(qno);
 		model.addAttribute("boardqna", boardqna);
@@ -152,7 +152,17 @@ public class BoardQnaController {
 		return "boardqna/boardqnaview";
 	}
 		
-	@RequestMapping("qboardupdate.do")						// 수정폼
+	@RequestMapping("filedown.do")
+	public String download(HttpSession session) {
+//	public String download(int qno, String pageNum, Model model) {
+		
+//		BoardQnaBean boardqna = bqs.select(qno);
+//		model.addAttribute("boardqna", boardqna);
+//		model.addAttribute("pageNum", pageNum);
+		return "boardqna/filedown";
+	}
+	
+	@RequestMapping("qboardupdateform.do")						// 수정폼
 	public String updateform(int qno, String pageNum, Model model, HttpSession session) throws Exception{
 //		String id = (String) session.getAttribute("id");
 				
@@ -165,4 +175,93 @@ public class BoardQnaController {
 		return "boardqna/boardqnaupdateform";
 	}
 	
+	@RequestMapping("qboardupdate.do")
+	public String update(@RequestParam("boardqnafile") MultipartFile mf,
+							BoardQnaBean boardqna, 
+							String pageNum,
+							HttpServletRequest request,
+							HttpSession session,
+							Model model) throws Exception {
+		System.out.println("update in1");
+		int qno = boardqna.getQno();	
+		BoardQnaBean boardqnaupdate = bqs.select(qno);
+		System.out.println("update in2");
+		
+		String qip = request.getRemoteAddr();
+		System.out.println("update in3");
+		
+		String filename = mf.getOriginalFilename();
+		System.out.println("update in4");
+				
+		int size = (int) mf.getSize();
+		System.out.println("update in5");
+		
+		String path = request.getRealPath("upload");
+		System.out.println("mf=" + mf);
+		System.out.println("filename=" + filename);
+		System.out.println("size=" + size);
+		System.out.println("Path=" + path);
+		
+		int qresult=0;
+		
+		String file[] = new String[2];
+		
+		String newfilename = "";
+		
+		if(filename != "") {
+			
+			String extension = filename.substring(filename.lastIndexOf("."), filename.length());		
+			System.out.println("extension:"+extension);
+
+			UUID uuid = UUID.randomUUID();
+			System.out.println("uuid:"+uuid);
+			
+			newfilename = uuid.toString() + extension;
+			System.out.println("newfilename:"+newfilename);
+			
+			StringTokenizer st = new StringTokenizer(newfilename, ".");
+			file[0] = st.nextToken();		
+			file[1] = st.nextToken();		// 확장자	
+			
+			if(size > 200000){
+				qresult=1;
+				model.addAttribute("qresult", qresult);
+			
+				return "boardqna/quploadResult";
+			
+			}else if(!file[1].equals("jpg") &&
+					 !file[1].equals("gif") &&
+					 !file[1].equals("png") ){
+				
+				qresult=2;
+				model.addAttribute("qresult", qresult);
+				
+				return "boardqna/quploadResult";
+			}
+		}
+
+		if (size > 0) { // 첨부파일이 전송된 경우
+
+			mf.transferTo(new File(path + "/" + newfilename));
+
+		}
+	//	String id = (String) session.getAttribute("id");
+		
+		if (size > 0 ) {	// 첨부파일 수정
+			boardqna.setQfile(newfilename);
+		}else {				// 첨부파일 미수정
+			boardqna.setQfile(boardqnaupdate.getQfile());
+		}
+//		boardqna.setId(id);
+//		boardqna.setNickname(nickname);
+		boardqna.setQip(qip);
+//		boardqna.setQfile(newfilename);
+		int result = bqs.update(boardqna);
+		
+		model.addAttribute("result",result);
+		model.addAttribute("boardqna",boardqna);
+		model.addAttribute("pageNum",pageNum);
+		
+		return "boardqna/boardqnaupdate";				
+	}
 }

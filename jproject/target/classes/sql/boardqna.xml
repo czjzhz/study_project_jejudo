@@ -56,5 +56,13 @@
 	<update id="selectUpdate" parameterType="bqb" >
 		update boardqna set qreadcount = qreadcount+1 where qno=#{qno}
 	</update>
+	
+	<update id="update" parameterType="bqb">
+		update boardqna set qsub=#{qsub},qcont=#{qcont},qreg=sysdate,qfile=#{qfile,jdbcType=VARCHAR},qip=#{qip} where qno=#{qno}	
+	</update>
 
+	<update id="delete" parameterType="int">
+		update boardqna set qdel='y' where qno=#{qno}
+	</update>
+	
 </mapper>

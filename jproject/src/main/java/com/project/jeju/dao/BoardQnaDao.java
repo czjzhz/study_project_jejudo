@@ -33,6 +33,10 @@ public class BoardQnaDao {
 	public void selectUpudate(int qno) {
 		sst.update("bqns.selectUpdate", qno);
 	}
+
+	public int update(BoardQnaBean boardqna) {
+		return sst.update("bqns.update", boardqna);
+	}
 	
 	
 }

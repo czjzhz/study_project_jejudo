@@ -34,5 +34,9 @@ public class BoardQnaService {
 		bqdao.selectUpudate(qno);
 	}
 
+	public int update(BoardQnaBean boardqna) {
+		return bqdao.update(boardqna);
+	}
+
 
 }
