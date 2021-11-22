@@ -264,4 +264,14 @@ public class BoardQnaController {
 		
 		return "boardqna/boardqnaupdate";				
 	}
+	
+	@RequestMapping("qboarddelete.do")
+	public String delete(int qno, String pageNum, Model model, HttpServletRequest request, HttpSession session) {
+		int result = bqs.delete(qno);
+		
+		model.addAttribute("result",result);
+		model.addAttribute("pageNum",pageNum);
+		return "boardqna/boardqnaupdate";
+	}
+	
 }

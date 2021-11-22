@@ -25,6 +25,9 @@
 					<button type="button" class="btn btn-md btn-warning"
 							style="background-color: #FF8000;"
 							onclick="location.href='qboardupdateform.do?qno=${boardqna.qno }&pageNum=${pageNum}'">수정</button>
+					<button type="button" class="btn btn-md btn-warning"
+							style="background-color: #FF8000;"
+							onclick="location.href='qboarddelete.do?qno=${boardqna.qno }&pageNum=${pageNum}'">삭제</button>
 					<table class="table table-bordered">
 					<input type="hidden" name="qno" value="${boardqna.qno }">
 					<input type="hidden" name="pageNum" value="${pageNum }">

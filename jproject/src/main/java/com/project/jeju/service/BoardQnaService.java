@@ -38,5 +38,9 @@ public class BoardQnaService {
 		return bqdao.update(boardqna);
 	}
 
+	public int delete(int qno) {
+		return bqdao.delete(qno);
+	}
+
 
 }

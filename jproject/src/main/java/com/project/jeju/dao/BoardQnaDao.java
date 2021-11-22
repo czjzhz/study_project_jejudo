@@ -37,6 +37,10 @@ public class BoardQnaDao {
 	public int update(BoardQnaBean boardqna) {
 		return sst.update("bqns.update", boardqna);
 	}
+
+	public int delete(int qno) {
+		return sst.delete("bqns.delete", qno);
+	}
 	
 	
 }
