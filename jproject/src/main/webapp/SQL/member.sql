@@ -1,12 +1,12 @@
 -- joinMember.sql
 select * from tab;
 select * from seq;
-select * from joinMember;
+select * from Member;
 
-drop table joinMember purge;
+drop table Member purge;
 
 create table joinMember(
-  	join_code number(38) unique not null 
+  	member_seq number(38) unique not null 
   	/*unique 제약 조건은 중복값을 허용하지 않고 null은 허용*/
   	
   , id varchar2(20) primary key  	 /*아이디*/
@@ -26,23 +26,17 @@ create table joinMember(
   , deldate date                     /*탈퇴일*/
 );
 
-/***** joinMember 테이블의 joinCode 시퀀스 생성 *****/
-create sequence join_member_joincode_seq 
+/***** Member 테이블의 mem_seq 시퀀스 생성 *****/
+create sequence Member_mem_seq_seq 
 increment by 1 start with 1 nocache;
 
---drop sequence join_member_joincode_seq; 
+/*** Member 테이블의 mem_seq 시퀀스 생성***/
+create sequence member_seq 
+start with 1 
+increment by 1 
+minvalue 1 
+maxvalue 99999;
 
-insert into join_member (join_code,join_id,join_pwd,join_name,join_zip1,
-join_zip2,join_addr1,join_addr2,join_tel,join_phone,join_email,join_regdate,
-join_state)
-values(join_member_joincode_seq.nextval,'aaaaa',
-'77777','홍길동','745','850','서울시 마포구 대흥동','중앙정보 처리학원',
-'02-7777-7777','010-9999-9999','hong@naver.com',sysdate,1);
-
-select * from join_member;
-
---delete from join_member where join_code=21;
-
---update join_member set join_tel='032-999-9999' where join_id='bbbbb';
-
+--drop sequence Member_mem_seq_seq; 
+-- drop table member_seq
 

@@ -4,25 +4,24 @@
 <mapper namespace="memberns">
 
 				  
-	 <!-- 회원저장 -->
+	 <!-- 회원가입 -->
     <insert id="memberJoin" parameterType="mb">
-    	insert into joinMember (id, passwd, nickname, age, gender, post, address1, 
+    	insert into mb (id, passwd, nickname, age, gender, zip, address1, 
     	address2, email, phone, info, register, memberpoint, state, delcont, deldate)
-  		values(join_member_joincode_seq.nextval,
-     	#{id},#{passwd},#{nickname},#{age},#{gender},#{post},#{address1},#{address2},
+  		values(#{id},#{passwd},#{nickname},#{age},#{gender},#{zip},#{address1},#{address2},
      	#{email},#{phone},#{info},#{register},#{memberpoint},#{state},
      	#{delcont},#{deldate},#{profile, jdbcType=VARCHAR},sysdate,1)
-    </insert>
-    
+    </insert>   
+		     
 				         
 	<!-- 로그인 인증 -->
 	<select id="memberlogin" parameterType="String" resultType="mb">
-     select * from joinMember where id=#{id} and state=1
+     select * from MemberLogin where id=#{id} and state=1
     </select>
     
 	
 	 <!-- 비밀번호 검색 -->
     <select id="pwdFind" parameterType="String" resultType="mb">
-     select *  from joinMember where id=#{id} and name=#{name}
+     select *  from MemberJoin where id=#{id} and name=#{name}
     </select>
 </mapper>

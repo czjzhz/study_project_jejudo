@@ -33,7 +33,7 @@
 <body>
 	<div id="login_wrap">
 		<h2 class="login_title">로그인</h2>
-		<form method="post" action="memberLogin_ok.do"
+		<form method="post" action="memberLoginok.do"
 	          onsubmit="return check()">
 			<table id="login_table">
 				<tr>
@@ -49,8 +49,9 @@
 			</table>
 			<div id="login_menu">
 				<input type="submit" value="로그인" class="input_button" /> 
-				<input type="button" value="비번찾기" class="input_button" onclick="pwdFind()" />
-				<input type="button" value="회원가입" class="input_button" onclick="location='memberJoin.do'" />
+				<input type="button" value="비밀번호 찾기" class="input_button" onclick="pwdFind()" />
+				<input type="button" value="아이디 찾기" class="input_button" onclick="idFind()" />
+				<input type="button" value="회원가입" class="input_button" onclick="location='agreement.do'" />
 			</div>
 		</form>
 	</div>

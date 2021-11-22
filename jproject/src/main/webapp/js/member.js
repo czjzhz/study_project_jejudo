@@ -2,7 +2,7 @@
 
 function check() {
 	if ($.trim($("#id").val()) == "") {
-		alert("아이디를 입력하세요.");
+		alert("ID를 입력하세요.");
 		$("#id").val("").focus();
 		return false;
 	}
@@ -81,50 +81,48 @@ function post_check() {
 }
 
 
-/* 아이디 중복 체크 */
-function idCheck() {
+// 아이디 중복 체크 
+function id_Check() {
 	$("#idcheck").hide();// idcheck span 아이디 영역을 숨긴다.
-	var mid = $("#Id").val();
+	var mid = $("#id").val();
 
-	// ID 입력글자 길이 체크
-	if ($.trim($("#Id").val()).length < 4) {
+	// 1. 아이디 입력글자 길이 체크 (유효성 검사)
+	if ($.trim($("#id").val()).length < 4) {
 		var newtext = '<font color="red">아이디는 4자 이상이어야 합니다.</font>';
 		$("#idcheck").text('');
 		$("#idcheck").show();
 		$("#idcheck").append(newtext);// span 아이디 영역에 경고문자 추가
-		$("#Id").val("").focus();
+		$("#id").val("").focus();
 		return false;
 	}
 	;
 	
-	if ($.trim($("#Id").val()).length > 12) {
+	if ($.trim($("#id").val()).length > 12) {
 		var newtext = '<font color="red">아이디는 12자 이하이어야 합니다.</font>';
 		$("#idcheck").text('');
 		$("#idcheck").show();
 		$("#idcheck").append(newtext);  // span 아이디 영역에 경고문자 추가
-		$("#Id").val("").focus();
+		$("#id").val("").focus();
 		return false;
 	}
 	;
 	
-	// 입력아이디 유효성 검사
-	if (!(validateid(mid))) {
+	// 입력 아이디 유효성 검사 (정규 표현식 검사)
+	if (!(validate_id(mid))) {
 		var newtext = '<font color="red">아이디는 영문 소문자,숫자,_ 조합만 가능합니다.</font>';
 		$("#idcheck").text('');         // 문자 초기화
 		$("#idcheck").show();           // span 아이디 영역을 보이게 한다.
 		$("#idcheck").append(newtext);
-		$("#Id").val("").focus();
+		$("#id").val("").focus();
 		return false;
 	}
 	;
 
-	// 아이디 중복확인
+	// 아이디 중복확인 (ajax로 요청)
 	$.ajax({
 		type : "POST",
-		url : "memberIdc.do",
-		data : {
-			"mid" : mid
-		},
+		url : "member_idcheck.do",
+		data : {"mid" : mid},
 		success : function(data) {
 			alert("return success=" + data);
 			if (data == 1) { 	// 중복 ID
@@ -132,15 +130,15 @@ function idCheck() {
 				$("#idcheck").text('');
 				$("#idcheck").show();
 				$("#idcheck").append(newtext);
-				$("#Id").val('').focus();
+				$("#id").val('').focus();
 				return false;
 
-			} else { // 사용 가능한 ID
+			} else { // 사용 가능한 아이디
 				var newtext = '<font color="blue">사용가능한 아이디입니다.</font>';
 				$("#idcheck").text('');
 				$("#idcheck").show();
 				$("#idcheck").append(newtext);
-				$("#join_pwd1").focus();
+				$("#passwd").focus();
 			}
 		},
 		error : function(e) {
@@ -149,7 +147,7 @@ function idCheck() {
 	});	// $.ajax
 };
 
-/* 아이디 중복 체크 끝 */
+// 아이디 중복 체크 끝
 
 function validate_Id(mid) {
 	var pattern = new RegExp(/^[a-z0-9_]+$/);
@@ -189,7 +187,7 @@ function domain_list() {
 	}
 }
 
-/* 회원정보 수정 경고창 */
+// 회원정보 수정 경고창 
 function edit_check() {
 	if ($.trim($("#passwd1").val()) == "") {
 		alert("비밀번호를 입력하세요.");
@@ -201,9 +199,9 @@ function edit_check() {
 		$("#passwd2").val("").focus();
 		return false;
 	}
-	if ($.trim($("#passwd1").val()) != $.trim($("#join_pwd2").val())) {
+	if ($.trim($("#passwd1").val()) != $.trim($("#passwd2").val())) {
 		// !=같지않다 연산. 비번이 다를 경우
-		alert("비빌번호가 다릅니다!");
+		alert("비빌번호가 다릅니다. 다시 입력해주세요.");
 		$("#passwd1").val("");
 		$("#passwd1").val("");
 		$("#passwd1").focus();

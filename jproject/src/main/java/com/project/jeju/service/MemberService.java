@@ -13,6 +13,8 @@ public class MemberService {
 		@Autowired
 		private MemberDao md;
 		
+	
+		
 		
 		
 }

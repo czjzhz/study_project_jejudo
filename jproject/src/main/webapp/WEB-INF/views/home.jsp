@@ -37,7 +37,7 @@
 				<div class="nav-login">
 					<c:if test="${sessionScope.id == null }">
 						<a href="./memberLogin.do"><i class="fa fa-lock"></i>로그인</a>
-						<a href="./join.do"><i class="fa fa-user"></i>회원가입</a>
+						<a href="./memberJoin.do"><i class="fa fa-user"></i>회원가입</a>
 					</c:if>
 					<c:if test="${sessionScope.id != null }">
 						<a href=""><i class="fa fa-unlock"></i>로그아웃</a>

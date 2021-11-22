@@ -9,13 +9,15 @@ public class MemberBean {
 	private String nickname;
 	private String age;
 	private String gender;
-	private String post;
+	private String zip;
 	private String address1;
 	private String address2;
 	private String email;
-	private String phone;
+	private String phone1;
+	private String phone2;
+	private String phone3;
 	private String profile;
-	private String info;
+	private String intro;
 	private Date register;
 	private int memberpoint;
 	private String state;
@@ -71,11 +73,11 @@ public class MemberBean {
 	}
 
 	public String getPost() {
-		return post;
+		return zip;
 	}
 
 	public void setPost(String post) {
-		this.post = post;
+		this.zip = zip;
 	}
 
 	public String getAddress1() {
@@ -102,14 +104,30 @@ public class MemberBean {
 		this.email = email;
 	}
 
+	public String getPhone1() {
+		return phone1;
+	}
+
+	public void setPhone1(String phone1) {
+		this.phone1 = phone1;
+	}
+
+	public String getPhone2() {
+		return phone2;
+	}
+
+	public void setPhone2(String phone2) {
+		this.phone2 = phone2;
+	}
+	
 	public String getPhone() {
-		return phone;
+		return phone3;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPhone3(String phone3) {
+		this.phone3 = phone3;
 	}
-
+	
 	public String getProfile() {
 		return profile;
 	}
@@ -118,12 +136,12 @@ public class MemberBean {
 		this.profile = profile;
 	}
 
-	public String getInfo() {
-		return info;
+	public String getIntro() {
+		return intro;
 	}
 
-	public void setInfo(String info) {
-		this.info = info;
+	public void setInfo(String intro) {
+		this.intro = intro;
 	}
 
 	public Date getRegister() {

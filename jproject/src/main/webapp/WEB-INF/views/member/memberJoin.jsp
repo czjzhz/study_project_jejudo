@@ -35,30 +35,30 @@
 			<table id="join_table">
 				<tr>
 					<th>아이디</th>
-					<td><input name="id" id="id" size="14"
-						class="input_box" /> <input type="button" value="아이디 중복체크"
-						class="input_button" onclick="id_check()" />
+					<td><input name="id" id="id" size="14" class="input_box" /> <input
+						type="button" value="아이디 중복체크" class="input_button"
+						onclick="id_check()" />
 						<div id="idcheck"></div></td>
 				</tr>
 
 				<tr>
 					<th>비밀번호</th>
-					<td><input type="passwd" name="passwd" id="passwd1"
+					<td><input type="password" name="passwd" id="passwd1"
 						size="14" class="input_box" /></td>
 				</tr>
 
 				<tr>
 					<th>비밀번호 확인</th>
-					<td><input type="passwd" name="passwd2" id="passwd2"
+					<td><input type="password" name="passwd2" id="passwd2"
 						size="14" class="input_box" /></td>
 				</tr>
 
 				<tr>
 					<th>이름</th>
-					<td><input name="name" id="name" 
-						size="14" class="input_box" /></td>
+					<td><input name="name" id="name" size="14" class="input_box" />
+					</td>
 				</tr>
-				
+
 				<tr>
 					<th>닉네임</th>
 					<td><input name="nickname" id="nickname" size="14"
@@ -68,59 +68,61 @@
 				</tr>
 
 				<tr>
+					<th>성별</th>
+					<td><label><input type="radio" name="gender" value="1"
+							checked />남자</label> <label><input type="radio" name="gender"
+							value="2" />여자</label></td>
+				</tr>
+
+				<tr>
+					<th>나이</th>
+					<td><select name="age_list" onchange="age_list()">
+							<option value="">선택</option>
+							<option value=10>10대</option>
+							<option value=20>20대</option>
+							<option value=30>30대</option>
+							<option value=40>40대</option>
+							<option value=50>50대이상</option>
+					</select></td>
+				</tr>
+
+				<tr>
 					<th>우편번호</th>
-					<td><input name="join_zip1" id="join_zip1" size="5"
-						class="input_box" readonly onclick="post_search()" /> <!-- -<input name="join_zip2" id="join_zip2" size="3" class="input_box" readonly 
-     		onclick="post_search()"/> --> <input type="button" value="우편번호검색"
-						class="input_button" onclick="openDaumPostcode()" /></td>
+					<td><input name="zip" id="zip" size="5" class="input_box"
+						readonly onclick="post_search()" /> <input type="button"
+						value="우편번호검색" class="input_button" onclick="openDaumPostcode()" />
+					</td>
 				</tr>
 
 				<tr>
 					<th>주소</th>
-					<td><input name="join_addr1" id="join_addr1" size="50"
+					<td><input name="address1" id="address1" size="50"
 						class="input_box" readonly onclick="post_search()" /></td>
 				</tr>
 
 				<tr>
-					<th>나머지 주소</th>
-					<td><input name="join_addr2" id="join_addr2" size="37"
+					<th>상세주소</th>
+					<td><input name="address2" id="address2" size="37"
 						class="input_box" /></td>
 				</tr>
 
 				<tr>
-<%-- 					<th>집전화번호</th>
-					<td><%@ include file="../../jsp/include/phone.jsp"%>
-						<select name="join_tel1">
-							<c:forEach var="t" items="${tel}" begin="0" end="16">
-								<option value="${t}">${t}</option>
-							</c:forEach>
-					</select>-<input name="join_tel2" id="join_tel2" size="4" maxlength="4"
-						class="input_box" />-<input name="join_tel3" id="join_tel3"
-						size="4" maxlength="4" class="input_box" /></td>
-				</tr> --%>
-
-<%-- 				<tr>
-					<th>휴대전화번호</th>
-					<td><%@ include file="../../jsp/include/phone_number.jsp"%>
-						<select name="join_phone1">
-							<c:forEach var="p" items="${phone}" begin="0" end="5">
-								<option value="${p}">${p}</option>
-							</c:forEach>
-					</select>-<input name="join_phone2" id="join_phone2" size="4" maxlength="4"
-						class="input_box" />-<input name="join_phone3" id="join_phone3"
-						size="4" maxlength="4" class="input_box" /></td>
-				</tr> --%>
+					<th>핸드폰번호</th>
+					<td><input name="phone1" id="phone1" size="3" maxlength="3"
+						class="input_box" />-<input name="phone2" id="phone2" size="4"
+						maxlength="4" class="input_box" />-<input name="phone3"
+						id="phone3" size="4" maxlength="4" class="input_box" /></td>
+				</tr>
 
 				<tr>
-					<th>전자우편</th>
-					<td><input name="join_mailid" id="join_mailid" size="10"
-						class="input_box" />@<input name="join_maildomain"
-						id="join_maildomain" size="20" class="input_box" readonly /> <!--readonly는 단지 쓰기,수정이 불가능하고 읽기만 가능하다 //-->
+					<th>이메일</th>
+					<td><input name="email" id="email" size="10" class="input_box" />
+						@ <input name="join_maildomain" id="join_maildomain" size="20"
+						class="input_box" readonly /> <!--readonly는 단지 쓰기,수정이 불가능하고 읽기만 가능하다 //-->
 						<select name="mail_list" onchange="domain_list()">
-							<option value="">=이메일선택=</option>
+							<option value="">이메일선택</option>
 							<option value="naver.com">naver.com</option>
 							<option value="daum.net">daum.net</option>
-							<option value="outlook.kr">outlook.kr</option>
 							<option value="icloud.com">icloud.com</option>
 							<option value="gmail.com">gmail.com</option>
 							<option value="0">직접입력</option>
@@ -128,16 +130,24 @@
 				</tr>
 
 				<tr>
-					<th>프로필사진</th>
-					<td><input type="file" name="join_profile1" /></td>
+					<th>프로필 사진</th>
+					<td><input type="file" name="profile" /></td>
 				</tr>
+
+				<tr>
+					<th>자기소개</th>
+					<td><textarea name="introduction" id=intro name=intro
+							cols=50 rows=10></textarea></td>
+				</tr>
+
 			</table>
 
 			<div id="join_menu">
-				<input type="submit" value="회원가입" class="input_button" /> <input
-					type="reset" value="가입취소" class="input_button"
-					onclick="$('#join_id').focus();" />
+				<input type="submit" value="회원가입" class="input_button" /> 
+				<input type="button" value="취소" class="input_button"
+				onclick="location.href='<%=request.getContextPath()%>/home.do'">
 			</div>
+			
 		</form>
 	</div>
 </body>
