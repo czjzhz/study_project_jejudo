@@ -26,7 +26,7 @@ public class BoardQnaReplyService {
 		bqrdao.update(qr);
 	}
 
-	public void delete(BoardQnaReplyBean qr) {
-		bqrdao.delete(qr);
+	public void delete(int qrno) {
+		bqrdao.delete(qrno);
 	}
 }

@@ -51,7 +51,7 @@ public class BoardQnaReplyController {
 	// 댓글 삭제
 	@RequestMapping("qrdelete.do")
 	public String qrdelete(BoardQnaReplyBean qr, Model model) {
-		bqrs.delete(qr);
+		bqrs.delete(qr.getQrno());
 		return "boardqnareply/qno/" + qr.getQno();
 //		return "redirect:boardqnareply/qno/" + qr.getQno();
 	}

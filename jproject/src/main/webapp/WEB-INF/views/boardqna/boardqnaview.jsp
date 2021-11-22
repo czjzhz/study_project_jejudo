@@ -8,9 +8,27 @@
 <meta charset="UTF-8">
 <title>QnA 상세 페이지</title>
 <script type="text/javascript">
+	
+	// 글목록
 	$(function() {
 		$('#boardqnalist').load('qboardlist.do?pageNum=${pageNum}');
 	});
+	
+	// 댓글 목록
+	$(function(){
+		$('#boardqnareply').load('boardqnareply.do/qno/${boardqna.qno}');
+		${}
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </script>
 </head>
 <body>

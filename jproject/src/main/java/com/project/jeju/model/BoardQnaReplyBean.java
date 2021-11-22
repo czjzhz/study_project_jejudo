@@ -6,7 +6,7 @@ public class BoardQnaReplyBean {
 
 	private int qrno;
 	private String qrcont;
-	private String qrid;
+	private String qrnickname;
 	private Date qrreg;
 	private Date qrupdate;
 	private int qno;
@@ -23,11 +23,11 @@ public class BoardQnaReplyBean {
 	public void setQrcont(String qrcont) {
 		this.qrcont = qrcont;
 	}
-	public String getQrid() {
-		return qrid;
+	public String getQrnickname() {
+		return qrnickname;
 	}
-	public void setQrid(String qrid) {
-		this.qrid = qrid;
+	public void setQrnickname(String qrnickname) {
+		this.qrnickname = qrnickname;
 	}
 	public Date getQrreg() {
 		return qrreg;
