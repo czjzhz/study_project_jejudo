@@ -60,7 +60,7 @@
 					</table>
 					<textarea class="form-control" id="exampleFormControlTextarea1"
 						rows="3"></textarea>
-					<button type="button" class="btn btn-md btn-warning"
+					<button type="button" name="" class="btn btn-md btn-warning"
 						style="background-color: #FF8000;">댓글 작성</button>
 				</div>
 			</div>
