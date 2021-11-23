@@ -37,8 +37,9 @@ public class MemberController {
 	public String agreement() {
 		
 		return "member/agreement";
-	}	
 		// member 폴더의 agreement.jsp 뷰 페이지 실행
+	}	
+		
 		
 	// 회원가입 폼 뷰2 (회원약관 -> 회원가입 폼)
 	@RequestMapping(value = "/memberJoin.do")
@@ -46,7 +47,8 @@ public class MemberController {
 		
 		return "member/memberJoin";
 		// member 폴더의 memberJoin.jsp 뷰 페이지 실행
-
+	
+		
 //	// ID중복검사 ajax함수로 처리부분
 //	@RequestMapping(value = "/memberIdc.do", method = RequestMethod.POST)
 //	public String memberIdc(@RequestParam("mid") String id, Model model) throws Exception {

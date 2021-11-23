@@ -58,17 +58,28 @@ function check() {
 		$("#address2").val("").focus();
 		return false;
 	}
-	if ($.trim($("#phone").val()) == "") {
+	if ($.trim($("#phone1").val()) == "") {
 		alert("휴대폰 번호를 입력하세요.");
 		$("#phone").val("").focus();
 		return false;
 	}
+	if ($.trim($("#phone2").val()) == "") {
+		alert("휴대폰 번호를 입력하세요.");
+		$("#phone2").val("").focus();
+		return false;
+	}
+	if ($.trim($("#phone3").val()) == "") {
+		alert("휴대폰 번호를 입력하세요.");
+		$("#phone3").val("").focus();
+		return false;
+	}
+
 	if ($.trim($("#email").val()) == "") {
 		alert("이메일을 입력하세요.");
 		$("#email").val("").focus();
 		return false;
 	}
-}
+
 
 function post_search() {
 	alert("우편번호 검색 버튼을 클릭하세요.");
@@ -118,15 +129,16 @@ function id_Check() {
 	}
 	;
 
+	
 	// 아이디 중복확인 (ajax로 요청)
 	$.ajax({
 		type : "POST",
-		url : "member_idcheck.do",
+		url : "memberidcheck.do",
 		data : {"mid" : mid},
 		success : function(data) {
 			alert("return success=" + data);
 			if (data == 1) { 	// 중복 ID
-				var newtext = '<font color="red">중복 아이디입니다.</font>';
+				var newtext = '<font color="red">중복된 ID입니다.</font>';
 				$("#idcheck").text('');
 				$("#idcheck").show();
 				$("#idcheck").append(newtext);
@@ -134,7 +146,7 @@ function id_Check() {
 				return false;
 
 			} else { // 사용 가능한 아이디
-				var newtext = '<font color="blue">사용가능한 아이디입니다.</font>';
+				var newtext = '<font color="blue">사용가능한 ID입니다.</font>';
 				$("#idcheck").text('');
 				$("#idcheck").show();
 				$("#idcheck").append(newtext);
@@ -147,9 +159,10 @@ function id_Check() {
 	});	// $.ajax
 };
 
+
 // 아이디 중복 체크 끝
 
-function validate_Id(mid) {
+function validate_id(mid) {
 	var pattern = new RegExp(/^[a-z0-9_]+$/);
 	// 영문 소문자,숫자 ,_가능,정규표현식
 	return pattern.test(mid);
@@ -168,11 +181,11 @@ function domain_list() {
 	{
 		/* 리스트에서 직접입력을 선택했을때 */
 		f.join_maildomain.value = "";
-		// @뒤의 도메인입력란을 빈공간시켜라.
+		// @뒤의 도메인 입력란을 빈공간으로
 		f.join_maildomain.readOnly = false;
-		// @뒤의 도메인입력란을 쓰기 가능
+		// @뒤의 도메인 입력란을 쓰기 가능
 		f.join_maildomain.focus();
-		// 도메인입력란으로 입력대기상태
+		// 도메인 입력란으로 입력대기상태
 	}
 
 	else {
@@ -186,6 +199,21 @@ function domain_list() {
 		f.join_maildomain.readOnly = true;
 	}
 }
+
+// 전화번호 유효성 체크 
+//var regExp = /^([0-9]{3,4})?([0-9]{3,4})?([0-9]{4})$/;       
+//if (!regExp.test( $(#phone1,#phone2,#phone3).val() ) ) {
+//	alert("잘못된 휴대폰 번호입니다. 숫자만 입력하세요.");
+//	return false
+//}
+
+
+//이메일 유효성 체크 
+//var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
+
+
+
+
 
 // 회원정보 수정 경고창 
 function edit_check() {
@@ -237,9 +265,19 @@ function edit_check() {
 		$("address2").val("").focus();
 		return false;
 	}
-	if ($.trim($("#phone").val()) == "") {
+	if ($.trim($("#phone1").val()) == "") {
 		alert("휴대폰 번호를 입력하세요.");
 		$("#phone").val("").focus();
+		return false;
+	}
+	if ($.trim($("#phone2").val()) == "") {
+		alert("휴대폰 번호를 입력하세요.");
+		$("#phone2").val("").focus();
+		return false;
+	}
+	if ($.trim($("#phone3").val()) == "") {
+		alert("휴대폰 번호를 입력하세요.");
+		$("#phone3").val("").focus();
 		return false;
 	}
 	if ($.trim($("#email").val()) == "") {
@@ -247,5 +285,7 @@ function edit_check() {
 		$("#email").val("").focus();
 		return false;
 	}
-}
 	
+	
+  }
+}

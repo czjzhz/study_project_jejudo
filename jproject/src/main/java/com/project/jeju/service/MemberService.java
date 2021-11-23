@@ -13,7 +13,9 @@ public class MemberService {
 		@Autowired
 		private MemberDao md;
 		
-	
+		public int checkMemberId(String id) throws Exception{
+			return md.checkMemberId(id);
+		}
 		
 		
 		
