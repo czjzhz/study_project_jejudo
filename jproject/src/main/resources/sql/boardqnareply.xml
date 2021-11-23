@@ -19,7 +19,7 @@
 		<selectKey keyProperty="qrno" order="BEFORE" resultType="int">
 			select nvl(max(qrno),0) + 1 from boardqnareply
 		</selectKey>
-		insert into boardqnareply values (#{qrno},#{qrcont},#{qrnickname},sysdate,sysdate,#{qno})
+		insert into boardqnareply values(#{qrno},#{qrcont},#{qrnickname},sysdate,sysdate,#{qno})
 	</insert>
 	
 	<update id="update" parameterType="bqrb">

@@ -18,8 +18,8 @@ public class BoardQanReplyDao {
 		return sst.selectList("bqrns.list", qno);
 	}
 
-	public void insert(BoardQnaReplyBean qr) {
-		sst.insert("bqrns.insert", qr);
+	public int insert(BoardQnaReplyBean qr) {
+		return sst.insert("bqrns.insert", qr);
 	}
 
 	public void update(BoardQnaReplyBean qr) {

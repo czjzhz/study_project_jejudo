@@ -16,18 +16,20 @@
 	
 	// 댓글 목록
 	$(function(){
-		$('#boardqnareply').load('boardqnareply.do/qno/${boardqna.qno}');
-		${}
+		$('#boardqnareply').load('./boardqnareply.do?qno=${boardqna.qno}');
+		$('#qrinsert').click(function(){
+			if(!frm.qrcont.value){
+				alert('댓글을 입력하세요');
+				frm.qrcont.focus();
+				return false;
+			}
+			var frmData = $('form').serialize();
+			$.post('qrinsert.do', frmData, function(data){
+				$('#boardqnareply').html(data);
+				frm.qrcont.value = '';
+			});
+		});
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 </script>
 </head>
@@ -76,15 +78,22 @@
 							</td>
 						</tr>
 					</table>
-					<textarea class="form-control" id="exampleFormControlTextarea1"
-						rows="3"></textarea>
-					<button type="button" name="" class="btn btn-md btn-warning"
-						style="background-color: #FF8000;">댓글 작성</button>
+					<p>
+					<form name="frm" id="frm">
+						<input type="hidden" name="qno" value="${boardqna.qno }">
+						<input type="hidden" name="qrnickname" value="${member.nickname }">
+						<textarea class="form-control" id="qrcont" name="qrcont" rows="3"></textarea>
+						<input type="button" value="댓글 작성" name="qrinsert" id="qrinsert" class="btn btn-md btn-warning" style="background-color: #FF8000;">
+					</form>
+	<div id="boardqnareply"></div>
+	
+					</p>
 				</div>
 			</div>
-			<div id="boardqnalist"></div>
 		</div>
 	</main>
 
+	<div id="boardqnalist"></div>
+	
 </body>
 </html>

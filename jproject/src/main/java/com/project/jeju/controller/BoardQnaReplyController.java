@@ -22,21 +22,24 @@ public class BoardQnaReplyController {
 	private BoardQnaService bqs;
 	
 	// 댓글 목록
-	@RequestMapping("qrlist.do/qno{qno}")
-	public String qrlist(@PathVariable int qno, Model model) {
+	@RequestMapping("boardqnareply.do")
+	public String qrlist(int qno, Model model) {
 		BoardQnaBean boardqna = bqs.select(qno);
 		List<BoardQnaReplyBean> qrlist = bqrs.list(qno);
+		System.out.println("qrlist:"+qrlist);
 		
 		model.addAttribute("qrlist",qrlist);
 		model.addAttribute("boardqna", boardqna);
-		return "boardqnareply";
+		return "boardqna/boardqnareply";
 	}
 	
 	// 댓글 입력
 	@RequestMapping("qrinsert.do")
 	public String qrinsert(BoardQnaReplyBean qr, Model model) {
-		bqrs.insert(qr);
-		return "boardqnareply/qno/" + qr.getQno();
+		System.out.println("reply in");
+		int result = bqrs.insert(qr);
+		System.out.println("result:" + result);
+		return "redirect:boardqnareply.do?qno=" + qr.getQno();
 //		return "redirect:boardqnareply/qno/" + qr.getQno();
 	}
 	

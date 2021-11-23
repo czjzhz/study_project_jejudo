@@ -18,8 +18,8 @@ public class BoardQnaReplyService {
 		return bqrdao.list(qno);
 	}
 
-	public void insert(BoardQnaReplyBean qr) {
-		bqrdao.insert(qr);
+	public int insert(BoardQnaReplyBean qr) {
+		return bqrdao.insert(qr);
 	}
 
 	public void update(BoardQnaReplyBean qr) {

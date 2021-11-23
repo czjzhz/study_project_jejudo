@@ -57,12 +57,12 @@
 							</c:if>
 						</tbody>
 					</table>
-					<form action="/qboardlist.do" >
+					<form action="qboardlist.do" >
 						<input type="hidden" name="pageNum" value="1"> 
 						<select name="search">
-							<option value="subject" <c:if test="${search=='subject'}">selected="selected" </c:if>>제목</option>
-							<option value="content" <c:if test="${search=='content'}">selected="selected" </c:if>>내용</option>
-							<option value="writer" <c:if test="${search=='writer'}">selected="selected" </c:if>>작성자</option>
+							<option value="qsub" <c:if test="${search=='qsub'}">selected="selected" </c:if>>제목</option>
+							<option value="qcont" <c:if test="${search=='qcont'}">selected="selected" </c:if>>내용</option>
+							<option value="nickname" <c:if test="${search=='nickname'}">selected="selected" </c:if>>작성자</option>
 							<option value="subcon" <c:if test="${search=='subcon'}">selected="selected" </c:if>>제목+내용</option>
 						</select> 
 						<input type="text" name="keyword"> 
