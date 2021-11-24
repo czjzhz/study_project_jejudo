@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$(function(){
 		$('.qreply1').click(function(){
 			var id = $(this).attr('id');	//qrno
@@ -35,7 +35,7 @@
 			$('#boardqnareply').html(data);
 		});
 	}
-</script> -->
+</script> 
 </head>
 <body>
 	<div class="container" align="center">
@@ -53,11 +53,11 @@
 					<td id="td_${qr.qrno}">${qr.qrcont}</td>
 					<td>${qr.qrupdate }</td>
 					<td id="btn_${qr.qrno}">
-						<%-- <c:if test="${qr.qrnickname==member.nickname }"> --%>
-							<%-- <input type="button" value="수정" class="qreply1" id="${qr.qrno}">
-							<input type="button" value="삭제"	 onclick="del(${qr.qrno},${qr.qno})"> --%>
-						<%-- </c:if> --%>
-						수정, 삭제
+						 <c:if test="${qr.qrnickname==member.nickname }"> 
+							<input type="button" value="수정" class="qreply1" id="${qr.qrno}">
+							<input type="button" value="삭제"	 onclick="del(${qr.qrno},${qr.qno})">
+						</c:if> 
+						
 					</td>
 				</tr>
 			</c:forEach>
