@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.jeju.dao.MemberDao;
+import com.project.jeju.model.MemberBean;
 
 @Service 
 public class MemberService {
@@ -17,6 +18,22 @@ public class MemberService {
 			return md.checkMemberId(id);
 		}
 		
+		public int checkMemberNick(String nickname) throws Exception{
+			return md.checkMemberNick(nickname);
+		}
+
+		public int insert(MemberBean mb) throws Exception {
+			return md.insert(mb);
+		}
 		
+		
+		
+//		public void insertMember(MemberBean mb) throws Exception {
+//			MemberDao.insertMember(mb);
+//		}
+		
+//		public MemberBean userCheck(String id) throws Exception{
+//			return md.userCheck(id);		
+//		}
 		
 }

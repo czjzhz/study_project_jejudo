@@ -8,13 +8,19 @@
 </head>
 <body>
 
-<script>
+<c:If test="${result <= 0 }">
+	<script>
+		alert("회원 가입 성공");
+		location.href="home.do";
+	</script>
+</c:If>
 
-
-	alert("회원가입을 환영합니다.")
-	location.href="./home.do";
-
-
-</script>
+<c:If test="${result > 0 }">
+	<script>
+		alert("회원 가입 실패");
+		history.go(-1);
+	</script>
+</c:If>
+	
 </body>
 </html>
