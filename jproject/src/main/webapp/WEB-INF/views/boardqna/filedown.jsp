@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=utf-8" %>
 <%@ page import="java.io.File"%>
 <%@ page import="java.io.*"%>
-<%@ include file="../header.jsp"%>
+<%@ include file="../navi.jsp"%>
 
 <%
    String fileName = request.getParameter("boardqnafile");

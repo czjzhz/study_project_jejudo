@@ -76,7 +76,7 @@ public class MemberController {
 		
 		} else {
 			if (mb.getPasswd().equals(passwd)) {// 비번이 같을 때
-				session.setAttribute("id", id);
+				session.setAttribute("mb", mb);
 				String name = mb.getName();
 				String profile = mb.getProfile();
 

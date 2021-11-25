@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
-
+<%-- <%@ include file="../header.jsp"%> --%>
+<%@ include file="../navi.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,12 +42,14 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3>Q & A 상세페이지</h3>
+					<c:if test="${boardqna.id == sessionScope.mb.id }">
 					<button type="button" class="btn btn-md btn-warning"
 							style="background-color: #FF8000;"
 							onclick="location.href='qboardupdateform.do?qno=${boardqna.qno }&pageNum=${pageNum}'">수정</button>
 					<button type="button" class="btn btn-md btn-warning"
 							style="background-color: #FF8000;"
 							onclick="location.href='qboarddelete.do?qno=${boardqna.qno }&pageNum=${pageNum}'">삭제</button>
+					</c:if>
 					<table class="table table-bordered">
 					<input type="hidden" name="qno" value="${boardqna.qno }">
 					<input type="hidden" name="pageNum" value="${pageNum }">

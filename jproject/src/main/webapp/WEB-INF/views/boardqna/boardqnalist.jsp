@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
+<%-- <%@ include file="../header.jsp"%> --%>
 
 <!DOCTYPE html>
 <html>
@@ -16,12 +16,14 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3>Q & A 게시판</h3>
+					<c:if test="${not empty sessionScope.mb}">
 					<button type="button" class="btn btn-md btn-warning"
 						style="background-color: #FF8000;"
 						onclick="location.href='qboardinsertForm.do'">글작성</button>
+					</c:if>
 					<table class="table table-hover">
-						<input type="hidden" name="id" value="" >
-						<input type="hidden" name="nickname" value="" >
+						<input type="hidden" name="id" value="sessionScope.mb.id " >
+						<input type="hidden" name="nickname" value="sessionScope.mb.nickname" >
 						<thead>
 							<tr>
 								<th>번호</th>
