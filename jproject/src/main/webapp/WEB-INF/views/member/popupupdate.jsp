@@ -10,7 +10,7 @@
 
 <script>
 	alert("회원 정보가 수정되었습니다");
-	location.href="./mypage.do")
+	location.href="./mypage.do");
 
 
 </script>

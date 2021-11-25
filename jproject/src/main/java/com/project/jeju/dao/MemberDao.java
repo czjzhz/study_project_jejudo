@@ -44,7 +44,7 @@ public class MemberDao {
 
     // 회원가입 저장	
 // @Transactional	
-	public int insertMember(MemberBean mb) throws Exception {
+	public int insert(MemberBean mb) throws Exception {
 //				getSession();
 		return sqlSession.insert("memberns.insert", mb);
 	}

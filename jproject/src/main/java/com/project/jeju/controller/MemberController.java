@@ -83,7 +83,7 @@ public class MemberController {
 				model.addAttribute("name", name);
 				model.addAttribute("profile", profile);
 
-				return "member/home";
+				return "home";
 				
 			} else { // 비번이 다를때
 				result = 2;

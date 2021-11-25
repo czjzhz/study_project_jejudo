@@ -5,7 +5,7 @@
 
 				  
 	 <!-- 회원가입 -->
-    <insert id="insertMember" parameterType="mb"> 
+    <insert id="insert" parameterType="mb"> 
     	insert into member(id,passwd,name,nickname,age,gender,zip,address1,address2,email,
     	phone,profile,intro,register,memberpoint,state) values (#{id}, #{passwd}, #{name}, #{nickname}, #{age}, 
     	#{gender}, #{zip}, #{address1}, #{address2}, #{email}, #{phone},

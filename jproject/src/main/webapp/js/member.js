@@ -1,5 +1,9 @@
 /** 유효성 체크 및 Ajax 아이디 체크 * */
 
+var idYN = 'N';
+var nickYN = 'N';
+
+
 // 아이디 중복체크
 function check() {
 	if ($.trim($("#id").val()) == "") {
@@ -43,11 +47,10 @@ function check() {
 		return false;
 	}
 
-//	if ($.trim($("#age").val()) == "") {
-//		alert("나이를 입력하세요.");
-//		$("#age").val("").focus();
-//		return false;
-//	}
+	if ($.trim($("#age").val()) == "") {
+		alert("나이를 입력하세요.");
+		return false;
+	}
 	
 	if ($.trim($("#zip").val()) == "") {
 		alert("우편번호를 입력하세요.");
@@ -67,11 +70,21 @@ function check() {
 	}
 	if ($.trim($("#phone1").val()) == "") {
 		alert("휴대폰 번호를 입력하세요.");
-		$("#phone").val("").focus();
+		$("#phone1").val("").focus();
+		return false;
+	}
+	if (isNaN($("#phone1").val())) {
+		alert("숫자만 입력하세요.");
+		$("#phone1").val("").focus();
 		return false;
 	}
 	if ($.trim($("#phone2").val()) == "") {
 		alert("휴대폰 중간번호 4자리를 입력하세요.");
+		$("#phone2").val("").focus();
+		return false;
+	}
+	if (isNaN($("#phone2").val())) {
+		alert("숫자만 입력하세요.");
 		$("#phone2").val("").focus();
 		return false;
 	}
@@ -80,6 +93,15 @@ function check() {
 		$("#phone3").val("").focus();
 		return false;
 	}
+	if (isNaN($("#phone3").val())) {
+		alert("숫자만 입력하세요.");
+		$("#phon3").val("").focus();
+		return false;
+	}
+	
+	
+	
+	
 	if($.trim($("#mailid").val())==""){
 		 alert("이메일을 입력하세요.");
 		 $("#mailid").val("").focus();
@@ -91,11 +113,22 @@ function check() {
 		 return false;
 	}
 	
-//	if ($.trim($("#intro").val()) == "") {               // 필요시 사용 가능
-//		alert("자기소개를 입력하세요.");
-//		$("#intro").val("").focus();
-//		return false;
-//	}
+	if ($.trim($("#intro").val()) == "") {               // 필요시 사용 가능
+		alert("자기소개를 입력하세요.");
+		$("#intro").val("").focus();
+		return false;
+	}
+	
+	
+	if(idYN == 'N'){
+		alert('ID 중복검사를 체크해주세요.');
+		return false;
+	}
+	
+	if(nickYN == 'N'){
+		alert('닉네임 중복검사를 체크해주세요.');
+		return false;
+	}
 	
 }
 
@@ -317,7 +350,7 @@ function id_check() {
 	//	alert("in");
 	$("#idcheck").hide();// idcheck span 아이디 영역을 숨긴다.
 	var mid = $("#id").val();
-	var idYN = 'N';
+//	var idYN = 'N';
 
 	// 1. 아이디 입력글자 길이 체크 (유효성 검사)
 	if ($.trim($("#id").val()).length < 4) {
@@ -350,6 +383,8 @@ function id_check() {
 	}
 	;
 
+
+	
 	// 아이디 중복확인 (ajax로 요청)
 	$.ajax({
 		type : "POST",
@@ -375,7 +410,8 @@ function id_check() {
 				$("#idcheck").show();
 				$("#idcheck").append(newtext);
 				$("#passwd").focus();
-				var idYN = 'Y';
+				
+				idYN = 'Y';
 			}
 		},
 		error : function(e) {
@@ -453,6 +489,8 @@ function nick_check() {
 				$("#nickcheck").show();
 				$("#nickcheck").append(newtext);
 				$("#passwd").focus();
+				
+				nickYN = 'Y';
 			}
 		},
 		error : function(e) {

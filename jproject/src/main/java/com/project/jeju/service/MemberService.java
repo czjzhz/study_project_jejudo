@@ -23,7 +23,7 @@ public class MemberService {
 		}
 
 		public int insertMember(MemberBean mb) throws Exception {
-			return md.insertMember(mb);
+			return md.insert(mb);
 		}
 
 		public MemberBean userCheck(String id) throws Exception {

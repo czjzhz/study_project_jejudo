@@ -15,9 +15,9 @@
 			$("#id").val("").focus();
 			return false;
 		}
-		if ($.trim($("#passwd1").val()) == "") { // PW 유효성 검사
+		if ($.trim($("#passwd").val()) == "") { // PW 유효성 검사
 			alert("비밀번호를 입력하세요.");
-			$("#passwd1").val("").focus();
+			$("#passwd").val("").focus();
 			return false;
 		}
 	}
@@ -43,7 +43,7 @@
 
 				<tr>
 					<th>비밀번호</th>
-					<td><input type="password" name="pwd" id="pwd" size="20"
+					<td><input type="password" name="passwd" id="passwd" size="20"
 						class="input_box" /></td>
 				</tr>
 			</table>
