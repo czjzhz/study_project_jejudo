@@ -1,88 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>	
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath }" />
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="${path}/css/main.82cfd66e.css" rel="stylesheet">
 
-<title>Insert title here</title>
+<title>QnA게시판 목록</title>
 </head>
 <body>
-	<!-- Add your content of header -->
-	<header class="">
-		<div class="navbar navbar-default visible-xs">
-			<button type="button" class="navbar-toggle collapsed">
-				<span class="sr-only">JEJU FRIEND</span> <span class="icon-bar"></span>
-				<span class="icon-bar"></span> <span class="icon-bar"></span>
-			</button>
-			<a href="./index.html" class="navbar-brand">JEJU FRIEND</a>
-		</div>
-
-		<nav class="sidebar">
-			<div class="navbar-collapse" id="navbar-collapse">
-				<div class="site-header hidden-xs">
-					<a class="site-brand" href="./main.do" title=""> JEJU<br>
-						FRIEND
-					</a>
-					<p>
-						<i>함께 떠나는 제주도 여행!</i>
-					</p>
-				</div>
-				<div class="nav-login">
-					<c:if test="${sessionScope.id == null }">
-						<a href=""><i class="fa fa-lock"></i>로그인</a>
-						<a href=""><i class="fa fa-user"></i>회원가입</a>
-					</c:if>
-					<c:if test="${sessionScope.id != null }">
-						<a href=""><i class="fa fa-unlock"></i>로그아웃</a>
-						<a href=""><i class="fa fa-info"></i>마이페이지</a>
-					</c:if>
-				</div>
-				<br>
-				<ul class="nav">
-					<li><a href="./accompanylist.do" title=""><i
-							class="fa fa-user-plus"></i> 동행 찾기</a></li>
-					<li><a href="./review.do" title=""><i class="fa fa-pencil"></i>
-							여행 리뷰</a></li>
-					<li><a href="" title=""><i class="fa fa-tree"></i> 여행 추천
-							장소</a></li>
-					<li><a href="./qnalist.do" title=""><i
-							class="fa fa-question-circle"></i> Q&A</a></li>
-					<li><a href="" title=""><i class="fa fa-bullhorn"></i>
-							공지사항</a></li>
-
-				</ul>
-
-				<nav class="nav-footer">
-					<p class="nav-footer-social-buttons">
-						<a class="fa-icon" href="https://www.instagram.com/" title="">
-							<i class="fa fa-instagram"></i>
-						</a> <a class="fa-icon" href="https://dribbble.com/" title=""> <i
-							class="fa fa-dribbble"></i>
-						</a> <a class="fa-icon" href="https://twitter.com/" title=""> <i
-							class="fa fa-twitter"></i>
-						</a>
-					</p>
-					<p>
-						© Untitled | Website created with <a
-							href="http://www.mashup-template.com/"
-							title="Create website with free html template">Mashup
-							Template</a>/<a href="https://www.unsplash.com/"
-							title="Beautiful Free Images">Unsplash</a>
-					</p>
-				</nav>
-			</div>
-		</nav>
-	</header>
+<%@ include file="../navi.jsp"%>
+	
 	<main class="" id="main-collapse">
 		<div class="container-fluid">
 			<div class="row">
@@ -90,8 +18,10 @@
 					<h3>Q & A 게시판</h3>
 					<button type="button" class="btn btn-md btn-warning"
 						style="background-color: #FF8000;"
-						onclick="location.href=''">글작성</button>
+						onclick="location.href='qboardinsertForm.do'">글작성</button>
 					<table class="table table-hover">
+						<input type="hidden" name="id" value="" >
+						<input type="hidden" name="nickname" value="" >
 						<thead>
 							<tr>
 								<th>번호</th>
@@ -108,31 +38,31 @@
 								</tr>
 							</c:if>
 							<c:if test="${not empty qboardlist }">
-								<c:set var="no1" value="${qno }"></c:set>
+								<c:set var="no1" value="${no }"></c:set>
 								<c:forEach var="q" items="${qboardlist }">
 									<tr>
-										<td>${no1 }</td>
+										<td>${no1}</td>
 											<c:if test="${q.qdel =='y' }">
 												<td colspan="5">삭제된 글입니다.</td>
 											</c:if>
 											<c:if test="${q.qdel == 'n' }">	
-												<td><a href="./qnaview.do">${q.qsub }</a></td>
-												<td>작성자</td>
-												<td>${q.qreg }</td>
-												<td><fmt:formatDate value="${q.qreadcount}" pattern="yyyy-MM-dd HH:mm:ss"/>${q.qreadcount }</td>
+												<td><a href="qboardview.do?qno=${q.qno }&pageNum=${pp.currentPage}">${q.qsub }</a></td>
+												<td>${q.nickname }</td>
+												<td><fmt:formatDate value="${q.qreg }" pattern="yyyy-MM-dd " /></td>
+												<td>${q.qreadcount}</td>
 											</c:if>
 									</tr>
-								</c:forEach>
 								<c:set var="no1" value="${no1 - 1}"/>
+								</c:forEach>
 							</c:if>
 						</tbody>
 					</table>
-					<form action="/qboardlist.do" >
+					<form action="qboardlist.do" >
 						<input type="hidden" name="pageNum" value="1"> 
 						<select name="search">
-							<option value="subject" <c:if test="${search=='subject'}">selected="selected" </c:if>>제목</option>
-							<option value="content" <c:if test="${search=='content'}">selected="selected" </c:if>>내용</option>
-							<option value="writer" <c:if test="${search=='writer'}">selected="selected" </c:if>>작성자</option>
+							<option value="qsub" <c:if test="${search=='qsub'}">selected="selected" </c:if>>제목</option>
+							<option value="qcont" <c:if test="${search=='qcont'}">selected="selected" </c:if>>내용</option>
+							<option value="nickname" <c:if test="${search=='nickname'}">selected="selected" </c:if>>작성자</option>
 							<option value="subcon" <c:if test="${search=='subcon'}">selected="selected" </c:if>>제목+내용</option>
 						</select> 
 						<input type="text" name="keyword"> 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- joinMember.sql
 select * from tab;
 select * from seq;
@@ -40,3 +41,10 @@ maxvalue 99999;
 --drop sequence Member_mem_seq_seq; 
 -- drop table member_seq
 
+=======
+select * from tab;
+
+alter table member add domain varchar2()
+
+alter table member drop column phone3;
+>>>>>>> bba230d2293b6d7445e002106de8f9bf533cc9ca

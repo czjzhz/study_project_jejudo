@@ -1,6 +1,6 @@
 package com.project.jeju.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class MemberBean {
 	private String id;
@@ -21,6 +21,7 @@ public class MemberBean {
 	private String state;
 	private String delcont;
 	private Date deldate;
+	
 	public String getId() {
 		return id;
 	}
@@ -129,8 +130,5 @@ public class MemberBean {
 	public void setDeldate(Date deldate) {
 		this.deldate = deldate;
 	}
-
-
-
-
+	
 }
