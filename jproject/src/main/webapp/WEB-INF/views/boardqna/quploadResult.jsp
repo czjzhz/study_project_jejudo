@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%-- <%@ include file="../header.jsp"%> --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../navi.jsp"%>
+
 <c:if test="${qresult == 1 }">
 	<script>
 		alert("파일은 200KB까지 업로드 가능합니다.");

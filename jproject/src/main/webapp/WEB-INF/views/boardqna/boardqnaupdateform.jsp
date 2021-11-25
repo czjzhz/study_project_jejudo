@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<<%-- %@ include file="../header.jsp"%> --%>
+<%@ include file="../navi.jsp"%>
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,6 @@
 <title>QnA 게시판 글수정</title>
 </head>
 <body>
-<%@ include file="../navi.jsp"%>
 
 	<main class="" id="main-collapse">
 		<div class="container-fluid">
