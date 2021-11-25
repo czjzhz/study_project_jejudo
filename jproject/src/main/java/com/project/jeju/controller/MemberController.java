@@ -8,6 +8,7 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ public class MemberController {
 	@Autowired
 	private MemberService ms;
 
+	
 	// 로그인 폼 뷰
 	@RequestMapping("/MemberLogin.do")
 	public String mlogin() {
@@ -56,13 +58,43 @@ public class MemberController {
 		// member 폴더의 memberJoin.jsp 뷰 페이지 실행
 	}
 
-	 // 로그인 실행
+	 // 로그인 실행 (인증)
 	@RequestMapping("MemberLoginok.do")
-	public String mloginok() {
+	public String mloginok(@RequestParam("id") String id,
+						   @RequestParam("passwd") String passwd,
+						   HttpSession session,	
+						   Model model) throws Exception {
+		int result = 0;
+		MemberBean mb = ms.userCheck(id);
+		 
+		if (mb == null) { 		// 등록되지 않은 회원일 떄
+			
+			result = 1;
+			model.addAttribute("result", result);
+			
+			return "member/loginResult";
+		
+		} else {
+			if (mb.getPasswd().equals(passwd)) {// 비번이 같을 때
+				session.setAttribute("id", id);
+				String name = mb.getName();
+				String profile = mb.getProfile();
 
-		return "home";
+				model.addAttribute("name", name);
+				model.addAttribute("profile", profile);
+
+				return "member/home";
+				
+			} else { // 비번이 다를때
+				result = 2;
+				model.addAttribute("result", result);
+				
+				return "member/loginResult";				
+			}
+		}
+
+
 	}
-		// member폴더의 main.jsp 뷰 페이지 실행
 		
 		
 //	// ID중복검사 ajax함수로 처리부분
@@ -167,7 +199,7 @@ public class MemberController {
 		mb.setEmail(email);
 		mb.setProfile(newfilename); // 중복된 파일  이름 바꿔서  저장
 
-		int result = ms.insert(mb);
+		int result = ms.insertMember(mb);
 		model.addAttribute("result", result);
 		
 		return "member/popup";

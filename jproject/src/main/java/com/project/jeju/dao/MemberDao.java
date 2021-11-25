@@ -13,12 +13,13 @@ public class MemberDao {
 	@Autowired
 	private SqlSession sqlSession;
 
+	
 	// 아이디 중복 체크
 //	@Transactional
 	public int checkMemberId(String id) throws Exception {
 // 		getSession();
 		int re = -1; // 사용 가능한 ID
-		MemberBean mb = sqlSession.selectOne("memberlogin", id);
+		MemberBean mb = sqlSession.selectOne("memberns.idlogin", id);
 		if (mb != null)
 			re = 1; // 중복id
 		return re;
@@ -34,7 +35,7 @@ public class MemberDao {
 	public int checkMemberNick(String nickname) throws Exception {
 //		 		getSession();
 		int re = -1; // 사용 가능한 닉네임
-		MemberBean mb = sqlSession.selectOne("memberlogin1", nickname);
+		MemberBean mb = sqlSession.selectOne("memberns.nicklogin", nickname);
 		if (mb != null)
 			re = 1; // 중복 닉네임
 		return re;
@@ -42,10 +43,20 @@ public class MemberDao {
 	}
 
     // 회원가입 저장	
-	public int insert(MemberBean mb) throws Exception {
+// @Transactional	
+	public int insertMember(MemberBean mb) throws Exception {
 //				getSession();
 		return sqlSession.insert("memberns.insert", mb);
 	}
+
+	// 로그인 인증 체크
+// @Transactional	
+	public MemberBean userCheck(String id) throws Exception {
+//			getSession();
+			return sqlSession.selectOne("memberns.idlogin", id);
+	}
+
+}
 
 	
 	
@@ -61,10 +72,4 @@ public class MemberDao {
 //		return sqlSession.selectOne("pwdFind", mb);
 //	}
 
-	// 로그인 인증 체크
-//	@Transactional
-//	public MemberBean userCheck(String id) throws Exception {
-//		getSession();
-//		return sqlSession.selectOne("loginCheck", id);
 
-}

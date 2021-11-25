@@ -22,8 +22,12 @@ public class MemberService {
 			return md.checkMemberNick(nickname);
 		}
 
-		public int insert(MemberBean mb) throws Exception {
-			return md.insert(mb);
+		public int insertMember(MemberBean mb) throws Exception {
+			return md.insertMember(mb);
+		}
+
+		public MemberBean userCheck(String id) throws Exception {
+			return md.userCheck(id);
 		}
 		
 		
@@ -32,8 +36,5 @@ public class MemberService {
 //			MemberDao.insertMember(mb);
 //		}
 		
-//		public MemberBean userCheck(String id) throws Exception{
-//			return md.userCheck(id);		
-//		}
-		
+
 }

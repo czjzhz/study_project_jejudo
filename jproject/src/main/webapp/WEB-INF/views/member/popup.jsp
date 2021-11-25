@@ -8,17 +8,17 @@
 </head>
 <body>
 
-<c:If test="${result <= 0 }">
+<c:If test="${result > 0 }">
 	<script>
 		alert("회원 가입 성공");
 		location.href="home.do";
 	</script>
 </c:If>
 
-<c:If test="${result > 0 }">
+<c:If test="${result <= 0 }">
 	<script>
 		alert("회원 가입 실패");
-		history.go(-1);
+		location.href="MemberJoin.do";
 	</script>
 </c:If>
 	

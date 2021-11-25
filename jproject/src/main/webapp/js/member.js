@@ -317,6 +317,7 @@ function id_check() {
 	//	alert("in");
 	$("#idcheck").hide();// idcheck span 아이디 영역을 숨긴다.
 	var mid = $("#id").val();
+	var idYN = 'N';
 
 	// 1. 아이디 입력글자 길이 체크 (유효성 검사)
 	if ($.trim($("#id").val()).length < 4) {
@@ -352,7 +353,7 @@ function id_check() {
 	// 아이디 중복확인 (ajax로 요청)
 	$.ajax({
 		type : "POST",
-		url : "memberidcheck.do",
+		url : "Memberidcheck.do",
 		data : {
 			"mid" : mid
 		},
@@ -365,6 +366,7 @@ function id_check() {
 				$("#idcheck").show();
 				$("#idcheck").append(newtext);
 				$("#id").val('').focus();
+			
 				return false;
 
 			} else { // 사용 가능한 아이디
@@ -373,6 +375,7 @@ function id_check() {
 				$("#idcheck").show();
 				$("#idcheck").append(newtext);
 				$("#passwd").focus();
+				var idYN = 'Y';
 			}
 		},
 		error : function(e) {
@@ -430,7 +433,7 @@ function nick_check() {
 	// 닉네임 중복확인 (ajax로 요청)
 	$.ajax({
 		type : "POST",
-		url : "membernickcheck.do",
+		url : "Membernickcheck.do",
 		data : {
 			"nickname" : nickname
 		},
