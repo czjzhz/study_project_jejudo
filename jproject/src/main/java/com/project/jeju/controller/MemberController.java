@@ -74,16 +74,17 @@ public class MemberController {
 			
 			return "member/loginResult";
 		
-		} else {
+		} else {				// 등록된 회원일 때
 			if (mb.getPasswd().equals(passwd)) {// 비번이 같을 때
 				session.setAttribute("id", id);
+				
 				String name = mb.getName();
 				String profile = mb.getProfile();
 
 				model.addAttribute("name", name);
 				model.addAttribute("profile", profile);
 
-				return "home";
+				return "member/main";
 				
 			} else { // 비번이 다를때
 				result = 2;
@@ -206,5 +207,15 @@ public class MemberController {
 	}	
 	
 	
-	
-}	
+	// 로그아웃
+		@RequestMapping("MemberLogout.do")
+		public String logout(HttpSession session) {
+			session.invalidate();
+//			logger.info("bye logout success");
+			return "redirect:/";			
+//			return "member/memberLogout";
+		}	
+		
+		
+		
+}

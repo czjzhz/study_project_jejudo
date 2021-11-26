@@ -30,11 +30,16 @@ public class MemberService {
 			return md.userCheck(id);
 		}
 		
-		
-		
-//		public void insertMember(MemberBean mb) throws Exception {
-//			MemberDao.insertMember(mb);
+//		public MemberBean findpwd(MemberBean mb)throws Exception {
+//			return md.findpwd(mb)
 //		}
 		
-
+//		public void updateMember(MemberBean mb) throws Exception{
+//			return md.updateMember(mb);
+//		}
+//		
+//		public void deleteMember(MemberBean mb) throws Exception{
+//			return md.deleteMember(mb);
+//		}
+		
 }

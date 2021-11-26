@@ -17,6 +17,7 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
 			<a href="home.do" class="navbar-brand">JEJU FRIEND</a>
+			
 		</div>
 
 		<nav class="sidebar">
