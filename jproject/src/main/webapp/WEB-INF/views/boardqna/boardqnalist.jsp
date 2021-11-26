@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
+<%@ include file="../navi.jsp"%>
 
 <!DOCTYPE html>
 <html>
@@ -20,8 +20,8 @@
 						style="background-color: #FF8000;"
 						onclick="location.href='qboardinsertForm.do'">글작성</button>
 					<table class="table table-hover">
-						<input type="hidden" name="id" value="" >
-						<input type="hidden" name="nickname" value="" >
+						<input type="hidden" name="id" value="${sessionScope.mb.id }"  >  <!-- 세션 id값 -->
+                   	    <input type="hidden" name="nickname" value="${sessionScope.mb.nickname }" > <!-- 세션 nick값 -->
 						<thead>
 							<tr>
 								<th>번호</th>
