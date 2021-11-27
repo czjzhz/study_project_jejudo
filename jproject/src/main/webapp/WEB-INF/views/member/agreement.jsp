@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<link
+	href="${pageContext.request.contextPath}/css/main.82cfd66e.css"
+	rel="stylesheet">
 
 <!-- 전체 이용약관 선택하면 회원가입 폼으로 이동 -->
 <script type="text/javascript">
@@ -55,62 +58,56 @@
 
 </head>
 <body>
-
-<table width=700 align=center border=1> 
+<table width=700 align=center border=0> 
 		<form name="myform" id="myform">
 		<tr>
 		<td height="70%" align="center">
        	<br>
-    	<p align="left"></p>
-    	<span style="padding-left: 160px">
-    	<a href="home.do">JEJU FRIEND</a></span>
-		<br><br>
+    	<center><a href="home.do" style="color: #FF8000;"><h1>JEJU FRIEND</h1></a></center>
+		<br>
+		</td>
 		</tr>
 		
 		<tr>
-			<td><input type="checkbox" id="checkall" /><b>JEJU FRIEND 모든 이용약관에 동의합니다.</b>
+			<td><input type="checkbox" id="checkall" /><b><font size="4">&nbsp;JEJU FRIEND 모든 이용약관에 동의합니다.</font></b>
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<textarea name="" id="" cols=100 rows=4>여러분을 환영합니다.
-			JEJU FRIEND의 서비스를 이용해 주셔서 감사합니다. 본 약관은 다양한 JEJU FRIEND의 서비스의 이용과 관련하여 JEJU FRIEND의 서비스를 제공하는 TEAM3 주식회사(이하 ‘TEAM3’)와 이를 이용하는 JEJU FRIEND 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 JEJU FRIEND의 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+			<textarea name="" id="" cols=100 rows=4>여러분을 환영합니다. JEJU FRIEND의 서비스를 이용해 주셔서 감사합니다. 본 약관은 다양한 JEJU FRIEND의 서비스의 이용과 관련하여 JEJU FRIEND의 서비스를 제공하는 TEAM3 주식회사(이하 ‘TEAM3’)와 이를 이용하는 JEJU FRIEND 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 JEJU FRIEND의 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
        		</textarea></td>
        	</tr>
        	<tr>
-       		<td><input type="checkbox" name="chk" />이용약관 동의</td>
+       		<td><input type="checkbox" name="chk" />&nbsp;이용약관 동의</td>
 		</tr>
 		<tr>
 			<td>
-			<textarea name="" id="" cols=100 rows=4>여러분을 환영합니다.
-			JEJU FRIEND의 서비스를 이용해 주셔서 감사합니다. 본 약관은 다양한 JEJU FRIEND의 서비스의 이용과 관련하여 JEJU FRIEND의 서비스를 제공하는 TEAM3 주식회사(이하 ‘TEAM3’)와 이를 이용하는 JEJU FRIEND 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 JEJU FRIEND의 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+			<textarea name="" id="" cols=100 rows=4>여러분을 환영합니다.	JEJU FRIEND의 서비스를 이용해 주셔서 감사합니다. 본 약관은 다양한 JEJU FRIEND의 서비스의 이용과 관련하여 JEJU FRIEND의 서비스를 제공하는 TEAM3 주식회사(이하 ‘TEAM3’)와 이를 이용하는 JEJU FRIEND 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 JEJU FRIEND의 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
       		 </textarea></td>
       	</tr>
       	<tr>
-      		 <td><input type="checkbox" name="chk" />개인정보 수집 및 이용에 대한 안내 동의</td>
+      		 <td><input type="checkbox" name="chk" />&nbsp;개인정보 수집 및 이용에 대한 안내 동의</td>
 		</tr>
 		<tr>
 			<td>
-			<textarea name="" id="" cols=100 rows=4>여러분을 환영합니다.
-			JEJU FRIEND의 서비스를 이용해 주셔서 감사합니다. 본 약관은 다양한 JEJU FRIEND의 서비스의 이용과 관련하여 JEJU FRIEND의 서비스를 제공하는 TEAM3 주식회사(이하 ‘TEAM3’)와 이를 이용하는 JEJU FRIEND 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 JEJU FRIEND의 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+			<textarea name="" id="" cols=100 rows=4>여러분을 환영합니다. JEJU FRIEND의 서비스를 이용해 주셔서 감사합니다. 본 약관은 다양한 JEJU FRIEND의 서비스의 이용과 관련하여 JEJU FRIEND의 서비스를 제공하는 TEAM3 주식회사(이하 ‘TEAM3’)와 이를 이용하는 JEJU FRIEND 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 JEJU FRIEND의 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
       		 </textarea></td>
       	</tr>
       	<tr>
-      		 <td><input type="checkbox" name="chk" />위치정보 이용약관 동의</td>			
+      		 <td><input type="checkbox" name="chk" />&nbsp;위치정보 이용약관 동의</td>			
 		</tr>
 		<tr>
 			<td>
-			<textarea name="" id="" cols=100 rows=4>여러분을 환영합니다.
-			JEJU FRIEND의 서비스를 이용해 주셔서 감사합니다. 본 약관은 다양한 JEJU FRIEND의 서비스의 이용과 관련하여 JEJU FRIEND의 서비스를 제공하는 TEAM3 주식회사(이하 ‘TEAM3’)와 이를 이용하는 JEJU FRIEND 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 JEJU FRIEND의 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+			<textarea name="" id="" cols=100 rows=4>여러분을 환영합니다. JEJU FRIEND의 서비스를 이용해 주셔서 감사합니다. 본 약관은 다양한 JEJU FRIEND의 서비스의 이용과 관련하여 JEJU FRIEND의 서비스를 제공하는 TEAM3 주식회사(이하 ‘TEAM3’)와 이를 이용하는 JEJU FRIEND 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 JEJU FRIEND의 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
       		 </textarea></td>
       	</tr>
       	<tr>
-      		 <td><input type="checkbox" name="chk" />이벤트 등 프로모션 알림 메일 수신 동의</td>
+      		 <td><input type="checkbox" name="chk" />&nbsp;이벤트 등 프로모션 알림 메일 수신 동의</td>
 		</tr>
 		<tr>
 		<td align="center" valign="top">		
-			<input type="button" value="취소" onclick="nocheck()" />&nbsp;&nbsp;&nbsp; 
-			<input type="button" value="확인" onclick="check()" /></td>
+			<input type="button" value="취소" onclick="nocheck()" class="btn btn-primary" style="background-color: gray; border-style:none;"/>&nbsp;&nbsp;&nbsp; 
+			<input type="button" value="확인" onclick="check()" class="btn btn-primary" style="background-color: #FF8000; border-style:none;" /></td>
 		</tr>
 		</form>
 </table>

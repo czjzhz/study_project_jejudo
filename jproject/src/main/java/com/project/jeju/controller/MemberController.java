@@ -74,9 +74,14 @@ public class MemberController {
 			
 			return "member/loginResult";
 		
-		} else {
+		} else {				// 등록된 회원일 때
 			if (mb.getPasswd().equals(passwd)) {// 비번이 같을 때
+<<<<<<< HEAD
 				session.setAttribute("mb", mb);
+=======
+				session.setAttribute("mb", mb); // 닉네임을 사용예정이라 id값이 아닌 닉네임 포함된 dto로 받아옴
+				
+>>>>>>> 6b3698eed271c21b60200092a367ecb8ad927b19
 				String name = mb.getName();
 				String profile = mb.getProfile();
 
@@ -206,5 +211,15 @@ public class MemberController {
 	}	
 	
 	
-	
-}	
+	// 로그아웃
+		@RequestMapping("MemberLogout.do")
+		public String logout(HttpSession session) {
+			session.invalidate();
+//			logger.info("bye logout success");
+//			return "redirect:/";			
+			return "member/memberLogout";
+		}	
+		
+		
+		
+}

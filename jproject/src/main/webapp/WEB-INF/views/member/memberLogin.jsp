@@ -5,11 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link
+	href="${pageContext.request.contextPath}/css/main.82cfd66e.css"
+	rel="stylesheet">
 <title>회원 로그인 폼</title>
 </head>
 
-<script> 
-	function check() {                      
+<script>
+	function check() {
 		if ($.trim($("#id").val()) == "") { // ID 유효성 검사
 			alert("로그인 ID를 입력하세요.");
 			$("#id").val("").focus();
@@ -31,7 +34,40 @@
 </script>
 
 <body>
-	<div id="login_wrap">
+<%@ include file="../navi.jsp" %>
+<main>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3">
+					<form role="form" form method="post" action="MemberLoginok.do" onsubmit="return check()">
+						
+						<div class="form-group">
+							<label>아이디</label> <input name="id" id="id" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>비밀번호</label> <input type="password" name="passwd" id="passwd"
+								class="form-control" />
+						</div>
+					  	
+						<input type="submit" value="로그인" class="btn btn-primary col-md-12"
+							   style="background-color: #FF8000;" /><br><br>
+		
+						<a href="PwdFind.do" style="color:gray"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 비밀번호 찾기 </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+						<a href="IdFind.do" style="color:gray"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 아이디 찾기 </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |           
+						<a href="Agreement.do" style="color:gray"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 회원가입</a>
+						
+					  <!--   <input type="button" value="비밀번호 찾기" onclick="pwdFind()" />	
+						<input type="button" value="아이디 찾기" onclick="idFind()"  /> -->
+						
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+
+
+
+	 <!-- 	<div id="login_wrap">
 		<h2 class="login_title">로그인</h2>
 		<form method="post" action="MemberLoginok.do"
 	          onsubmit="return check()">
@@ -48,12 +84,16 @@
 				</tr>
 			</table>
 			<div id="login_menu">
-				<input type="submit" value="로그인" class="input_button" /> 
+				<input type="submit" value="로그인" class="input_button"
+							style="background-color: #FF8000;" />
 				<input type="button" value="비밀번호 찾기" class="input_button" onclick="pwdFind()" />
 				<input type="button" value="아이디 찾기" class="input_button" onclick="idFind()" />
 				<input type="button" value="회원가입" class="input_button" onclick="location='Agreement.do'" />
 			</div>
 		</form>
-	</div>
+	</div>  -->
+	
+	
+	
 </body>
 </html>

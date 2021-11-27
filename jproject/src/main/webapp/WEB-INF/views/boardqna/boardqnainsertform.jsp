@@ -17,8 +17,13 @@
 					<h3>Q & A 글쓰기</h3>
 					<br>
 					<form action="qboardinsert.do" method="post" enctype="multipart/form-data">
+<<<<<<< HEAD
 						<input type="hidden" name="id" value="${sessionScope.mb.id }"  >
 						<input type="hidden" name="nickname" value="${sessionScope.mb.nickname }" >
+=======
+					<input type="hidden" name="id" value="${sessionScope.mb.id }"  >  <!-- 세션 id값 -->
+                    <input type="hidden" name="nickname" value="${sessionScope.mb.nickname }" > <!-- 세션 nick값 -->
+>>>>>>> 6b3698eed271c21b60200092a367ecb8ad927b19
 						<table class="table table-hover" >
 						
 							<tr>

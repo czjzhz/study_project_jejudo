@@ -1,14 +1,25 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+>>>>>>> 6b3698eed271c21b60200092a367ecb8ad927b19
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link href="${path}/css/main.82cfd66e.css" rel="stylesheet">
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 6b3698eed271c21b60200092a367ecb8ad927b19
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +35,7 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
 			<a href="home.do" class="navbar-brand">JEJU FRIEND</a>
+			
 		</div>
 
 		<nav class="sidebar">
@@ -37,6 +49,7 @@
 						<i>함께 떠나는 제주도 여행!</i>
 					</p>
 				</div>
+<<<<<<< HEAD
 				<div class="nav-login">
 					<c:if test="${empty sessionScope.mb}">
 						<a href="MemberLogin.do"><i class="fa fa-lock"></i>로그인</a>
@@ -44,17 +57,30 @@
 					</c:if>
 					<c:if test="${not empty sessionScope.mb}">
 						<a href=""><i class="fa fa-unlock"></i>로그아웃</a>
-						<a href=""><i class="fa fa-info"></i>마이페이지</a>
+=======
+				<div class="nav-login"> 
+					<!-- 세션 연결이 없을 때 -->
+					<c:if test="${empty sessionScope.mb}">
+					<%-- <c:if test="${sessionScope.id == null }"> 위에 것과 같은 의미--%>
+						<a href="./MemberLogin.do"><i class="fa fa-lock"></i>로그인</a>
+						<a href="./Agreement.do"><i class="fa fa-user"></i>회원가입</a>
 					</c:if>
+					<!-- 세션 연결이 있을 때 -->
+					<c:if test="${not empty sessionScope.mb}">
+					<%-- <c:if test="${sessionScope.id != null }"> 위에 것과 같은 의미--%>
+						<a href="MemberLogout.do"><i class="fa fa-unlock"></i>로그아웃</a>
+>>>>>>> 6b3698eed271c21b60200092a367ecb8ad927b19
+						<a href=""><i class="fa fa-info"></i>마이페이지</a>
+					</c:if> 
 				</div>
 				<br>
 				<ul class="nav">
-					<li><a href="" title=""><i class="fa fa-user-plus"></i>동행 찾기</a></li>
-					<li><a href="" title=""><i class="fa fa-pencil"></i>여행 리뷰</a></li>
-					<li><a href="" title=""><i class="fa fa-tree"></i> 여행 추천 장소</a></li>
+					<li><a href="" title=""><i class="fa fa-user-plus"></i> 동행찾기</a></li>
+					<li><a href="" title=""><i class="fa fa-pencil"></i> 여행리뷰</a></li>
+					<li><a href="" title=""><i class="fa fa-tree"></i> 여행추천장소</a></li>
 					<li><a href="qboardlist.do" title=""><i class="fa fa-question-circle"></i> Q&A</a></li>
-					<li><a href="" title=""><i class="fa fa-bullhorn"></i>공지사항</a></li>
-					<li><a href="calendargo.do" title=""><i class="fa fa-bullhorn"></i>달력</a></li>
+					<li><a href="" title=""><i class="fa fa-bullhorn"></i> 공지사항</a></li>
+					<li><a href="calendargo.do" title=""><i class="fa fa-calendar-check-o"></i> 여행일정</a></li>
 
 				</ul>
 

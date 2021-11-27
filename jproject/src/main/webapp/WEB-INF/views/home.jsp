@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%--@ include file="header.jsp"--%>
 <%@ include file="./navi.jsp"%>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="navi.jsp"%>
+>>>>>>> 6b3698eed271c21b60200092a367ecb8ad927b19
 
 <html>
 <head>

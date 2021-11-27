@@ -21,8 +21,13 @@
 						onclick="location.href='qboardinsertForm.do'">글작성</button>
 					</c:if>
 					<table class="table table-hover">
+<<<<<<< HEAD
 						<input type="hidden" name="id" value="sessionScope.mb.id " >
 						<input type="hidden" name="nickname" value="sessionScope.mb.nickname" >
+=======
+						<input type="hidden" name="id" value="${sessionScope.mb.id }"  >  <!-- 세션 id값 -->
+                   	    <input type="hidden" name="nickname" value="${sessionScope.mb.nickname }" > <!-- 세션 nick값 -->
+>>>>>>> 6b3698eed271c21b60200092a367ecb8ad927b19
 						<thead>
 							<tr>
 								<th>번호</th>
