@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="com.project.jeju.model.Project_Bean" alias="project"></typeAlias>
+		
+		<typeAlias type="com.project.jeju.model.CalendarBean" alias="calendar"></typeAlias>
+				
+		<typeAlias type="com.project.jeju.model.BoardAccomBean" alias="bab"></typeAlias>
+		<typeAlias type="com.project.jeju.model.BoardAccomReplyBean" alias="barb"></typeAlias>
+		<typeAlias type="com.project.jeju.model.BoardQnaBean" alias="bqb"></typeAlias>
+		<typeAlias type="com.project.jeju.model.BoardQnaReplyBean" alias="bqrb"></typeAlias>
+		<typeAlias type="com.project.jeju.model.BoardReviewBean" alias="brb"></typeAlias>
+		<typeAlias type="com.project.jeju.model.BoardReviewReplyBean" alias="brrb"></typeAlias>
+		
+		<typeAlias type="com.project.jeju.model.MemberBean" alias="mb"></typeAlias>
+	</typeAliases>
+
+</configuration>

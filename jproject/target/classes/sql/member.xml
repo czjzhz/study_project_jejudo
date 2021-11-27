@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberns">
+
+				  
+	 <!-- 회원가입 -->
+    <insert id="insert" parameterType="mb"> 
+    	insert into member(id,passwd,name,nickname,age,gender,zip,address1,address2,email,
+    	phone,profile,intro,register,memberpoint,state) values (#{id}, #{passwd}, #{name}, #{nickname}, #{age}, 
+    	#{gender}, #{zip}, #{address1}, #{address2}, #{email}, #{phone},
+    	#{profile,jdbcType=VARCHAR}, #{intro}, sysdate, 0, '1') <!-- #{delcont},sysdate -->
+    </insert>   
+    
+    
+	<!-- ID 로그인 인증 / 중복검사 -->
+	<select id="idlogin" parameterType="String" resultType="mb">
+    <!--  select * from member where id=#{id} and state=0 -->
+     select * from member where id=#{id} 
+    </select>
+	
+	
+	<!-- 닉네임 중복검사 -->
+	<select id="nicklogin" parameterType="String" resultType="mb">
+    <!--  select * from member where id=#{id} and state=0 -->
+     select * from member where nickname=#{nickname} 
+    </select>
+    
+	
+	 <!-- 비밀번호 검색 -->
+    <select id="pwdFind" parameterType="String" resultType="mb">
+     select *  from MemberJoin where id=#{id} and name=#{name}
+    </select>
+    
+    <!-- 회원수정 -->
+   
+   
+ 	<!-- 회원삭제 -->
+ 	 
+</mapper>
