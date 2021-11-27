@@ -8,6 +8,7 @@
 <link
 	href="${pageContext.request.contextPath}/css/main.82cfd66e.css"
 	rel="stylesheet">
+	
 <title>회원 로그인 폼</title>
 </head>
 
@@ -34,12 +35,13 @@
 </script>
 
 <body>
-<%@ include file="../navi.jsp" %>
+<%@ include file="../navi.jsp" %> 
 <main>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3">
 					<form role="form" form method="post" action="MemberLoginok.do" onsubmit="return check()">
+					
 						
 						<div class="form-group">
 							<label>아이디</label> <input name="id" id="id" class="form-control" />

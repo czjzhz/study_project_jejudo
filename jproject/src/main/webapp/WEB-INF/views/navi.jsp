@@ -38,6 +38,7 @@
 						<i>함께 떠나는 제주도 여행!</i>
 					</p>
 				</div>
+				<br><br><br>
 				<div class="nav-login"> 
 					<!-- 세션 연결이 없을 때 -->
 					<c:if test="${empty sessionScope.mb}">
@@ -50,6 +51,7 @@
 					<%-- <c:if test="${sessionScope.id != null }"> 위에 것과 같은 의미--%>
 						<a href="MemberLogout.do"><i class="fa fa-unlock"></i>로그아웃</a>
 						<a href=""><i class="fa fa-info"></i>마이페이지</a>
+						<a href=""><i class="fa fa-info"></i>나의여행일정</a>
 					</c:if> 
 				</div>
 				<br>
@@ -59,7 +61,7 @@
 					<li><a href="" title=""><i class="fa fa-tree"></i> 여행추천장소</a></li>
 					<li><a href="qboardlist.do" title=""><i class="fa fa-question-circle"></i> Q&A</a></li>
 					<li><a href="" title=""><i class="fa fa-bullhorn"></i> 공지사항</a></li>
-					<li><a href="calendargo.do" title=""><i class="fa fa-calendar-check-o"></i> 여행일정</a></li>
+					<li><a href="calendargo.do" title=""><i class="fa fa-calendar-check-o"></i> 제주지역이벤트</a></li>
 
 				</ul>
 

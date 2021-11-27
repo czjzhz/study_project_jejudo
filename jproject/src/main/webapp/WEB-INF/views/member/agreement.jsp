@@ -11,6 +11,8 @@
 	href="${pageContext.request.contextPath}/css/main.82cfd66e.css"
 	rel="stylesheet">
 
+<title>회원약관동의 폼</title>
+
 <!-- 전체 이용약관 선택하면 회원가입 폼으로 이동 -->
 <script type="text/javascript">
 	function check() {
