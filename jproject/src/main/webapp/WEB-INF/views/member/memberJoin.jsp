@@ -6,9 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="${pageContext.request.contextPath}/css/main.82cfd66e.css"
-	rel="stylesheet">
 <title>회원가입 폼</title>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -32,19 +29,12 @@
 </head>
 
 <body>
-
 	<div id="join_wrap">
+		<h2 class="join_title">회원가입</h2>
 		<form name="f" method="post" action="MemberJoinok.do"
 			onsubmit="return check()" enctype="multipart/form-data">
 			<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
-			<table id="join_table" align=center border=0>
-			<tr>
-		<td height="70%" align="center" colspan="2">
-       	<br>
-    	<center><a href="home.do" style="color: #FF8000;"><h1>JEJU FRIEND 회원가입</h1></a></center>
-		<br>
-		</td>
-		</tr>
+			<table id="join_table">
 				<tr>
 					<th>아이디</th>
 					<td><input name="id" id="id" size="14" class="input_box" /> <input
@@ -156,14 +146,14 @@
 					<td><textarea id=intro name=intro cols=50
 							rows=10></textarea></td>
 				</tr>
-				<tr>
-				<td colspan="2" align="center" valign="top">
-				<input type="button" value="취소" class="btn btn-primary" id="join_button" style="background-color: gray; border-style:none;"
-					   onclick="location.href='<%=request.getContextPath()%>/home.do'">
-				<input type="submit" value="회원가입" class="btn btn-primary" id="join_button" style="background-color: #FF8000; border-style:none;" />
-				</td>
-				</tr>
+
 			</table>
+
+			<div id="join_menu">
+				<input type="submit" value="회원가입" class="input_button" /> <input
+					type="button" value="취소" class="input_button"
+					onclick="location.href='<%=request.getContextPath()%>/home.do'">
+			</div>
 
 		</form>
 	</div>

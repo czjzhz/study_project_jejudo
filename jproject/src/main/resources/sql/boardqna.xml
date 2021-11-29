@@ -45,7 +45,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="bqb">
-	 	insert into boardqna values (boardqna_seq.nextval,#{qsub},#{qcont},sysdate,'n','bbb',#{qfile,jdbcType=VARCHAR},0,'닉네임',#{qip})
+	 	insert into boardqna values (boardqna_seq.nextval,#{qsub},#{qcont},sysdate,'n',#{id},#{qfile,jdbcType=VARCHAR},0,#{nickname},#{qip})
 <!-- 	 	insert into boardqna values (boardqna_seq.nextval,#{qsub},#{qcont},sysdate,n,#{id},#{qfile},0,#{nickname},#{qip}) -->
 	</insert>
 

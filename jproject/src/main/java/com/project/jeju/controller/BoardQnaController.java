@@ -19,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.jeju.model.BoardQnaBean;
-import com.project.jeju.model.MemberBean;
 import com.project.jeju.service.BoardQnaService;
 import com.project.jeju.service.PagingPgm;
 
@@ -29,6 +28,7 @@ public class BoardQnaController {
 
 	@Autowired
 	private BoardQnaService bqs;
+
 
 	@RequestMapping("/qboardlist.do")					// QnA 목록, 검색 목록
 	public String list(String pageNum, BoardQnaBean boardqna, Model model) {
@@ -78,6 +78,7 @@ public class BoardQnaController {
 		System.out.println("upload in");
 //		int qno = boardqna.getQno();	
 		String qip = request.getRemoteAddr();
+
 		
 		String filename = mf.getOriginalFilename();
 				
@@ -133,8 +134,9 @@ public class BoardQnaController {
 
 		}
 		
+
 //		boardqna.setId(id);
-//		boardqna.setNickname(nickname);
+	//	boardqna.setNickname(nickname);
 		boardqna.setQip(qip);
 		boardqna.setQfile(newfilename);
 		int result = bqs.insert(boardqna);
@@ -271,7 +273,7 @@ public class BoardQnaController {
 		
 		model.addAttribute("result",result);
 		model.addAttribute("pageNum",pageNum);
-		return "boardqna/boardqnaupdate";
+		return "boardqna/boardqnadelete";
 	}
 	
 }

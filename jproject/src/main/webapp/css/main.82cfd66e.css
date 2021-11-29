@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&Gugi&family=Sunflower:wght@700&display=swap');
-
 @import
 	url(https://fonts.googleapis.com/css?family=Cabin:400,700|Source+Sans+Pro:400,700)
 	;
@@ -19,11 +17,7 @@ html {
 }
 
 body {
-	margin: 0;
-	background-image: url("https://cdn.crowdpic.net/list-thumb/thumb_l_95E7486124D7777F13048BD57398CA3F.png");
-	background-repeat:no-repeat;
-	background-position: right bottom;
-	background-attachment: fixed;
+	margin: 0
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup,
@@ -286,7 +280,7 @@ a {
 }
 
 a:focus, a:hover {
-	color: #c0d978;
+	color: #037FFB;
 	text-decoration: none;
 }
 
@@ -1534,17 +1528,9 @@ caption, th {
 	text-align: left
 }
 
-.table>join_table>th,td {
+.table>join_t>th,td {
 	padding: 15px;
 }
- 
- 
-#join_button {
- width:100px;
- margin: auto;
- display: inline-block;
-
- }
 
 .table {
 	width: 100%;
@@ -2413,17 +2399,20 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .btn-primary {
 	color: #fff;
 	background-color: #ff6360;
+	border-color: #ff6360
 }
 
 .btn-primary.focus, .btn-primary:focus {
 	color: #fff;
 	background-color: #ff312d;
+	border-color: #e00400
 }
 
 .btn-primary.active, .btn-primary:active, .btn-primary:hover, .open>.btn-primary.dropdown-toggle
 	{
 	color: #fff;
 	background-color: #ff312d;
+	border-color: #ff2723
 }
 
 .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover,
@@ -2432,6 +2421,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 	.open>.btn-primary.dropdown-toggle:hover {
 	color: #fff;
 	background-color: #ff0e09;
+	border-color: #e00400
 }
 
 .btn-primary.active, .btn-primary:active, .open>.btn-primary.dropdown-toggle
@@ -2445,6 +2435,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 	fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:hover
 	{
 	background-color: #ff6360;
+	border-color: #ff6360
 }
 
 .btn-primary .badge {
@@ -2638,7 +2629,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .btn-link {
-	color: #c0d978;
+	color: #037FFB;
 	font-weight: 400;
 	border-radius: 0
 }
@@ -2655,7 +2646,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .btn-link:focus, .btn-link:hover {
-	color: #c0d978;
+	color: #037FFB;
 	text-decoration: underline;
 	background-color: transparent
 }
@@ -2815,7 +2806,7 @@ tbody.collapse.in {
 	color: #fff;
 	text-decoration: none;
 	outline: 0;
-	background-color: #c0d978;
+	background-color: #037FFB;
 }
 
 .dropdown-menu>.disabled>a, .dropdown-menu>.disabled>a:focus,
@@ -3237,17 +3228,10 @@ tbody.collapse.in {
 	margin-left: -1px
 }
 
-.nav-login {
-	word-spacing: 12px;
-}
-
 .nav {
 	margin-bottom: 0;
 	padding-left: 0;
-	list-style: none;
-	font-size: 20px;
-	font-family: 'Do Hyeon', sans-serif;
-	letter-spacing: 5px;
+	list-style: none
 }
 
 .nav:after, .nav:before {
@@ -5007,10 +4991,8 @@ main {
 .site-brand {
 	color: #FB6100;
 	font-family: Cabin, Helvetica, Arial, sans-serif;
-	font-size: 30px;
+	font-size: 18px;
 	font-weight: 700;
-	-webkit-text-stroke-width:2px;
-	-webkit-text-stroke-color:white;	
 	display: block;
 	-webkit-transition: all .2s linear;
 	-o-transition: all .2s linear;
@@ -5018,7 +5000,6 @@ main {
 }
 
 .site-brand:hover {
-	color: #6b8d5f;
 	text-decoration: none
 }
 
@@ -5037,7 +5018,7 @@ main {
 }
 
 .nav>li>a:hover {
-	color: #c0d978;
+	color: #037FFB;
 }
 
 .nav-footer-social-buttons {

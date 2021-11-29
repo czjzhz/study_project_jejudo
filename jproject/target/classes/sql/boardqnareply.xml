@@ -23,7 +23,7 @@
 	</insert>
 	
 	<update id="update" parameterType="bqrb">
-		update boardqnareply set qrcont=#{qrcont},qrupdate=#{qrupdate} where qrno=#{qrno}
+		update boardqnareply set qrcont=#{qrcont},qrupdate=sysdate where qrno=#{qrno}
 	</update>
 	
 	<delete id="delete" parameterType="int">

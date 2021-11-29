@@ -9,7 +9,6 @@
 <title>QnA 게시판 글수정</title>
 </head>
 <body>
-<%@ include file="../navi.jsp"%>
 
 	<main class="" id="main-collapse">
 		<div class="container-fluid">

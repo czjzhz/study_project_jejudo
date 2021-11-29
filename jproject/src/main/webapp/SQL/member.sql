@@ -1,4 +1,4 @@
-
+<<<<<<< HEAD
 -- joinMember.sql
 select * from tab;
 select * from seq;
@@ -22,7 +22,7 @@ create table joinMember(
   , email varchar2(100) not null     /*이메일 주소*/
   , profile varchar2(100)            /*프로필 첨부파일명*/
   , regdate date                     /*가입 날짜*/
-  , state number(10)                 /*가입회원 1, 탈퇴회원 2, 정지회원3*/
+  , state number(10)                 /*가입회원 1, 탈퇴회원 2*/
   , delcont varchar2(4000)           /*탈퇴 이유*/
   , deldate date                     /*탈퇴일*/
 );
@@ -47,3 +47,4 @@ select * from tab;
 alter table member add domain varchar2()
 
 alter table member drop column phone3;
+>>>>>>> bba230d2293b6d7445e002106de8f9bf533cc9ca

@@ -32,7 +32,7 @@
 				center: 'title', 
 				right: 'dayGridMonth,timeGridWeek,timeGridDay'
 			}, 
-		initialDate: '2021-11-08',// 초기 로딩 날짜. 
+		initialDate: '2021-11-27',// 초기 로딩 날짜. 
 		navLinks: true,  // can click day/week names to navigate views 
 		selectable: true, 
 		selectMirror: true, 

@@ -21,7 +21,7 @@ public class MemberDao {
 		int re = -1; // 사용 가능한 ID
 		MemberBean mb = sqlSession.selectOne("memberns.idlogin", id);
 		if (mb != null)
-			re = 1; // 중복ID
+			re = 1; // 중복id
 		return re;
 	}
 
@@ -61,19 +61,14 @@ public class MemberDao {
 	
 	
 	
-//   // 회원수정
-////  @Transactional
-//  public void updateMember(MemberBean member) throws Exception {
-////     	getSession();
-//	sqlSession.update("member_edit", member);
-//}	
+	
 	
 	
 
 //	// 비밀번호 검색
-////  @Transactional
-//	public MemberBean findpwd(MemberBean mb) throws Exception {
-////		getSession();
+//  @Transactional
+//	public MemberBean pwf(MemberBean mb) throws Exception {
+//		getSession();
 //		return sqlSession.selectOne("pwdFind", mb);
 //	}
 

@@ -46,8 +46,9 @@ public class BoardQnaReplyController {
 	// 댓글 수정
 	@RequestMapping("qrupdate.do")
 	public String qrupdate(BoardQnaReplyBean qr, Model model) {
+		System.out.println("123");
 		bqrs.update(qr);
-		return "boardqnareply/qno/" + qr.getQno();
+		return "redirect:boardqnareply.do?qno=" + qr.getQno();
 //		return "redirect:boardqnareply/qno/" + qr.getQno();
 	}
 	
@@ -55,7 +56,7 @@ public class BoardQnaReplyController {
 	@RequestMapping("qrdelete.do")
 	public String qrdelete(BoardQnaReplyBean qr, Model model) {
 		bqrs.delete(qr.getQrno());
-		return "boardqnareply/qno/" + qr.getQno();
+		return "redirect:boardqnareply.do?qno=" + qr.getQno();
 //		return "redirect:boardqnareply/qno/" + qr.getQno();
 	}
 	

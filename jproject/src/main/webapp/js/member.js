@@ -22,7 +22,7 @@ function check() {
 		return false;
 	}
 	if ($.trim($("#passwd1").val()) != $.trim($("#passwd2").val())) {
-		// !=같지 않다 연산. 비밀번호가 다를 경우
+		// !=같지않다 연산. 비밀번호가 다를 경우
 		alert("비밀번호가 다릅니다. 다시 입력해주세요.");
 		$("#passwd1").val("");
 		$("#passwd2").val("");
@@ -99,6 +99,9 @@ function check() {
 		return false;
 	}
 	
+	
+	
+	
 	if($.trim($("#mailid").val())==""){
 		 alert("이메일을 입력하세요.");
 		 $("#mailid").val("").focus();
@@ -110,11 +113,12 @@ function check() {
 		 return false;
 	}
 	
-	if ($.trim($("#intro").val()) == "") {               // 필요시 온오프 가능
+	if ($.trim($("#intro").val()) == "") {               // 필요시 사용 가능
 		alert("자기소개를 입력하세요.");
 		$("#intro").val("").focus();
 		return false;
 	}
+	
 	
 	if(idYN == 'N'){
 		alert('ID 중복검사를 체크해주세요.');
@@ -341,14 +345,12 @@ function post_check() {
 //	
 //}
 
-
-
 // 유효성 검사
 function id_check() {
 	//	alert("in");
 	$("#idcheck").hide();// idcheck span 아이디 영역을 숨긴다.
 	var mid = $("#id").val();
-//	var idYN = 'N';				// 페이지 가장 위로 이동완료 (전체 적용을 위해)
+//	var idYN = 'N';
 
 	// 1. 아이디 입력글자 길이 체크 (유효성 검사)
 	if ($.trim($("#id").val()).length < 4) {
@@ -380,6 +382,7 @@ function id_check() {
 		return false;
 	}
 	;
+
 
 	
 	// 아이디 중복확인 (ajax로 요청)
@@ -526,9 +529,7 @@ function domain_list() {
 		//리스트목록을 선택했을때
 
 		f.maildomain.value = f.mail_list.options[num].value;
-		/*num변수에는 해당리스트 목록번호가 저장되어있다.
-		 * 해당리스트 번호의 option value값이 도메인입력란에 선택된다.
-		 * options속성은 select객체의 속성으로서 해당리스트번호의 value값을 가져온다
+		/*num변수에는 해당리스트 목록번호가 저장되어있다.해당리스트 번호의 option value값이 도메인입력란에 선택된다.options속성은 select객체의 속성으로서 해당리스트번호의 value값을 가져온다
 		 */
 		f.maildomain.readOnly = true;
 	}

@@ -41,17 +41,19 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3>Q & A 상세페이지</h3>
+					<c:if test="${boardqna.id == sessionScope.mb.id }">
 					<button type="button" class="btn btn-md btn-warning"
 							style="background-color: #FF8000;"
 							onclick="location.href='qboardupdateform.do?qno=${boardqna.qno }&pageNum=${pageNum}'">수정</button>
 					<button type="button" class="btn btn-md btn-warning"
 							style="background-color: #FF8000;"
 							onclick="location.href='qboarddelete.do?qno=${boardqna.qno }&pageNum=${pageNum}'">삭제</button>
+					</c:if>
 					<table class="table table-bordered">
 					<input type="hidden" name="qno" value="${boardqna.qno }">
 					<input type="hidden" name="pageNum" value="${pageNum }">
-					<input type="hidden" name="id" value="" >
-					<input type="hidden" name="nickname" value="" >
+					<input type="hidden" name="id" value="${sessionScope.mb.id }" >
+					<input type="hidden" name="nickname" value="${sessionScope.mb.nickname }" >
 							
 						<tr>
 							<td width="150px;">제목</td>
@@ -78,12 +80,14 @@
 						</tr>
 					</table>
 					<p>
+					<c:if test="${not empty sessionScope.mb}">
 					<form name="frm" id="frm">
 						<input type="hidden" name="qno" value="${boardqna.qno }">
-						<input type="hidden" name="qrnickname" value="${member.nickname }">
+						<input type="hidden" name="qrnickname" value="${sessionScope.mb.nickname } ">
 						<textarea class="form-control" id="qrcont" name="qrcont" rows="3"></textarea>
 						<input type="button" value="댓글 작성" name="qrinsert" id="qrinsert" class="btn btn-md btn-warning" style="background-color: #FF8000;">
 					</form>
+					</c:if>
 	<div id="boardqnareply"></div>
 	
 					</p>
