@@ -31,9 +31,9 @@
 	 <interceptors>
 		<interceptor>
 			<mapping path="/memberEdit.do"/>
-			<mapping path="/memberEdit_ok.do"/>			
+			<mapping path="/memberEditok.do"/>			
 			<mapping path="/memberDel.do"/>
-			<mapping path="/memberDel_ok.do"/>
+			<mapping path="/memberDelok.do"/>
 			<mapping path="/memberLogout.do"/>
 			<beans:ref bean="sessionCk"/>
 		</interceptor>

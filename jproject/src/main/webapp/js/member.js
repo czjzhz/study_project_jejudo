@@ -1,5 +1,21 @@
 /** 유효성 체크 및 Ajax 아이디 체크 * */
 
+// 닉네임 중복 체크 끝
+function validate_nickname(nickname) {
+	var pattern = new RegExp(/^[a-z0-9가-힣]+$/)
+	// 영문 소문자,숫자,한글 가능 정규표현식
+	return pattern.test(nickname);
+}
+
+
+// 이름 중복체크 끝
+function validate_name(name) {
+	var pattern = new RegExp(/^[a-z가-힣]+$/)
+	// 영문 소문자,한글 가능 정규표현식
+	return pattern.test(name);
+}
+
+
 var idYN = 'N';
 var nickYN = 'N';
 
@@ -29,35 +45,54 @@ function check() {
 		$("#passwd1").focus();
 		return false;
 	}
+	
 	if ($.trim($("#name").val()) == "") {
-		alert("이름을 입력하세요.");
+		alert("이름을 입력하세요.");		
 		$("#name").val("").focus();
 		return false;
 	}
+	
+		
+	// 이름 중복 검사
+	//1. 이름 입력글자 길이 체크 (유효성 검사)
+	if($.trim($("#name").val()).length < 2) {
+		alert("2자 이상 입력하세요.");            
+		$("#name").val("").focus();
+		return false;
+	}
+
+	if ($.trim($("#name").val()).length > 6) {
+		alert("6자 이하의 글자를 입력하세요.");            
+		$("#name").val("").focus();
+		return false;
+	}
+
+	// 입력 이름 유효성 검사 (정규 표현식 검사)
+	if (!(validate_name($("#name").val()))) {
+		alert("영문과 한글만 입력하세요.");            
+		$("#name").val("").focus();
+		return false;
+	}	
 
 	if ($.trim($("#nickname").val()) == "") {
 		alert("닉네임을 입력하세요.");
 		$("#nickname").val("").focus();
 		return false;
 	}
-
 	if ($("#male").is(":checked") == false
 			&& $("#female").is(":checked") == false) {
 		alert("성별을 입력하세요.");
 		return false;
 	}
-
 	if ($.trim($("#age").val()) == "") {
 		alert("나이를 입력하세요.");
 		return false;
 	}
-	
 	if ($.trim($("#zip").val()) == "") {
 		alert("우편번호를 입력하세요.");
 		$("#zip").val("").focus();
 		return false;
 	}
-
 	if ($.trim($("#address1").val()) == "") {
 		alert("주소를 입력하세요.");
 		$("#address1").val("").focus();
@@ -95,7 +130,7 @@ function check() {
 	}
 	if (isNaN($("#phone3").val())) {
 		alert("숫자만 입력하세요.");
-		$("#phon3").val("").focus();
+		$("#phone3").val("").focus();
 		return false;
 	}
 	
@@ -358,7 +393,7 @@ function id_check() {
 		$("#idcheck").append(newtext);// span 아이디 영역에 경고문자 추가
 		$("#id").val("").focus();
 		return false;
-	};
+	}
 
 	if ($.trim($("#id").val()).length > 12) {
 		var newtext = '<font color="red">아이디는 12자 이하이어야 합니다.</font>';
@@ -368,7 +403,7 @@ function id_check() {
 		$("#id").val("").focus();
 		return false;
 	}
-	;
+	
 
 	// 입력 아이디 유효성 검사 (정규 표현식 검사)
 	if (!(validate_id(mid))) {
@@ -379,8 +414,7 @@ function id_check() {
 		$("#id").val("").focus();
 		return false;
 	}
-	;
-
+	
 	
 	// 아이디 중복확인 (ajax로 요청)
 	$.ajax({
@@ -417,15 +451,16 @@ function id_check() {
 	}); // $.ajax
 }
 
-// 아이디 중복 체크 끝
-
+	// 아이디 중복 체크 끝
 function validate_id(mid) {
 	var pattern = new RegExp(/^[a-z0-9_]+$/);
 	// 영문 소문자,숫자 ,_가능,정규표현식
 	return pattern.test(mid);
 }
 
-//닉네임 중복 체크 
+
+
+	//닉네임 중복 체크 
 function nick_check() {
 	//	alert("nick");
 	$("#nickcheck").hide();// nick check span 아이디 영역을 숨긴다.
@@ -440,7 +475,7 @@ function nick_check() {
 		$("#nickname").val("").focus();
 		return false;
 	}
-	;
+	
 
 	if ($.trim($("#nickname").val()).length > 6) {
 		var newtext = '<font color="red">닉네임은 6자 이하 가능합니다.</font>';
@@ -450,8 +485,7 @@ function nick_check() {
 		$("#nickname").val("").focus();
 		return false;
 	}
-	;
-
+	
 	// 입력 닉네임 유효성 검사 (정규 표현식 검사)
 	if (!(validate_nickname(nickname))) {
 		var newtext = '<font color="red">닉네임은 6글자 이하의 한글, 영문, 숫자만 사용할 수 있습니다.</font>';
@@ -461,7 +495,7 @@ function nick_check() {
 		$("#nickname").val("").focus();
 		return false;
 	}
-	;
+	
 
 	// 닉네임 중복확인 (ajax로 요청)
 	$.ajax({
@@ -496,12 +530,9 @@ function nick_check() {
 	}); // $.ajax
 }
 
-function validate_nickname(nickname) {
-	var pattern = new RegExp(/^[a-z0-9가-힣]+$/);
-	// 영문 소문자,숫자 ,_가능,정규표현식
-	return pattern.test(nickname);
-}
 
+
+	
 //도메인값 저장
 function domain_list() {
 	var num = f.mail_list.selectedIndex;
@@ -532,4 +563,5 @@ function domain_list() {
 		 */
 		f.maildomain.readOnly = true;
 	}
+
 }

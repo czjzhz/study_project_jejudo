@@ -22,18 +22,22 @@ public class MemberService {
 			return md.checkMemberNick(nickname);
 		}
 
+		public int checkMemberName(String name) throws Exception {
+			return md.checkMemberName(name);
+		}
+		
 		public int insertMember(MemberBean mb) throws Exception {
-			return md.insert(mb);
+			return md.insertMember(mb);
 		}
 
 		public MemberBean userCheck(String id) throws Exception {
 			return md.userCheck(id);
 		}
 		
-//		public MemberBean findpwd(MemberBean mb)throws Exception {
-//			return md.findpwd(mb)
-//		}
-		
+		public MemberBean findpwd(MemberBean mb)throws Exception {
+			return md.findpwd(mb);
+		}
+
 //		public void updateMember(MemberBean mb) throws Exception{
 //			return md.updateMember(mb);
 //		}

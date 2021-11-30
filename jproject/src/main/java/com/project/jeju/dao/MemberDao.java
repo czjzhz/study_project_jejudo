@@ -42,11 +42,18 @@ public class MemberDao {
 
 	}
 
+	// 이름 중복 검사
+	public int checkMemberName(String name) throws Exception {
+		return sqlSession.selectOne("name_check", name);
+	}
+	
+	
+	
     // 회원가입 저장	
 // @Transactional	
-	public int insert(MemberBean mb) throws Exception {
-//				getSession();
-		return sqlSession.insert("memberns.insert", mb);
+	public int insertMember(MemberBean mb) throws Exception {
+//		getSession();
+		return sqlSession.insert("memberns.insertMember", mb);
 	}
 
 	// 로그인 인증 체크
@@ -55,6 +62,17 @@ public class MemberDao {
 //			getSession();
 			return sqlSession.selectOne("memberns.idlogin", id);
 	}
+
+	// 비밀번호 검색
+//@Transactional
+	public MemberBean findpwd(MemberBean mb) throws Exception {
+//		getSession();
+		return sqlSession.selectOne("pwdFind", mb);
+	}
+
+	
+
+	
 
 }
 
@@ -68,13 +86,5 @@ public class MemberDao {
 //	sqlSession.update("member_edit", member);
 //}	
 	
-	
-
-//	// 비밀번호 검색
-////  @Transactional
-//	public MemberBean findpwd(MemberBean mb) throws Exception {
-////		getSession();
-//		return sqlSession.selectOne("pwdFind", mb);
-//	}
 
 
