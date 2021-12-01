@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="adnotice">
+ 	<resultMap id="adminNotice" type="adnt" >
+		<result property="nno"	 	   column="nno" />
+		<result property="nsubject"	   column="nsubject" />
+		<result property="ncontent"	   column="ncontent" />
+		<result property="ndate"	   column="ndate" />
+		<result property="nhide"	   column="nhide" />
+	</resultMap> 
+	
+ 	<select id="NoticeList" parameterType="adnt" resultMap="adminNotice">
+ 		select * from (select a.*, rowNum rn from(
+ 			select * from adminnotice order by nno desc) a )
+			where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getNoticeTotal" parameterType="adnt" resultType="int">
+		select count(*) from adminnotice
+	</select>
+	
+	<update id="nhideChange0" parameterType="int">
+		update adminnotice set nhide=1 where nno=#{nno}
+	</update>
+	
+	<update id="nhideChange1" parameterType="int">
+		update adminnotice set nhide=0 where nno=#{nno}
+	</update>
+	
+	<insert id="NoticeAdd" parameterType="adnt">
+		insert into adminnotice values(adminnotice_seq.nextval,#{nsubject},#{ncontent},sysdate,0)
+	</insert>
+	
+	<select id="NoticeUpdateSelect" parameterType="adnt" resultMap="adminNotice">
+		select * from adminnotice where nno=#{nno}
+	</select>
+	
+	<update id="NoticeUpdate" parameterType="int">
+		update adminnotice set nsubject=#{nsubject},ncontent=#{ncontent},ndate=sysdate where nno=#{nno}
+	</update>
+	
+	<delete id="NoticeDelete" parameterType="int">
+		delete from adminnotice where nno=#{nno}
+	</delete>
+	
+ </mapper>

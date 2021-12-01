@@ -8,23 +8,20 @@
 		<result property="qcont" column="qcont"/>
 		<result property="qreg" column="qreg"/>
 		<result property="qdel" column="qdel"/>
-		<result property="id" column="id"/>
 		<result property="qfile" column="qfile"/>
 		<result property="qreadcount" column="qreadcount"/>
-		<result property="nickname" column="nickname"/>
-		<result property="qip" column="qip"/>
 	</resultMap>
 	
 	<select id="list" parameterType="bqb" resultMap="boardqna">
  		select * from (select a.*, rowNum rn from(
- 			select * from boardqna
+ 			select * from qboard
 			<where>
 			<if test="keyword != null and search != 'subcon'">
 				${search} like '%'||#{keyword}||'%'
 			</if>
 			<if test="keyword != null and search == 'subcon'">
-				qsub like '%'||#{keyword}||'%' or
-				qcont like '%'||#{keyword}||'%'
+				subject like '%'||#{keyword}||'%' or
+				content like '%'||#{keyword}||'%'
 			</if>
 		</where>			
 			 order by qno desc) a )
@@ -32,37 +29,15 @@
 	</select>
 	
 	<select id="getTotal" parameterType="bqb" resultType="int">
-		select count(*) from boardqna 
+		select count(*) from qboard 
 		<where>
 			<if test="keyword != null and search !='subcon'">
 				${search} like '%'||#{keyword}||'%'
 			</if>
 			<if test="keyword != null and search=='subcon'">
-				qsub like '%'||#{keyword}||'%' or
-				qcont like '%'||#{keyword}||'%'
+				subject like '%'||#{keyword}||'%' or
+				content like '%'||#{keyword}||'%'
 			</if>
 		</where>
-	</select>
-	
-	<insert id="insert" parameterType="bqb">
-	 	insert into boardqna values (boardqna_seq.nextval,#{qsub},#{qcont},sysdate,'n','bbb',#{qfile,jdbcType=VARCHAR},0,'닉네임',#{qip})
-<!-- 	 	insert into boardqna values (boardqna_seq.nextval,#{qsub},#{qcont},sysdate,n,#{id},#{qfile},0,#{nickname},#{qip}) -->
-	</insert>
-
-	<select id="select" parameterType="int" resultMap="boardqna">
-		select * from boardqna where qno=#{qno}
-	</select>
-
-	<update id="selectUpdate" parameterType="bqb" >
-		update boardqna set qreadcount = qreadcount+1 where qno=#{qno}
-	</update>
-	
-	<update id="update" parameterType="bqb">
-		update boardqna set qsub=#{qsub},qcont=#{qcont},qreg=sysdate,qfile=#{qfile,jdbcType=VARCHAR},qip=#{qip} where qno=#{qno}	
-	</update>
-
-	<update id="delete" parameterType="int">
-		update boardqna set qdel='y' where qno=#{qno}
-	</update>
-	
+</select>
 </mapper>

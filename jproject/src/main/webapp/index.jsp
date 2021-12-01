@@ -8,14 +8,11 @@
 </head>
 <body>
 
-프로젝트 시작 페이지 <br>
-
-<a href="home.do">홈화면 이동</a> 
-<!--  <a href="MemberLogin.do">로그인화면 이동</a> -->
-
-<script>
-//	location.href="./home.do";
-</script>	
+	<h1>프로젝트 시작 페이지</h1>
+	<hr/>
+	<a href="home.do">홈</a> <br>
+	<a href="admin_login.do">관리자</a> <br>
+	<a href="map_view.do">지도</a>
 	
 
 </body>

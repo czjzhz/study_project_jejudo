@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="header.jsp"%>
-<%@ include file="navi.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
+
 
 <%@ page session="false"%>
 <html>
 <head>
 <title>Home</title>
+<link href="${path}/css/main.82cfd66e.css" rel="stylesheet">
 
 </head>
 <body>
@@ -33,8 +36,8 @@
 				</div>
 				<div class="nav-login">
 					<c:if test="${sessionScope.id == null }">
-						<a href="./MemberLogin.do"><i class="fa fa-lock"></i>로그인</a>
-						<a href="./Agreement.do"><i class="fa fa-user"></i>회원가입</a>
+						<a href="./login.do"><i class="fa fa-lock"></i>로그인</a>
+						<a href="./join.do"><i class="fa fa-user"></i>회원가입</a>
 					</c:if>
 					<c:if test="${sessionScope.id != null }">
 						<a href=""><i class="fa fa-unlock"></i>로그아웃</a>
@@ -43,16 +46,18 @@
 				</div>
 				<br>
 				<ul class="nav">
-					<li><a href="" title=""><i class="fa fa-user-plus"></i> 여행 동행찾기</a></li>
-					<li><a href="" title=""><i class="fa fa-pencil"></i> 여행 리뷰</a></li>
+					<li><a href="" title=""><i
+							class="fa fa-user-plus"></i> 동행 찾기</a></li>
+					<li><a href="" title=""><i class="fa fa-pencil"></i>
+							여행 리뷰</a></li>
 					<li><a href="" title=""><i class="fa fa-tree"></i> 여행 추천
 							장소</a></li>
 					<li><a href="qboardlist.do" title=""><i
-							class="fa fa-question-circle"></i> 여행 Q&A</a></li>
+							class="fa fa-question-circle"></i> Q&A</a></li>
 					<li><a href="" title=""><i class="fa fa-bullhorn"></i>
 							공지사항</a></li>
-					<li><a href="calendargo.do" title=""><i
-							class="fa fa-bullhorn"></i> 여행 일정</a></li>
+					<li><a href="calendargo.do" title=""><i class="fa fa-bullhorn"></i>
+							달력</a></li>
 
 				</ul>
 
@@ -77,7 +82,6 @@
 			</div>
 		</nav>
 	</header>
-
 	<main class="" id="main-collapse">
 
 		<div class="container">
@@ -140,10 +144,11 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing
 						elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 				</div>
-				
+
 			</div>
 		</div>
 	</main>
+
 
 </body>
 </html>

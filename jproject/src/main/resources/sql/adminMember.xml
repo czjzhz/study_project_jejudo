@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admember">
+	<resultMap id="adminMember" type="admb" >
+		<result property="id"	 	   column="id" />
+		<result property="passwd"	   column="passwd" />
+		<result property="name"	  	   column="name" />
+		<result property="nickname"	   column="nickname" />
+		<result property="age"	  	   column="age" />
+		<result property="gender"	   column="gender" />
+		<result property="zip"	  	   column="zip" />
+		<result property="address1"	   column="address1" /> 
+		<result property="address2"	   column="address2" />
+		<result property="email"	   column="email" />
+		<result property="phone"	   column="phone" />
+		<result property="profile"	   column="profile" />
+		<result property="info"	  	   column="info" />
+		<result property="register"	   column="register" />
+		<result property="memberpoint" column="memberpoint" />
+		<result property="state"	   column="state" />
+		<result property="delcont"	   column="delcont" />
+		<result property="deldate"	   column="deldate" />
+	</resultMap> 
+	
+	<select id="MemberList" parameterType="admb" resultMap="adminMember">
+ 		select * from (select a.*, rowNum rn from(
+ 			select * from member
+ 			<if test="keyword != null and search != null">
+			<where>${search} like '%'||#{keyword}||'%'</where>
+			</if>			
+			order by register desc) a )
+			where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getMemberTotal" parameterType="admb" resultType="int">
+		select count(*) from member 
+		<if test="keyword != null and search != null">
+		<where>${search} like '%'||#{keyword}||'%'</where>
+		</if>
+	</select>
+	
+	<update id="StateChange1" parameterType="String">
+		update member set state=3 where id=#{id}
+	</update>
+	<update id="StateChange3" parameterType="String">
+		update member set state=1 where id=#{id}
+	</update>
+	
+</mapper>

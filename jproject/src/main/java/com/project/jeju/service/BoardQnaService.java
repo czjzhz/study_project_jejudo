@@ -22,25 +22,5 @@ public class BoardQnaService {
 		return bqdao.getTotel(boardqna);
 	}
 
-	public int insert(BoardQnaBean boardqna) {
-		return bqdao.insert(boardqna);
-	}
-
-	public BoardQnaBean select(int qno) {
-		return bqdao.select(qno);
-	}
-
-	public void selectUpdate(int qno) {
-		bqdao.selectUpudate(qno);
-	}
-
-	public int update(BoardQnaBean boardqna) {
-		return bqdao.update(boardqna);
-	}
-
-	public int delete(int qno) {
-		return bqdao.delete(qno);
-	}
-
 
 }

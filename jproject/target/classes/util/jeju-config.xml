@@ -5,9 +5,21 @@
 
 <configuration>
 
+ 	<settings> 
+ 		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+
 	<typeAliases>
-		<typeAlias type="com.project.jeju.model.Project_Bean" alias="project"></typeAlias>
+		<!-- <typeAlias type="com.project.jeju.model.Project_Bean" alias="project"></typeAlias> -->
 		
+		
+		<typeAlias type="com.project.jeju.model.AdminBean" alias="adid"></typeAlias>
+		<typeAlias type="com.project.jeju.model.AdminMemberBean" alias="admb"></typeAlias>
+		<typeAlias type="com.project.jeju.model.AdminNoticeBean" alias="adnt"></typeAlias>
+		<typeAlias type="com.project.jeju.model.AdminAdBean" alias="adad"></typeAlias>
+		
+		
+		<typeAlias type="com.project.jeju.model.MapBean" alias="maps"></typeAlias>
 		<typeAlias type="com.project.jeju.model.CalendarBean" alias="calendar"></typeAlias>
 				
 		<typeAlias type="com.project.jeju.model.BoardAccomBean" alias="bab"></typeAlias>
@@ -16,8 +28,6 @@
 		<typeAlias type="com.project.jeju.model.BoardQnaReplyBean" alias="bqrb"></typeAlias>
 		<typeAlias type="com.project.jeju.model.BoardReviewBean" alias="brb"></typeAlias>
 		<typeAlias type="com.project.jeju.model.BoardReviewReplyBean" alias="brrb"></typeAlias>
-		
-		<typeAlias type="com.project.jeju.model.MemberBean" alias="mb"></typeAlias>
 	</typeAliases>
 
 </configuration>

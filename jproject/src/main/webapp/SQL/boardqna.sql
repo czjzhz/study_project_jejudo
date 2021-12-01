@@ -8,17 +8,14 @@ create table qboard(
   qreadcount number  	/*조회수 */
 );
 
-create sequence boardqna_seq 
+create sequence qboard_seq 
 start with 1 
 increment by 1 
 minvalue 1 
 maxvalue 99999;
 
-select * from boardqna
+select * from qboard
 
-insert into boardqna values(boardqna_seq.nextval,'test12','test cont11',sysdate,'n','bbb','',0,'닉네임');
-
+insert into qboard values(qboard_seq.nextval,'test11','test cont11',sysdate,'n','',0);
 
 drop table qboard;
-
-insert into member values('bbbb','1234','1234','홍길동','teseeee','20','1','111','111','111','22@22.com','010-1111-1111','','',sysdate,'0','','','');

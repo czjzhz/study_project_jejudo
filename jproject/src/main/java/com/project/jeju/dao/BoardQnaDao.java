@@ -21,26 +21,6 @@ public class BoardQnaDao {
 	public int getTotel(BoardQnaBean boardqna) {
 		return sst.selectOne("bqns.getTotal", boardqna);
 	}
-
-	public int insert(BoardQnaBean boardqna) {
-		return sst.insert("bqns.insert", boardqna);
-	}
-
-	public BoardQnaBean select(int qno) {
-		return sst.selectOne("bqns.select", qno);
-	}
-
-	public void selectUpudate(int qno) {
-		sst.update("bqns.selectUpdate", qno);
-	}
-
-	public int update(BoardQnaBean boardqna) {
-		return sst.update("bqns.update", boardqna);
-	}
-
-	public int delete(int qno) {
-		return sst.delete("bqns.delete", qno);
-	}
 	
 	
 }

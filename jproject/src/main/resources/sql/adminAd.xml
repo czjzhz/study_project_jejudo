@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="adad">
+ 	<resultMap id="adminAd" type="adad" >
+		<result property="adno"	 	   column="adno" />
+		<result property="adsubject"   column="adsubject" />
+		<result property="adcontent"   column="adcontent" />
+		<result property="addate"	   column="addate" />
+	</resultMap> 
+	
+ 	<select id="AdList" parameterType="adad" resultMap="adminAd">
+ 		select * from (select a.*, rowNum rn from(
+ 			select * from adminad order by adno desc) a )
+			where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getAdTotal" parameterType="adad" resultType="int">
+		select count(*) from adminad
+	</select>
+
+	<insert id="AdAdd" parameterType="adad">
+		insert into adminad values(adminad_seq.nextval,#{adsubject},#{adcontent},sysdate)
+	</insert>
+	
+	<select id="AdUpdateSelect" parameterType="adad" resultMap="adminAd">
+		select * from adminad where adno=#{adno}
+	</select>
+	
+	<update id="AdUpdate" parameterType="int">
+		update adminad set adsubject=#{adsubject},adcontent=#{adcontent},addate=sysdate where adno=#{adno}
+	</update>
+	
+	<delete id="AdDelete" parameterType="int">
+		delete from adminad where adno=#{adno}
+	</delete>
+	
+ </mapper>
