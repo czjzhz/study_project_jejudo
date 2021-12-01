@@ -21,6 +21,7 @@
 					<input type="hidden" name="id" value="${sessionScope.mb.id }"  >  <!-- 세션 id값 -->
                     <input type="hidden" name="nickname" value="${sessionScope.mb.nickname }" > <!-- 세션 nick값 -->
 						<table class="table table-hover" >
+							
 							<tr>
 								<td>제목</td>
 								<td><input type="text" name="qsub" required="required"></td>

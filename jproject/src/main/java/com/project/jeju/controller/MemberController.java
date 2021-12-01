@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Random;
 import java.util.StringTokenizer;
 import java.util.UUID;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.jeju.model.BoardQnaBean;
 import com.project.jeju.model.MemberBean;
 import com.project.jeju.service.MemberService;
 
@@ -79,7 +81,7 @@ public class MemberController {
 			Model model) throws Exception {
 		int result = 0;
 		MemberBean mb = ms.userCheck(id);
-
+		
 		if (mb == null) { // 등록되지 않은 회원일 떄
 
 			result = 1;
@@ -224,7 +226,15 @@ public class MemberController {
 
 	// 회원정보 (마이페이지)
 	@RequestMapping("Mypage.do")
-	public String mypage(HttpSession session) {
+	public String mypage(HttpSession session, Model model) {
+		
+		MemberBean member = (MemberBean) session.getAttribute("mb");
+		
+		List<BoardQnaBean> mytrip = ms.getTrip(member.getId());
+		System.out.println("mytrip:"+mytrip);
+		
+		model.addAttribute("mytrip", mytrip);
+		
 		return "member/mypage";
 	}
 	
@@ -348,7 +358,54 @@ public class MemberController {
 		return "member/memberLogout";
 	}
 
-	// 회원 탈퇴
+	
+	// 회원 탈퇴 폼
+	@RequestMapping(value = "/MemberDel.do")
+	public String memberdel(HttpSession session, Model md) throws Exception {
+
+		String id = (String) session.getAttribute("id");
+		MemberBean mb = ms.userCheck(id);
+//		mb.addAttribute("id", id);
+//		mb.addAttribute("name", mb.getName());
+
+		return "member/memberDel";
+	}
+
+	// 회원 탈퇴 저장 (탈퇴 완료) 
+	@RequestMapping(value = "/MemberDelok.do", method = RequestMethod.POST)
+	public String member_del_ok(@RequestParam("passwd") String pass, 
+							    @RequestParam("delcont") String del_cont,
+							    HttpSession session) throws Exception {
+
+		String id = (String) session.getAttribute("id");
+		MemberBean mb = this.ms.userCheck(id);
+
+		if (!mb.getPasswd().equals(pass)) {
+
+			return "member/deleteResult";
+			
+		} else {				// 비번이 같은 경우
+			
+			String up = session.getServletContext().getRealPath("upload");
+	//		String filename = filename.getprofile();
+			System.out.println("up:"+up);
+			
+			// 디비에 저장된 기존 이진파일명을 가져옴
+//			if (filename != null) {// 기존 이진파일이 존재하면
+//				File delFile = new File(up +"/"+filename);
+//				delFile.delete();// 기존 이진파일을 삭제
+//			}
+			MemberBean delm = new MemberBean();
+//			delm.setId(id);
+//			delm.setDelcont(delcont);
+
+//			ms.deleteMember(delm);	// 삭제 메서드 호출
+
+			session.invalidate();	// 세션만료
+
+			return "redirect:MemberLogin.do";
+		}
+	}	
 
 
 	// 회원 비밀번호 변경 폼

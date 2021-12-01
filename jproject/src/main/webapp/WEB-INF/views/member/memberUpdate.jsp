@@ -34,8 +34,6 @@
 			onsubmit="return check()" enctype="multipart/form-data">
 			<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
 			<input type="hidden" name="id" id="id" value="${edit.id}">
-<%-- 			<input type="hidden" name="name" id="name" value="${edit.name}">
-			<input type="hidden" name="gender" id="gender" value="${edit.gender}"> --%>
 			
 			<table id="join_t">
 				<tr>
@@ -57,7 +55,7 @@
 
 				<tr>
 					<th>이름</th>
-					<td>${edit.name}</td>
+					<td><input type="text" name="name" id="name" value="${edit.name}"></td>
 				</tr>
 				<tr>
 					<th>닉네임</th>
@@ -67,7 +65,16 @@
 				</tr>
 				<tr>
 					<th>성별</th>
-					<td>${edit.gender}</td>
+					<td>
+						<c:if test="${edit.gender == '남자'}">
+							<input type="radio" name="gender" id="male" value="남자" checked>남자
+							<input type="radio" name="gender" id="female" value="여자">여자
+						</c:if>
+						<c:if test="${edit.gender == '여자'}">
+							<input type="radio" name="gender" id="male" value="남자">남자
+							<input type="radio" name="gender" id="female" value="여자" checked>여자
+						</c:if>
+				    </td>
 				</tr>
 				
 				<tr>
@@ -145,7 +152,11 @@
 
 			<div id="join_menu">
 			<input type="submit" value="확인" class="input_button" /> 
-			<input type="reset" value="취소" class="input_button" onclick="$('#pwd1').focus();" />
+			<input type="reset" value="취소" class="input_button" onclick="$('#passwd1')" location='Agreement.do'" />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="button" value="회원탈퇴" class="input_button" onclick="location='MemberDel.do'" /> 
+			
+			
 			</div>
 		</form>
 	</div>

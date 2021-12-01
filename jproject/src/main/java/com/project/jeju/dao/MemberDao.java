@@ -1,10 +1,13 @@
 package com.project.jeju.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.project.jeju.model.BoardQnaBean;
 import com.project.jeju.model.MemberBean;
 
 @Repository
@@ -31,7 +34,7 @@ public class MemberDao {
 
 	}
 
-     // 닉네임 중복 체크 
+    // 닉네임 중복 체크 
 	public int checkMemberNick(String nickname) throws Exception {
 //		 		getSession();
 		int re = -1; // 사용 가능한 닉네임
@@ -55,13 +58,15 @@ public class MemberDao {
 		return sqlSession.insert("memberns.insertMember", mb);
 	}
 
+	
 	// 로그인 인증 체크
 // @Transactional	
 	public MemberBean userCheck(String id) throws Exception {
-//			getSession();
-			return sqlSession.selectOne("memberns.idlogin", id);
+//		getSession();
+		return sqlSession.selectOne("memberns.idlogin", id);
 	}
 
+	
 	// 비밀번호 검색
 //@Transactional
 	public MemberBean findpwd(MemberBean mb) throws Exception {
@@ -69,6 +74,7 @@ public class MemberDao {
 		return sqlSession.selectOne("pwdFind", mb);
 	}
 
+	
    // 회원수정
 //@Transactional
 	public int updateMember(MemberBean mb) throws Exception {
@@ -76,12 +82,18 @@ public class MemberDao {
 	    return sqlSession.update("memberns.updateMember", mb);
 	}
 	    
+	
    // 회원삭제 
 //@Transactional
 	public void deleteMember(MemberBean mb) throws Exception {
 //		getSession();
 		sqlSession.update("memberDel", mb);	    
-  	}	
+  	}
+
+	public List<BoardQnaBean> getTrip(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("memberns.qnalist", id);
+	}	
   
 	
 	
