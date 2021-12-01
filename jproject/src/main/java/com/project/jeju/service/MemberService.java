@@ -38,10 +38,10 @@ public class MemberService {
 			return md.findpwd(mb);
 		}
 
-//		public void updateMember(MemberBean mb) throws Exception{
-//			return md.updateMember(mb);
-//		}
-//		
+		public int updateMember(MemberBean mb) throws Exception{
+			return md.updateMember(mb); 
+		}
+	
 //		public void deleteMember(MemberBean mb) throws Exception{
 //			return md.deleteMember(mb);
 //		}

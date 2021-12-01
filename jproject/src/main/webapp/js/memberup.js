@@ -21,12 +21,12 @@ var nickYN = 'N';
 
 
 // 아이디 중복체크
-function check() {
-	if ($.trim($("#id").val()) == "") {
-		alert("ID를 입력하세요.");
-		$("#id").val("").focus();
-		return false;
-	}
+//function check() {
+//	if ($.trim($("#id").val()) == "") {
+//		alert("ID를 입력하세요.");
+//		$("#id").val("").focus();
+//		return false;
+//	}
 	if ($.trim($("#passwd1").val()) == "") {
 		alert("비밀번호를 입력하세요.");
 		$("#passwd1").val("").focus();
@@ -46,48 +46,48 @@ function check() {
 		return false;
 	}
 	
-	if ($.trim($("#name").val()) == "") {
-		alert("이름을 입력하세요.");		
-		$("#name").val("").focus();
-		return false;
-	}
-	
+//	if ($.trim($("#name").val()) == "") {
+//		alert("이름을 입력하세요.");		
+//		$("#name").val("").focus();
+//		return false;
+//	}
+//	
 		
 	// 이름 중복 검사
 	//1. 이름 입력글자 길이 체크 (유효성 검사)
-	if($.trim($("#name").val()).length < 2) {
-		alert("2자 이상 입력하세요.");            
-		$("#name").val("").focus();
-		return false;
-	}
-
-	if ($.trim($("#name").val()).length > 6) {
-		alert("6자 이하의 글자를 입력하세요.");            
-		$("#name").val("").focus();
-		return false;
-	}
-
-	// 입력 이름 유효성 검사 (정규 표현식 검사)
-	if (!(validate_name($("#name").val()))) {
-		alert("영문과 한글만 입력하세요.");            
-		$("#name").val("").focus();
-		return false;
-	}	
+//	if($.trim($("#name").val()).length < 2) {
+//		alert("2자 이상 입력하세요.");            
+//		$("#name").val("").focus();
+//		return false;
+//	}
+//
+//	if ($.trim($("#name").val()).length > 6) {
+//		alert("6자 이하의 글자를 입력하세요.");            
+//		$("#name").val("").focus();
+//		return false;
+//	}
+//
+//	// 입력 이름 유효성 검사 (정규 표현식 검사)
+//	if (!(validate_name($("#name").val()))) {
+//		alert("영문과 한글만 입력하세요.");            
+//		$("#name").val("").focus();
+//		return false;
+//	}	
 
 	if ($.trim($("#nickname").val()) == "") {
 		alert("닉네임을 입력하세요.");
 		$("#nickname").val("").focus();
 		return false;
 	}
-	if ($("#male").is(":checked") == false
-			&& $("#female").is(":checked") == false) {
-		alert("성별을 입력하세요.");
-		return false;
-	}
-	if ($.trim($("#age").val()) == "") {
-		alert("나이를 입력하세요.");
-		return false;
-	}
+//	if ($("#male").is(":checked") == false
+//			&& $("#female").is(":checked") == false) {
+//		alert("성별을 입력하세요.");
+//		return false;
+//	}
+//	if ($.trim($("#age").val()) == "") {
+//		alert("나이를 입력하세요.");
+//		return false;
+//	}
 	if ($.trim($("#zip").val()) == "") {
 		alert("우편번호를 입력하세요.");
 		$("#zip").val("").focus();
@@ -151,17 +151,17 @@ function check() {
 		return false;
 	}
 	*/
-	if(idYN == 'N'){
-		alert('ID 중복검사를 체크해주세요.');
-		return false;
-	}
-	
-	if(nickYN == 'N'){
-		alert('닉네임 중복검사를 체크해주세요.');
-		return false;
-	}
-	
-}
+//	if(idYN == 'N'){
+//		alert('ID 중복검사를 체크해주세요.');
+//		return false;
+//	}
+//	
+//	if(nickYN == 'N'){
+//		alert('닉네임 중복검사를 체크해주세요.');
+//		return false;
+//	}
+//	
+//}
 
 function post_search() {
 	alert("우편번호 검색 버튼을 클릭하세요.");

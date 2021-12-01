@@ -9,10 +9,8 @@
 <body>
 
 <script>
-	alert("회원 정보가 수정되었습니다");
-	location.href="./mypage.do");
-
-
+	alert("JEJU FRIEND에서 탈퇴되었습니다.")
+	location.href="home.do";
 </script>
 </body>
 </html>

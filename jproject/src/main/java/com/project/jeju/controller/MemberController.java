@@ -37,6 +37,7 @@ public class MemberController {
 	@Autowired
 	private MemberService ms;
 
+	
 	/*---------------------------------------------------
 	 * 회원정보
 	 * -------------------------------------------------*/
@@ -55,7 +56,6 @@ public class MemberController {
 		return "member/pwdFind";
 		// member 폴더의 pwdFind.jsp 뷰 페이지 실행
 	}
-
 
 	// 회원가입 폼 뷰1 (회원약관)
 	@RequestMapping("/Agreement.do")
@@ -222,6 +222,122 @@ public class MemberController {
 		return "member/popup";
 	}
 
+	// 회원정보 (마이페이지)
+	@RequestMapping("Mypage.do")
+	public String mypage(HttpSession session) {
+		return "member/mypage";
+	}
+	
+	// 회원정보 수정 폼 (프로필 변경)
+	@RequestMapping(value = "/MemberUpdate.do")
+	public String memberUpdate(HttpSession session, Model mb) throws Exception {
+
+		MemberBean m = (MemberBean) session.getAttribute("mb");
+		MemberBean edit = ms.userCheck(m.getId());
+
+		String phone = edit.getPhone();
+		StringTokenizer st1 = new StringTokenizer(phone, "-");
+		// java.util 패키지의 StringTokenizer 클래스는 첫번째 전달인자를
+		// 두번째 -를 기준으로 문자열을 파싱해준다.
+		String phone1 = st1.nextToken(); // 첫번째 전화번호 저장
+		String phone2 = st1.nextToken(); // 두번째 전화번호 저장
+		String phone3 = st1.nextToken(); // 세번째 전화번호 저장
+
+		String email = edit.getEmail();
+		StringTokenizer st2 = new StringTokenizer(email, "@");
+		// java.util 패키지의 StringTokenizer 클래스는 첫번째 전달인자를
+		// 두번째 @를 기준으로 문자열을 파싱해준다.
+		String emailid = st2.nextToken();		// 이메일 저장
+		String maildomain = st2.nextToken();  // 메일주소 저장
+
+		mb.addAttribute("edit", edit);
+		mb.addAttribute("phone1", phone1);
+		mb.addAttribute("phone2", phone2);
+		mb.addAttribute("phone3", phone3);
+		mb.addAttribute("emailid", emailid);
+		mb.addAttribute("maildomain", maildomain);
+
+		return "member/memberUpdate";
+	}
+	
+	// 회원정보 수정 저장 (프로필 변경 저장)
+	@RequestMapping(value = "/MemberUpdateok.do", method = RequestMethod.POST)
+	public String memberUpdateok(@RequestParam("profilepic") MultipartFile mf, MemberBean mb, HttpServletRequest request,
+			Model model) throws Exception {
+
+		String filename = mf.getOriginalFilename();
+		int size = (int) mf.getSize(); // 첨부파일의 크기 (단위:Byte)
+
+		String path = request.getRealPath("upload"); // webapp - upload (사진 경로)
+		System.out.println("mf=" + mf);
+		System.out.println("filename=" + filename); // filename="Koala.jpg"
+		System.out.println("size=" + size);
+		System.out.println("Path=" + path);
+		int presult = 0;
+
+		String file[] = new String[2];
+//		file = filename.split(".");
+//		System.out.println(file.length);
+//		System.out.println("file0="+file[0]);
+//		System.out.println("file1="+file[1]);
+
+		String newfilename = "";
+
+		if (filename != "") { // 첨부파일이 전송된 경우
+
+			// 파일 중복문제 해결
+			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
+			System.out.println("extension:" + extension);
+
+			UUID uuid = UUID.randomUUID();
+
+			newfilename = uuid.toString() + extension;
+			System.out.println("newfilename:" + newfilename);
+
+			StringTokenizer st = new StringTokenizer(filename, ".");
+			file[0] = st.nextToken(); // 파일명 Koala
+			file[1] = st.nextToken(); // 확장자 jpg
+
+			if (size > 200000) { // 200KB
+				presult = 1;
+				model.addAttribute("presult", presult);
+
+				return "member/uploadResult";
+
+			} else if (!file[1].equals("jpg") && !file[1].equals("gif") && !file[1].equals("png")) {
+
+				presult = 2;
+				model.addAttribute("presult", presult);
+
+				return "member/uploadResult";
+			}
+		}
+
+		if (size > 0) { // 첨부파일이 전송된 경우
+
+			mf.transferTo(new File(path + "/" + newfilename));
+
+		}
+
+		String phone1 = request.getParameter("phone1").trim();
+		String phone2 = request.getParameter("phone2").trim();
+		String phone3 = request.getParameter("phone3").trim();
+		String phone = phone1 + "-" + phone2 + "-" + phone3;
+
+		String mailid = request.getParameter("mailid").trim();
+		String maildomain = request.getParameter("maildomain").trim();
+		String email = mailid + "@" + maildomain;
+
+		mb.setPhone(phone);
+		mb.setEmail(email);
+		mb.setProfile(newfilename); // 중복된 파일 이름 바꿔서 저장
+
+		int result = ms.updateMember(mb);   
+		model.addAttribute("result", result);
+
+		return "member/popupUpdate";
+	}	
+	
 	
 	// 로그아웃
 	@RequestMapping("MemberLogout.do")
@@ -234,7 +350,7 @@ public class MemberController {
 
 	// 회원 탈퇴
 
-	// 마이페이지
+
 	// 회원 비밀번호 변경 폼
 	// 회원 비밀번호 변경
 

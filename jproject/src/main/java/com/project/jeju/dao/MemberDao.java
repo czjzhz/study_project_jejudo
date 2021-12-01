@@ -48,7 +48,6 @@ public class MemberDao {
 	}
 	
 	
-	
     // 회원가입 저장	
 // @Transactional	
 	public int insertMember(MemberBean mb) throws Exception {
@@ -70,21 +69,23 @@ public class MemberDao {
 		return sqlSession.selectOne("pwdFind", mb);
 	}
 
+   // 회원수정
+//@Transactional
+	public int updateMember(MemberBean mb) throws Exception {
+//     	getSession();
+	    return sqlSession.update("memberns.updateMember", mb);
+	}
+	    
+   // 회원삭제 
+//@Transactional
+	public void deleteMember(MemberBean mb) throws Exception {
+//		getSession();
+		sqlSession.update("memberDel", mb);	    
+  	}	
+  
 	
-
 	
-
 }
-
-	
-	
-	
-//   // 회원수정
-////  @Transactional
-//  public void updateMember(MemberBean member) throws Exception {
-////     	getSession();
-//	sqlSession.update("member_edit", member);
-//}	
 	
 
 

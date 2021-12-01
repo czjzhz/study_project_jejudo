@@ -50,7 +50,7 @@
 					<c:if test="${not empty sessionScope.mb}">
 					<%-- <c:if test="${sessionScope.id != null }"> 위에 것과 같은 의미--%>
 						<a href="MemberLogout.do"><i class="fa fa-unlock"></i>로그아웃</a>
-						<a href=""><i class="fa fa-info"></i>마이페이지</a>
+						<a href="Mypage.do"><i class="fa fa-info"></i>마이페이지</a>
 						<a href=""><i class="fa fa-info"></i>나의여행일정</a>
 					</c:if> 
 				</div>

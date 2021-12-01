@@ -6,3 +6,5 @@
 	alert("ID와 이름이 맞지 않습니다.");
 	history.go(-1);
 </script>
+
+
