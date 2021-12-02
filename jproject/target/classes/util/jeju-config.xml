@@ -18,6 +18,8 @@
 		<typeAlias type="com.project.jeju.model.BoardReviewReplyBean" alias="brrb"></typeAlias>
 		
 		<typeAlias type="com.project.jeju.model.MemberBean" alias="mb"></typeAlias>
+		
+		<typeAlias type="com.project.jeju.model.MessageBean" alias="message"></typeAlias>
 	</typeAliases>
 
 </configuration>
