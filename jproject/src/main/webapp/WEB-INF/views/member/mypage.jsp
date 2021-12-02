@@ -23,24 +23,23 @@
 			<form method="post" action="MemberLogout.do">
 				<table id="main_t" border="1">
 					<tr>
-						<td><c:if test="${empty sessionScope.mb.profile}"></c:if> <c:if
-								test="${!empty sessionScope.mb.profile}">
-								<img
-									src="<%=request.getContextPath() %>/upload/${sessionScope.mb.profile}"
-									height="100" width="100" />
+						<td><c:if test="${empty edit.profile}"></c:if> 
+							<c:if  test="${!empty edit.profile}">
+								  <img src="<%=request.getContextPath() %>/upload/${edit.profile}"  height="100" width="100" />
 							</c:if>
 					<tr>
-						<td>${sessionScope.mb.nickname}님,환영합니다!<br> JEJU
+						<td>${edit.nickname}님,환영합니다!<br> JEJU
 							FRIEND에서 즐거운 제주 동행 되세요 :)
 						</td>
 					</tr>
 					<tr>
-						<th colspan="2"><input type="button" value="프로필 편집"
-							class="input_button" onclick="location='MemberUpdate.do'" /> <input
-							type="button" value="메세지" class="input_button" /> <!-- <input type="button" value="회원탈퇴" class="input_button" onclick="location='MemberDel.do'" />  -->
-							<input type="submit" value="로그아웃" class="input_button" /> <input
-							type="button" value="메인페이지로 돌아가기" class="input_button"
-							onclick="location='home.do'" /></th>
+						<th colspan="2">
+						<input type="button" value="닉네임 변경" class="input_button" onclick="location.href='MemberUpdatenick.do'" /> 
+						<input type="button" value="내 정보 변경" class="input_button" onclick="location.href='MemberUpdate.do'" /> 
+						<input type="button" value="메세지" class="input_button" /> 
+						<input type="button" value="회원탈퇴" class="input_button" onclick="location.href='MemberDel.do'" /> 
+						<input type="submit" value="로그아웃" class="input_button" /> 
+						<input type="button" value="메인페이지로 돌아가기" class="input_button" onclick="location.href='home.do'" /></th>
 					</tr>
 				</table>
 				
@@ -59,13 +58,41 @@
 				</table> --%>
 				
 				<table border="1">
+				<br>
+				
+				
+	<%-- 				<caption>내가 참가한 여행</caption>
+					<tr>
+						<td>동행찾기</td>
+						<c:forEach var="mj" items="${myjoin}">
+						<c:if test="${mj.qdel =='y'}">
+							<td colspan="5"> 삭제된 글입니다.</td>
+						</c:if>
+						<c:if test="${mj.qdel =='n'}">
+							<td align=center>
+							<a href="./enterlist.do?ano=${ml.qno}">${ml.qsub}</a>
+							</td>
+						</c:if>	
+						</c:forEach>
+					</tr>
+				</table> --%>
+				
+				
+				
+				<table border="1">
+				<br>
 					<caption>내가 쓴 글</caption>
 					<tr>
-						<td>test</td>
+						<td>My QNA</td>
 						<c:forEach var="ml" items="${mytrip}">
+						<c:if test="${ml.qdel =='y'}">
+							<td colspan="5"> 삭제된 글입니다.</td>
+						</c:if>
+						<c:if test="${ml.qdel =='n'}">
 							<td align=center>
-							<a href="./qboardlist.do?qno=${ml.qno}&qno=${ml.qsub}">${ml.qsub}</a>
+							<a href="./qboardview.do?qno=${ml.qno}">${ml.qsub}</a>
 							</td>
+						</c:if>	
 						</c:forEach>
 					</tr>
 				</table>

@@ -1,12 +1,5 @@
 /** 유효성 체크 및 Ajax 아이디 체크 * */
 
-	// 닉네임 중복 체크 끝
-function validate_nickname(nickname) {
-	var pattern = new RegExp(/^[a-z0-9가-힣]+$/)
-	// 영문 소문자,숫자,한글 가능 정규표현식
-	return pattern.test(nickname);
-}
-
 
 	// 이름 중복체크 끝
 function validate_name(name) {
@@ -16,10 +9,8 @@ function validate_name(name) {
 }
 
 //var idYN = 'N';
-var nickYN = 'N';
 
-
-	// 아이디 중복체크
+// 아이디 중복체크
 function check() {
 //	if ($.trim($("#id").val()) == "") {
 //		alert("ID를 입력하세요.");
@@ -72,12 +63,7 @@ function check() {
 		$("#name").val("").focus();
 		return false;
 	}	
-
-	if ($.trim($("#nickname").val()) == "") {
-		alert("닉네임을 입력하세요.");
-		$("#nickname").val("").focus();
-		return false;
-	}
+	
 	if ($("#male").is(":checked") == false
 			&& $("#female").is(":checked") == false) {
 		alert("성별을 입력하세요.");
@@ -143,23 +129,17 @@ function check() {
 		 $("#maildomain").val("").focus();
 		 return false;
 	}
-	
 	/*if ($.trim($("#intro").val()) == "") {               // 필요시 온오프 가능
-		alert("자기소개를 입력하세요.");
-		$("#intro").val("").focus();
-		return false;
-	}
-	*/
-//	if(idYN == 'N'){
-//		alert('ID 중복검사를 체크해주세요.');
-//		return false;
-//	}
-	
-//	if(nickYN == 'N'){
-//		alert('닉네임 중복검사를 체크해주세요.');
-//		return false;
-//	}
-	
+	alert("자기소개를 입력하세요.");
+	$("#intro").val("").focus();
+	return false;
+}
+*/
+//if(idYN == 'N'){
+//	alert('ID 중복검사를 체크해주세요.');
+//	return false;
+//}
+
 }
 
 function post_search() {
@@ -173,106 +153,34 @@ function post_check() {
 }
 
 
-	//닉네임 중복 체크 
-function nick_check() {
-	//	alert("nick");
-	$("#nickcheck").hide();// nick check span 아이디 영역을 숨긴다.
-	var nickname = $("#nickname").val();
 
-	// 1. 닉네임 입력글자 길이 체크 (유효성 검사)
-	if ($.trim($("#nickname").val()).length < 2) {
-		var newtext = '<font color="red">닉네임은 2자 이상 가능합니다.</font>';
-		$("#nickcheck").text('');
-		$("#nickcheck").show();
-		$("#nickcheck").append(newtext);// span 닉네임 영역에 경고문자 추가
-		$("#nickname").val("").focus();
-		return false;
-	}
-	
-
-	if ($.trim($("#nickname").val()).length > 6) {
-		var newtext = '<font color="red">닉네임은 6자 이하 가능합니다.</font>';
-		$("#nickcheck").text('');
-		$("#nickcheck").show();
-		$("#nickcheck").append(newtext); // span 닉네임 영역에 경고문자 추가
-		$("#nickname").val("").focus();
-		return false;
-	}
-	
-	// 입력 닉네임 유효성 검사 (정규 표현식 검사)
-	if (!(validate_nickname(nickname))) {
-		var newtext = '<font color="red">닉네임은 6글자 이하의 한글, 영문, 숫자만 사용할 수 있습니다.</font>';
-		$("#nickcheck").text(''); // 문자 초기화
-		$("#nickcheck").show(); // span 닉네임 영역을 보이게 한다.
-		$("#nickcheck").append(newtext);
-		$("#nickname").val("").focus();
-		return false;
-	}
-	
-
-	// 닉네임 중복확인 (ajax로 요청)
-	$.ajax({
-		type : "POST",
-		url : "Membernickcheck.do",
-		data : {
-			"nickname" : nickname
-		},
-		success : function(data) {
-			//			alert("return success=" + data);
-			if (data == 1) { // 중복 닉네임
-				var newtext = '<font color="red">중복된 닉네임 입니다.</font>';
-				$("#nickcheck").text('');
-				$("#nickcheck").show();
-				$("#nickcheck").append(newtext);
-//				$("#nickname").val('').focus();
-				return false;
-
-			} else { // 사용 가능한 닉네임
-				var newtext = '<font color="blue">사용가능한 닉네임 입니다.</font>';
-				$("#nickcheck").text('');
-				$("#nickcheck").show();
-				$("#nickcheck").append(newtext);
-				$("#passwd").focus();
-				
-//				nickYN = 'Y';
-			}
-		},
-		error : function(e) {
-			alert("data error" + e);
-		}
-	}); // $.ajax
-}
-
-
-
-	
-	//도메인값 저장
+//도메인값 저장
 function domain_list() {
-	var num = f.mail_list.selectedIndex;
-	/*selectedIndex속성은 select객체하위의 속성으로서 해당리스트 목록번호를 반환
-	 */
-	if (num == -1) {
-		//num==-1은 해당 리스트목록이 없다
-		return true;
-	}
-	if (f.mail_list.value == "0") // 직접입력
-	{
-		/*리스트에서 직접입력을 선택했을때*/
-		f.maildomain.value = "";
-		//@뒤의 도메인입력란을 빈공간으로 만듬
-		f.maildomain.readOnly = false;
-		//@뒤의 도메인입력란을 쓰기 가능
-		f.maildomain.focus();
-		//도메인입력란으로 입력대기상태
-	}else {
-		//리스트목록을 선택했을때
-
-		f.maildomain.value = f.mail_list.options[num].value;
-		/*num변수에는 해당리스트 목록번호가 저장되어있다.
-		 * 해당리스트 번호의 option value값이 도메인입력란에 선택된다.
-		 * options속성은 select객체의 속성으로서 해당리스트번호의 value값을 가져온다
-		 */
-		f.maildomain.readOnly = true;
-	}
-  
+var num = f.mail_list.selectedIndex;
+/*selectedIndex속성은 select객체하위의 속성으로서 해당리스트 목록번호를 반환
+ */
+if (num == -1) {
+	//num==-1은 해당 리스트목록이 없다
+	return true;
 }
+if (f.mail_list.value == "0") // 직접입력
+{
+	/*리스트에서 직접입력을 선택했을때*/
+	f.maildomain.value = "";
+	//@뒤의 도메인입력란을 빈공간으로 만듬
+	f.maildomain.readOnly = false;
+	//@뒤의 도메인입력란을 쓰기 가능
+	f.maildomain.focus();
+	//도메인입력란으로 입력대기상태
+}else {
+	//리스트목록을 선택했을때
+
+	f.maildomain.value = f.mail_list.options[num].value;
+	/*num변수에는 해당리스트 목록번호가 저장되어있다.
+	 * 해당리스트 번호의 option value값이 도메인입력란에 선택된다.
+	 * options속성은 select객체의 속성으로서 해당리스트번호의 value값을 가져온다
+	 */
+	f.maildomain.readOnly = true;
+}
+
+}	

@@ -24,7 +24,7 @@
 </script>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="./js/memberup.js"></script>
+<script src="./js/memberupdate.js"></script>
 
 </head>
 <body>
@@ -34,6 +34,7 @@
 			onsubmit="return check()" enctype="multipart/form-data">
 			<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
 			<input type="hidden" name="id" id="id" value="${edit.id}">
+
 			
 			<table id="join_t">
 				<tr>
@@ -57,12 +58,12 @@
 					<th>이름</th>
 					<td><input type="text" name="name" id="name" value="${edit.name}"></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<th>닉네임</th>
-					<td><input name="nickname" id="nickname" size="14" value=${edit.nickname}	class="input_box" /> 
+					<td><input name="nickname" id="nickname" size="14" value="${edit.nickname}	class="input_box" /> 
 					<input type="button" value="닉네임 중복체크" class="input_button" onclick="nick_check()" />
 						<div id="nickcheck"></div></td>
-				</tr>
+				</tr> -->
 				<tr>
 					<th>성별</th>
 					<td>
@@ -79,13 +80,13 @@
 				
 				<tr>
 					<th>나이</th>
-					<td><select name="age" id="age" value="${edit.age}" >
+					<td><select name="age" id="age">
 							<option value="">선택</option>
-							<option value="10">10대</option>
-							<option value="20">20대</option>
-							<option value="30">30대</option>
-							<option value="40">40대</option>
-							<option value="50">50대이상</option>
+							<option value="10" <c:if test="${edit.age == '10'}"> ${'selected'} </c:if>>10대</option>
+							<option value="20" <c:if test="${edit.age == '20'}"> ${'selected'} </c:if>>20대</option>
+							<option value="30" <c:if test="${edit.age == '30'}"> ${'selected'} </c:if>>30대</option>
+							<option value="40" <c:if test="${edit.age == '40'}"> ${'selected'} </c:if>>40대</option>
+							<option value="50" <c:if test="${edit.age == '50'}"> ${'selected'} </c:if>>50대이상</option>
 					</select></td>
 				</tr>
 				
@@ -152,9 +153,8 @@
 
 			<div id="join_menu">
 			<input type="submit" value="확인" class="input_button" /> 
-			<input type="reset" value="취소" class="input_button" onclick="$('#passwd1')" location='Agreement.do'" />
+			<input type="reset" value="취소" class="input_button" onclick="location='Mypage.do'" />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="button" value="회원탈퇴" class="input_button" onclick="location='MemberDel.do'" /> 
 			
 			
 			</div>

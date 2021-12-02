@@ -43,14 +43,19 @@ public class MemberService {
 		public int updateMember(MemberBean mb) throws Exception{
 			return md.updateMember(mb); 
 		}
+		
+		public int updateNickMember(MemberBean mb) throws Exception{
+			return md.updateNickMember(mb);
+		}
 
 		public List<BoardQnaBean> getTrip(String id) {
-			// TODO Auto-generated method stub
 			return md.getTrip(id);
 		}
+
+		public void deleteMember(MemberBean mb) throws Exception{
+			md.deleteMember(mb);
+		}
 	
-//		public void deleteMember(MemberBean mb) throws Exception{
-//			return md.deleteMember(mb);
-//		}
+
 		
 }

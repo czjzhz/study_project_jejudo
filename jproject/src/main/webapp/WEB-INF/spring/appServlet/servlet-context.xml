@@ -30,11 +30,11 @@
 	<beans:bean id="sessionCk" class="com.project.jeju.controller.SessionCheckInt"/>	
 	 <interceptors>
 		<interceptor>
-			<mapping path="/memberEdit.do"/>
-			<mapping path="/memberEditok.do"/>			
-			<mapping path="/memberDel.do"/>
-			<mapping path="/memberDelok.do"/>
-			<mapping path="/memberLogout.do"/>
+			<mapping path="/MemberUpdate.do"/>
+			<mapping path="/MemberUpdateok.do"/>			
+			<mapping path="/MemberDel.do"/>
+			<mapping path="/MemberDelok.do"/>
+			<mapping path="/MemberLogout.do"/>
 			<beans:ref bean="sessionCk"/>
 		</interceptor>
 	</interceptors>	 

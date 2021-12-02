@@ -75,21 +75,29 @@ public class MemberDao {
 	}
 
 	
-   // 회원수정
+   // 회원정보수정
 //@Transactional
 	public int updateMember(MemberBean mb) throws Exception {
 //     	getSession();
 	    return sqlSession.update("memberns.updateMember", mb);
 	}
 	    
+   // 회원닉네임수정
+//@Transactional
+	public int updateNickMember(MemberBean mb) throws Exception {
+//	     getSession();
+		 return sqlSession.update("memberns.updateNickMember", mb);
+		}	
+	
 	
    // 회원삭제 
 //@Transactional
 	public void deleteMember(MemberBean mb) throws Exception {
 //		getSession();
-		sqlSession.update("memberDel", mb);	    
+		sqlSession.update("memberns.deleteMember", mb);	    
   	}
 
+	// QNA list 
 	public List<BoardQnaBean> getTrip(String id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("memberns.qnalist", id);

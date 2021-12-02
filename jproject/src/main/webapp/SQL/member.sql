@@ -6,7 +6,7 @@ select * from Member;
 
 drop table Member purge;
 
-create table joinMember(
+create table Member(
   	member_seq number(38) unique not null 
   	/*unique 제약 조건은 중복값을 허용하지 않고 null은 허용*/
   	
@@ -14,8 +14,7 @@ create table joinMember(
   , passwd varchar2(20) not null     /*비밀번호*/
   , name varchar2(50) not null       /*이름*/
   , nickname varchar2(50) not null   /*닉네임*/
-  , zip1 varchar2(5) not null        /*첫번째 우편번호 */
-  , zip2 varchar2(5)                 /*두번째 우편번호 */
+  , zip varchar2(5) not null        /*첫우편번호 */
   , address1 varchar2(100) not null  /*주소*/
   , address2 varchar2(100) not null  /*상세 주소 */
   , phone varchar2(20) not null      /*핸드폰번호 */

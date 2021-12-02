@@ -10,9 +10,11 @@
 
 <c:If test="${result > 0 }">
 	<script>
-	alert("JEJU FRIEND에서 탈퇴되었습니다.")
-	location.href="home.do";
+	alert("닉네임 정보가 수정되었습니다.");
+	location.href="Mypage.do"; 
 	</script>
 </c:If>
+
+
 </body>
 </html>

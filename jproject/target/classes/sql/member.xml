@@ -4,7 +4,7 @@
 <mapper namespace="memberns">
 
 				  
-	 <!-- 회원가입 -->
+	<!-- 회원가입 -->
     <insert id="insertMember" parameterType="mb"> 
     	insert into member(id,passwd,name,nickname,age,gender,zip,address1,address2,email,
     	phone,profile,intro,register,memberpoint,state) values (#{id}, #{passwd}, #{name}, #{nickname}, #{age}, 
@@ -28,38 +28,39 @@
     
     
      <!-- ID 검색 -->
-	<select id="idFind" parameterType="String" resultType="mb">
+	<select id="idFind" parameterType="mb" resultType="mb">
      select * from member where name=#{name} and email=#{email}
     </select>
     
     
 	 <!-- 비밀번호 검색 -->
-    <select id="pwdFind" parameterType="String" resultType="mb">
+    <select id="pwdFind" parameterType="mb" resultType="mb">
      select * from member where id=#{id} and name=#{name}
     </select>
     
-    
-    <!-- 회원수정 -->
-    <select id="" parameterType="String" resultType="mb">
-     select * from member where id=#{id} and name=#{name}
-    </select>
    
-   
-    <!-- 회원수정 -->
+    <!-- 회원정보수정 -->
  	<update id="updateMember" parameterType="mb">
-     update member set passwd=#{passwd},name=#{name},nickname=#{nickname},age=#{age},gender=#{gender},
+     update member set passwd=#{passwd},name=#{name},<!-- nickname=#{nickname}, -->age=#{age},gender=#{gender},
      zip=#{zip},address1=#{address1},address2=#{address2},email=#{email},phone=#{phone},profile=#{profile,jdbcType=VARCHAR} 
      where id=#{id}
     </update> 
     
     
+    <!-- 회원닉네임수정 -->
+    <update id="updateNickMember" parameterType="mb">
+     update member set nickname=#{nickname} where id=#{id}
+    </update> 
+    
+    
 	<!-- 회원삭제 -->
-    <update id="deleteMember" parameterType="String">
-     update member set delcont=#{delcont}, state='2' where id = #{id}
-     <!-- deldate=sysdate where id=#{id} -->
+    <update id="deleteMember" parameterType="mb">
+     update member set delcont=#{delcont}, state='2' where id=#{id}
+    <!-- deldate=sysdate where id=#{id} -->
     </update>	
     
-    <!--  -->
+    
+    <!-- 회원QNA 리스트 -->
     <select id="qnalist" parameterType="String" resultType="bqb">
     	select * from boardqna where id = #{id}
     </select>

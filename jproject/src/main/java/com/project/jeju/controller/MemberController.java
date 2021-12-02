@@ -226,13 +226,16 @@ public class MemberController {
 
 	// 회원정보 (마이페이지)
 	@RequestMapping("Mypage.do")
-	public String mypage(HttpSession session, Model model) {
+	public String mypage(HttpSession session, Model model) throws Exception{
 		
 		MemberBean member = (MemberBean) session.getAttribute("mb");
+		
+		MemberBean edit = ms.userCheck(member.getId());
 		
 		List<BoardQnaBean> mytrip = ms.getTrip(member.getId());
 		System.out.println("mytrip:"+mytrip);
 		
+		model.addAttribute("edit", edit);
 		model.addAttribute("mytrip", mytrip);
 		
 		return "member/mypage";
@@ -337,10 +340,19 @@ public class MemberController {
 		String mailid = request.getParameter("mailid").trim();
 		String maildomain = request.getParameter("maildomain").trim();
 		String email = mailid + "@" + maildomain;
+		
+		
+		MemberBean edit = ms.userCheck(mb.getId());	
+		System.out.println("db이미지:"+edit.getProfile());
+		
+		if (size > 0) {								// 첨부파일을 수정한 경우
+			mb.setProfile(newfilename);				// 중복된 파일 이름 바꿔서 저장
+		}else {										// 첨부파일을 수정하지 않은 경우       주석값 수정필요
+			mb.setProfile(edit.getProfile()); 		// DB에 저장된 프로필을 불러옴	
+		}
 
 		mb.setPhone(phone);
 		mb.setEmail(email);
-		mb.setProfile(newfilename); // 중복된 파일 이름 바꿔서 저장
 
 		int result = ms.updateMember(mb);   
 		model.addAttribute("result", result);
@@ -362,53 +374,91 @@ public class MemberController {
 	// 회원 탈퇴 폼
 	@RequestMapping(value = "/MemberDel.do")
 	public String memberdel(HttpSession session, Model md) throws Exception {
-
-		String id = (String) session.getAttribute("id");
-		MemberBean mb = ms.userCheck(id);
+		System.out.println("memberdel in");
+		
+		MemberBean me = (MemberBean) session.getAttribute("mb");
+		MemberBean del = ms.userCheck(me.getId());
+		System.out.println("del:"+del);
+		
 //		mb.addAttribute("id", id);
 //		mb.addAttribute("name", mb.getName());
+		md.addAttribute("del", del);
 
 		return "member/memberDel";
 	}
 
 	// 회원 탈퇴 저장 (탈퇴 완료) 
 	@RequestMapping(value = "/MemberDelok.do", method = RequestMethod.POST)
-	public String member_del_ok(@RequestParam("passwd") String pass, 
-							    @RequestParam("delcont") String del_cont,
-							    HttpSession session) throws Exception {
+	public String memberdelok(MemberBean mb, HttpSession session, Model model) throws Exception {
 
-		String id = (String) session.getAttribute("id");
-		MemberBean mb = this.ms.userCheck(id);
+//		MemberBean mb = (MemberBean) session.getAttribute("mb");
+//
+//		if (!mb.getPasswd().equals(pass)) {
+//
+//			return "member/deleteResult";
+//			
+//		} else {				// 비번이 같은 경우
+//			
+//			String up = session.getServletContext().getRealPath("upload");
+//	//		String filename = filename.getprofile();
+//			System.out.println("up:"+up);
+//			
+//			// 디비에 저장된 기존 이진파일명을 가져옴
+////			if (filename != null) {// 기존 이진파일이 존재하면
+////				File delFile = new File(up +"/"+filename);
+////				delFile.delete();// 기존 이진파일을 삭제
+////			}
+//			MemberBean delm = new MemberBean();
+////			delm.setId(id);
+////			delm.setDelcont(delcont);
 
-		if (!mb.getPasswd().equals(pass)) {
-
-			return "member/deleteResult";
-			
-		} else {				// 비번이 같은 경우
-			
-			String up = session.getServletContext().getRealPath("upload");
-	//		String filename = filename.getprofile();
-			System.out.println("up:"+up);
-			
-			// 디비에 저장된 기존 이진파일명을 가져옴
-//			if (filename != null) {// 기존 이진파일이 존재하면
-//				File delFile = new File(up +"/"+filename);
-//				delFile.delete();// 기존 이진파일을 삭제
-//			}
-			MemberBean delm = new MemberBean();
-//			delm.setId(id);
-//			delm.setDelcont(delcont);
-
-//			ms.deleteMember(delm);	// 삭제 메서드 호출
+			ms.deleteMember(mb);	// 삭제 메서드 호출
 
 			session.invalidate();	// 세션만료
+			
+			model.addAttribute("result", "1");
 
-			return "redirect:MemberLogin.do";
+			return "member/popupDelete";
 		}
+	
+	//
+	//
+	//
+	//
+	//
+	
+
+	
+	// 회원 닉네임 수정 폼 (프로필 변경)
+	@RequestMapping(value = "/MemberUpdatenick.do")
+	public String memberUpdatenick(HttpSession session, Model mb) throws Exception {
+//		System.out.println("닉네임 수정체크1");
+		MemberBean m = (MemberBean) session.getAttribute("mb");
+		MemberBean edit = ms.userCheck(m.getId());
+		System.out.println("닉네임 수정체크2");
+		
+		return "member/memberUpdatenick";
+	}
+	
+	// 회원닉네임 수정 저장 (프로필 변경 저장)
+	@RequestMapping(value = "/MemberUpdatenickok.do", method = RequestMethod.POST)
+	public String memberUpdatenickok(MemberBean mb, HttpServletRequest request, Model model) throws Exception {
+
+
+		int result = ms.updateNickMember(mb);   
+		model.addAttribute("result", result);
+
+		return "member/popupUpdaten";
 	}	
+		
+	
+	
+	
+    }	
 
 
 	// 회원 비밀번호 변경 폼
 	// 회원 비밀번호 변경
 
-}
+
+
