@@ -31,11 +31,11 @@
 					</p>
 				</div>
 				<div class="nav-login">
-					<c:if test="${sessionScope.id == null }">
+					<c:if test="${sessionScope.mb == null }">
 						<a href="./login.do"><i class="fa fa-lock"></i>로그인</a>
 						<a href="./join.do"><i class="fa fa-user"></i>회원가입</a>
 					</c:if>
-					<c:if test="${sessionScope.id != null }">
+					<c:if test="${sessionScope.mb != null }">
 						<a href=""><i class="fa fa-unlock"></i>로그아웃</a>
 						<a href=""><i class="fa fa-info"></i>마이페이지</a>
 					</c:if>

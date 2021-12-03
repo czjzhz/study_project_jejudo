@@ -11,25 +11,27 @@
 	</insert>
 	
 	<!-- 보낸 쪽지 갯수 -->
-	<select id="scount" parameterType="String"  resultType="int">
-		select count(*) from message where sendid = #{id}
+	<select id="scount" parameterType="message"  resultType="int">
+		select count(*) from message where sendid = #{nickname}
 	</select>
 	
 	<!-- 보낸 쪽지 리스트 -->
 	<select id="sendlist" parameterType="Map" resultType="message">
-		select * from (select rownum rnum, message.* from message where sendid=#{id} order by mno desc) message
-		where rnum&gt;=((#{page}-1) * 10+1) and rnum&lt;=(#{page}*10) order by mno desc
+		select * from (select rownum rnum, message.* from 
+		(select * from message where sendid=#{nickname} order by mno desc) message )
+		where rnum&gt;=((#{page}-1) * 10+1) and rnum&lt;=(#{page}*10) 
 	</select>
 	
 	<!-- 받은 쪽지 갯수 -->
-	<select id="rcount" parameterType="String"  resultType="int">
-		select count(*) from message where rcvid = #{id}
+	<select id="rcount" parameterType="message"  resultType="int">
+		select count(*) from message where rcvid = #{nickname}
 	</select>
 	
 	<!-- 받은 쪽지 리스트 -->
 	<select id="rcvlist" parameterType="Map" resultType="message">
-		select * from (select rownum rnum, message.* from message where rcvid=#{id} order by mno asc) message
-		where rnum&gt;=((#{page}-1) * 10+1) and rnum&lt;=(#{page}*10) order by mno desc
+		select * from (select rownum rnum, message.* from 
+		(select * from message where rcvid=#{nickname} order by mno desc) message )
+		where rnum&gt;=((#{page}-1) * 10+1) and rnum&lt;=(#{page}*10) 
 	</select>
 	
 	<!-- 받은 쪽지 상세정보 구하기 -->

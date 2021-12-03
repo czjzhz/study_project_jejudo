@@ -1,11 +1,13 @@
 package com.project.jeju.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.jeju.dao.MemberDao;
+import com.project.jeju.model.BoardQnaBean;
 import com.project.jeju.model.MemberBean;
 
 @Service 
@@ -22,19 +24,33 @@ public class MemberService {
 			return md.checkMemberNick(nickname);
 		}
 
+		public int checkMemberName(String name) throws Exception {
+			return md.checkMemberName(name);
+		}
+		
 		public int insertMember(MemberBean mb) throws Exception {
-			return md.insert(mb);
+			return md.insertMember(mb);
 		}
 
 		public MemberBean userCheck(String id) throws Exception {
 			return md.userCheck(id);
 		}
 		
-		
-		
-//		public void insertMember(MemberBean mb) throws Exception {
-//			MemberDao.insertMember(mb);
+		public MemberBean findpwd(MemberBean mb)throws Exception {
+			return md.findpwd(mb);
+		}
+
+		public int updateMember(MemberBean mb) throws Exception{
+			return md.updateMember(mb); 
+		}
+
+		public List<BoardQnaBean> getTrip(String id) {
+			// TODO Auto-generated method stub
+			return md.getTrip(id);
+		}
+	
+//		public void deleteMember(MemberBean mb) throws Exception{
+//			return md.deleteMember(mb);
 //		}
 		
-
 }

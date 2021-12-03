@@ -3,7 +3,6 @@
 <%@ include file="header.jsp"%>
 <%@ include file="navi.jsp"%>
 
-<%@ page session="false"%>
 <html>
 <head>
 <title>Home</title>
@@ -32,13 +31,15 @@
 					</p>
 				</div>
 				<div class="nav-login">
-					<c:if test="${sessionScope.id == null }">
+					<c:if test="${sessionScope.mb == null }">
 						<a href="./MemberLogin.do"><i class="fa fa-lock"></i>로그인</a>
 						<a href="./Agreement.do"><i class="fa fa-user"></i>회원가입</a>
 					</c:if>
-					<c:if test="${sessionScope.id != null }">
+					<c:if test="${sessionScope.mb != null }">
 						<a href=""><i class="fa fa-unlock"></i>로그아웃</a>
 						<a href=""><i class="fa fa-info"></i>마이페이지</a>
+						<a href="sendlist.do">보낸쪽지함</a>
+						<a href="rcvlist.do">받은쪽지함</a>
 					</c:if>
 				</div>
 				<br>

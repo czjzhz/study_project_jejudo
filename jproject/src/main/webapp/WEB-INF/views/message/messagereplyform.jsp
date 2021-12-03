@@ -5,23 +5,47 @@
 <head>
 <meta charset="UTF-8">
 <title>답장하기</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+	function send() {
+		//	$("#myform").click(function(){
+
+		if ($("#msubject").val() == "") {
+			alert("제목을 입력하세요");
+			$("#msubject").focus();
+			return false;
+		}
+
+		if ($("#mcontent").val() == "") {
+			alert("내용을 입력하세요");
+			$("#mcontent").focus();
+			return false;
+		}
+		//	});	
+
+		document.myform.action = "./messagesend.do";
+		document.myform.submit();
+
+		
+//		self.close();
+	}
+</script>
 </head>
 <body>
 <h1>답장하기</h1>
-	<form action="<%=request.getContextPath()%>/messagereply.do" method="post">
-	<input type="hidden" name="mno" value="${message.mno}">
-	<input type="hidden" name="page" value="${page}">
-	<input type="hidden" id="id" name="id" value="${sessionScope.id }">
-	<input type="hidden" id="sendid" name="sendid" value="${message.sendid }">
+	<form name="myform" id="myform">
+	<input type="hidden" id="sendid" name="sendid" value="${sendid}">
+	<input type="hidden" id="rcvid" name="rcvid" value="${rcvid}">
 		
-		받는 이 : ${sendid} <br>
+		보내는 이 : ${sendid} <br>
+		받는 이 : ${rcvid} <br>
 		<br>
 		<textarea name="msubject" id="msubject" cols="40" rows="1"
 			style="resize: none;" placeholder="제목을 입력하세요."></textarea>
 		<br>
 		<textarea name="mcontent" id="mcontent" cols="40" rows="10"
 			style="resize: none;" placeholder="내용을 입력하세요."></textarea>
-		<br> <input type="submit" value="답장 보내기"  >
+		<br> <input type="button" value="답장 보내기" onClick="send()">
 	</form> 
 
 </body>

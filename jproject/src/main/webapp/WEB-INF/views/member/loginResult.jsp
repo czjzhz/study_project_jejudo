@@ -5,14 +5,14 @@
 
 <c:if test="${result == 1}">
 	<script>
-		alert("등록되지 않는 회원 입니다.");
+		alert("등록되지 않는 회원입니다.");
 		history.go(-1);
 	</script>
 </c:if>   
 
 <c:if test="${result == 2}">
 	<script>
-		alert("회원정보가 틀렸습니다.");
+		alert("아이디 또는 비밀번호가 잘못 입력 되었습니다.\n아이디와 비밀번호를 정확히 입력해 주세요.");
 		history.go(-1);
 	</script>
 </c:if>  

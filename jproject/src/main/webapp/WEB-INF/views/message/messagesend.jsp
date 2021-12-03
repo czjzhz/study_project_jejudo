@@ -12,7 +12,7 @@
 <c:if test="${result == 1 }">
 	<script>
 		alert("쪽지 보내기 성공");
-		location.href="messageform.do";
+		location.href="messageclose.do";
 	</script>
 </c:if>
 

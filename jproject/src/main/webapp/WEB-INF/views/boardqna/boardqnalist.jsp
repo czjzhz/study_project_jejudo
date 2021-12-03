@@ -7,6 +7,14 @@
 <meta charset="UTF-8">
 
 <title>QnA게시판 목록</title>
+
+<script>
+	function message(nickname) {
+//		alert(nickname);
+		var ref = './messageform.do?nickname='+nickname
+		window.open(ref, "mywin", "width=500, height=500, left=800, top=200");
+	}
+</script>
 </head>
 <body>
 <%@ include file="../navi.jsp"%>
@@ -47,7 +55,7 @@
 											</c:if>
 											<c:if test="${q.qdel == 'n' }">	
 												<td><a href="qboardview.do?qno=${q.qno }&pageNum=${pp.currentPage}">${q.qsub }</a></td>
-												<td>${q.nickname }</td>
+												<td><a href="javascript:void(0);" onclick="message('${q.nickname}')">${q.nickname}</a></td>
 												<td><fmt:formatDate value="${q.qreg }" pattern="yyyy-MM-dd " /></td>
 												<td>${q.qreadcount}</td>
 											</c:if>

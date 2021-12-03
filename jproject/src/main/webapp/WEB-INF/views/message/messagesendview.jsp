@@ -33,7 +33,11 @@
 				<td>${message.mcontent}</td>
 			</tr>
 			<tr>
-				<td colspan=2 align=center><input type="button" onclick="history.go(-1);" value="뒤로가기"></td>
+				<td colspan=2 align=center>
+				<input type="button" onclick="history.go(-1);" value="뒤로가기">
+				<input type="button" value="삭제하기" onclick="location.href='messagedelete.do?mno=${message.mno }&page=${page}'">
+				</td>
+				
 			</tr>
 		</table>
 </body>

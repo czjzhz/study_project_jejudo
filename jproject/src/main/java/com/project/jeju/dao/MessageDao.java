@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.jeju.model.MemberBean;
 import com.project.jeju.model.MessageBean;
 
 @Repository
@@ -15,14 +16,14 @@ public class MessageDao {
 	@Autowired 
 	private SqlSession session;
 
-	public int getScount(String id) {
+	public int getScount(MemberBean mb) {
 		// TODO Auto-generated method stub
-		return session.selectOne("scount", id);
+		return session.selectOne("scount", mb);
 	}
 	
-	public int getRcount(String id) {
+	public int getRcount(MemberBean mb) {
 		// TODO Auto-generated method stub
-		return session.selectOne("rcount", id);
+		return session.selectOne("rcount", mb);
 	}
 
 	public List<MessageBean> getRcvList(Map m) {

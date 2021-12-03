@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.jeju.dao.MessageDao;
+import com.project.jeju.model.MemberBean;
 import com.project.jeju.model.MessageBean;
 
 
@@ -15,14 +16,14 @@ public class MessageService {
 	
 	@Autowired MessageDao dao;
 
-	public int getScount(String id) {
+	public int getScount(MemberBean mb) {
 		// TODO Auto-generated method stub
-		return dao.getScount(id);
+		return dao.getScount(mb);
 	}
 	
-	public int getRcount(String id) {
+	public int getRcount(MemberBean mb) {
 		// TODO Auto-generated method stub
-		return dao.getRcount(id);
+		return dao.getRcount(mb);
 	}
 
 	public List<MessageBean> getRcvlist(Map m) {

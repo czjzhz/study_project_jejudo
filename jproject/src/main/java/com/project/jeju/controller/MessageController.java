@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.jeju.model.MemberBean;
 import com.project.jeju.model.MessageBean;
 import com.project.jeju.service.MessageService;
 
@@ -24,11 +25,9 @@ public class MessageController {
 
 	// 보낸 쪽지함
 	@RequestMapping("sendlist.do")
-	public String sendlist(HttpServletRequest request, Model model) {
+	public String sendlist(HttpServletRequest request, HttpSession session, Model model) {
 
-		HttpSession session = request.getSession();
-//		String id = (String)session.getAttribute("id");
-		String id = "send";
+		MemberBean mb = (MemberBean) session.getAttribute("mb");
 
 		int page = 1;
 		int limit = 10;
@@ -38,11 +37,11 @@ public class MessageController {
 		}
 
 		// 보낸 쪽지 데이터 갯수
-		int listcount = service.getScount(id);
+		int listcount = service.getScount(mb);
 		System.out.println("listcount:" + listcount);
 
 		Map m = new HashMap();
-		m.put("id", id);
+		m.put("nickname", mb.getNickname());
 		m.put("page", page);
 
 		List<MessageBean> sendlist = service.getSendlist(m);
@@ -69,11 +68,9 @@ public class MessageController {
 
 	// 받은 쪽지함
 	@RequestMapping("rcvlist.do")
-	public String rcvlist(HttpServletRequest request, Model model) {
+	public String rcvlist(HttpServletRequest request, HttpSession session, Model model) {
 
-		HttpSession session = request.getSession();
-//		String id = (String)session.getAttribute("id");
-		String id = "rcv";
+		MemberBean mb = (MemberBean) session.getAttribute("mb");
 
 		int page = 1;
 		int limit = 10;
@@ -83,11 +80,11 @@ public class MessageController {
 		}
 
 		// 받은 쪽지 데이터 갯수
-		int listcount = service.getRcount(id);
+		int listcount = service.getRcount(mb);
 		System.out.println("listcount:" + listcount);
 
 		Map m = new HashMap();
-		m.put("id", id);
+		m.put("nickname", mb.getNickname());
 		m.put("page", page);
 
 		List<MessageBean> rcvlist = service.getRcvlist(m);
@@ -114,7 +111,13 @@ public class MessageController {
 
 	// 쪽지 작성 폼
 	@RequestMapping("messageform.do")
-	public String messageform() {
+	public String messageform(String nickname, HttpSession session, Model model) {
+		
+		model.addAttribute("nickname", nickname);
+		
+//		MemberBean member = (MemberBean) session.getAttribute("mb");
+//		System.out.println("nick:" + member.getNickname());
+				
 		return "message/messageform";
 	}
 
@@ -124,6 +127,7 @@ public class MessageController {
 							  HttpServletRequest request, HttpSession session) {
 		System.out.println("sender:" + message.getSendid());
 		System.out.println("receiver:" + message.getRcvid());
+		
 
 		int result = service.insert(message);
 		System.out.println("result:" + result);
@@ -132,12 +136,19 @@ public class MessageController {
 
 		return "message/messagesend";
 	}
+	
+	// 쪽지 작성 폼 닫기
+	@RequestMapping("messageclose.do")
+	public String close() {
+		return "message/close";
+	}
 
 	// 쪽지 답장 작성 폼
 	@RequestMapping("messagereplyform.do")
-	public String messagereply(@RequestParam String sendid, MessageBean message, Model model, HttpSession session) {
+	public String messagereply(@RequestParam String sendid, @RequestParam String rcvid, MessageBean message, Model model, HttpSession session) {
 		
 		model.addAttribute("sendid", sendid);
+		model.addAttribute("rcvid", rcvid);
 		
 		return "message/messagereplyform";
 	}

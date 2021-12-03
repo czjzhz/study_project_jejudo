@@ -13,7 +13,7 @@
 <c:if test="${result > 0 }">
 	<script>
 		alert("쪽지삭제 성공");
-		location.href="rcvlist.do";
+		history.go(-2);
 	</script>
 </c:if>
 
