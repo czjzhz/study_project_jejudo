@@ -1,6 +1,7 @@
 /** 유효성 체크 및 Ajax 아이디 체크 * */
 
-	// 닉네임 중복 체크 끝
+
+	// 닉네임 중복체크 끝
 function validate_nickname(nickname) {
 	var pattern = new RegExp(/^[a-z0-9가-힣]+$/)
 	// 영문 소문자,숫자,한글 가능 정규표현식
@@ -26,6 +27,13 @@ function check() {
 //		$("#id").val("").focus();
 //		return false;
 //	}
+
+	
+	if ($.trim($("#name").val()) == "") {
+		alert("이름을 입력하세요.");		
+		$("#name").val("").focus();
+		return false;
+	}
 	if ($.trim($("#passwd1").val()) == "") {
 		alert("비밀번호를 입력하세요.");
 		$("#passwd1").val("").focus();
@@ -44,13 +52,6 @@ function check() {
 		$("#passwd1").focus();
 		return false;
 	}
-	
-	if ($.trim($("#name").val()) == "") {
-		alert("이름을 입력하세요.");		
-		$("#name").val("").focus();
-		return false;
-	}
-	
 		
 	// 이름 중복 검사
 	//1. 이름 입력글자 길이 체크 (유효성 검사)

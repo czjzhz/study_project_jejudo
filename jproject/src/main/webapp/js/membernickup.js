@@ -1,4 +1,26 @@
-/** 유효성 체크 및 Ajax 아이디 체크 * */
+/** 유효성 체크 및 Ajax 닉네임 체크 **/
+
+var nickYN = 'N';
+
+
+function check(){
+	 
+	if ($.trim($("#nickname").val()) == "") {
+		alert("닉네임을 입력하세요.");
+		$("#nickname").val("").focus();                    // 닉네임 유효성 검사 따로 체크
+		return false;
+	}	
+	
+	if(nickYN == 'N'){
+		alert("닉네임 중복확인 버튼을 누르세요.");
+		$("#nickname").val("").focus();
+		return false;
+	}	
+	
+}
+
+
+// 유효성 체크 및 Ajax 아이디 체크 
 
 	// 닉네임 중복 체크 끝
 function validate_nickname(nickname) {
@@ -8,34 +30,20 @@ function validate_nickname(nickname) {
 }
 
 
-
-	
-//
-//	if ($.trim($("#nickname").val()) == "") {
-//		alert("닉네임을 입력하세요.");
-//		$("#nickname").val("").focus();                    // 닉네임 유효성 검사 따로 체크
-//		return false;
-//	}
-
-var nickYN = 'N';
-
-
-
-
-
-
-
-
-
-
-
-
 //닉네임 중복 체크 
 function nick_check() {
-	//	alert("nick");
+	
+//	alert("nick");
+	
 	$("#nickcheck").hide();// nick check span 아이디 영역을 숨긴다.
 	var nickname = $("#nickname").val();
-
+	
+	if(nickname == ''){
+		alert("닉네임을 입력하세요.");
+		$("#nickname").val("").focus();                    // 닉네임 유효성 검사 따로 체크
+		return false;
+	}
+	
 	// 1. 닉네임 입력글자 길이 체크 (유효성 검사)
 	if ($.trim($("#nickname").val()).length < 2) {
 		var newtext = '<font color="red">닉네임은 2자 이상 가능합니다.</font>';
@@ -45,7 +53,6 @@ function nick_check() {
 		$("#nickname").val("").focus();
 		return false;
 	}
-	
 
 	if ($.trim($("#nickname").val()).length > 6) {
 		var newtext = '<font color="red">닉네임은 6자 이하 가능합니다.</font>';
@@ -71,11 +78,10 @@ function nick_check() {
 	$.ajax({
 		type : "POST",
 		url : "Membernickcheck.do",
-		data : {
-			"nickname" : nickname
-		},
+		data : {"nickname" : nickname},
 		success : function(data) {
-			//			alert("return success=" + data);
+// 			alert(data);
+			
 			if (data == 1) { // 중복 닉네임
 				var newtext = '<font color="red">중복된 닉네임 입니다.</font>';
 				$("#nickcheck").text('');
@@ -91,11 +97,13 @@ function nick_check() {
 				$("#nickcheck").append(newtext);
 				$("#passwd").focus();
 				
-//				nickYN = 'Y';
+				nickYN = 'Y';
 			}
 		},
 		error : function(e) {
 			alert("data error" + e);
 		}
 	}); // $.ajax
+	
+	
 }

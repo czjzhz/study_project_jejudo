@@ -42,7 +42,7 @@
 					<td>${edit.id}</td>
 				</tr>
 
-				<tr>
+			<!-- 	<tr>
 					<th>비밀번호</th>
 					<td><input type="password" name="passwd" id="passwd1"
 						size="14" class="input_box" /></td>
@@ -52,8 +52,8 @@
 					<th>비밀번호 확인</th>
 					<td><input type="password" name="passwd2" id="passwd2"
 						size="14" class="input_box" /></td>
-				</tr>
-
+				</tr>-->
+				
 				<tr>
 					<th>이름</th>
 					<td><input type="text" name="name" id="name" value="${edit.name}"></td>
@@ -90,7 +90,7 @@
 					</select></td>
 				</tr>
 				
-<tr>
+				<tr>
 					<th>우편번호</th>
 					<td><input name="zip" id="zip" size="5" value="${edit.zip}" class="input_box"
 						readonly onclick="post_search()" /> 
@@ -144,8 +144,7 @@
 
 				<tr>
 					<th>자기소개</th>
-					<td><textarea id=intro name=intro cols=50
-							rows=10></textarea></td>
+					<td><textarea id=intro name=intro cols=50 rows=10>${edit.intro}</textarea></td>
 				</tr>
 
 		

@@ -48,14 +48,19 @@ public class MemberService {
 			return md.updateNickMember(mb);
 		}
 
-		public List<BoardQnaBean> getTrip(String id) {
-			return md.getTrip(id);
+		public int updatePassMember(MemberBean mb) throws Exception{
+			return md.updatePassMember(mb);
+		}
+		
+		public List<BoardQnaBean> getQna(String id) {
+			return md.getQna(id);
 		}
 
 		public void deleteMember(MemberBean mb) throws Exception{
 			md.deleteMember(mb);
 		}
+		
 	
-
+		
 		
 }

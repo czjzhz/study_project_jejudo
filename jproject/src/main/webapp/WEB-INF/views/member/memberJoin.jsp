@@ -48,7 +48,7 @@
 				<tr>
 					<th>아이디</th>
 					<td><input name="id" id="id" size="14" class="input_box" /> <input
-						type="button" value="아이디 중복체크" class="input_button"
+						type="button" value="아이디 중복확인" class="input_button"
 						onclick="id_check()" />
 						<div id="idcheck"></div></td>
 				</tr>
@@ -74,7 +74,7 @@
 				<tr>
 					<th>닉네임</th>
 					<td><input name="nickname" id="nickname" size="14"
-						class="input_box" /> <input type="button" value="닉네임 중복체크"
+						class="input_box" /> <input type="button" value="닉네임 중복확인"
 						class="input_button" onclick="nick_check()" />
 						<div id="nickcheck"></div></td>
 				</tr>

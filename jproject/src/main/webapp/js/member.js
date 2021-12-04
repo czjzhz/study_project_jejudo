@@ -23,7 +23,7 @@ var nickYN = 'N';
 	// 아이디 중복체크
 function check() {
 	if ($.trim($("#id").val()) == "") {
-		alert("ID를 입력하세요.");
+		alert("아이디를 입력하세요.");
 		$("#id").val("").focus();
 		return false;
 	}
@@ -56,7 +56,7 @@ function check() {
 	// 이름 중복 검사
 	//1. 이름 입력글자 길이 체크 (유효성 검사)
 	if($.trim($("#name").val()).length < 2) {
-		alert("2자 이상 입력하세요.");            
+		alert("2자 이상의 글자를 입력하세요.");            
 		$("#name").val("").focus();
 		return false;
 	}
@@ -152,12 +152,12 @@ function check() {
 	}
 	*/
 	if(idYN == 'N'){
-		alert('ID 중복검사를 체크해주세요.');
+		alert('아이디 중복확인 버튼을 누르세요.');
 		return false;
 	}
 	
 	if(nickYN == 'N'){
-		alert('닉네임 중복검사를 체크해주세요.');
+		alert('닉네임 중복확인 버튼을 누르세요.');
 		return false;
 	}
 	
@@ -216,7 +216,7 @@ function id_check() {
 	}
 	
 	
-	// 아이디 중복확인 (ajax로 요청)
+	// 아이디 중복 확인 (ajax로 요청)
 	$.ajax({
 		type : "POST",
 		url : "Memberidcheck.do",
@@ -297,7 +297,7 @@ function nick_check() {
 	}
 	
 
-	// 닉네임 중복확인 (ajax로 요청)
+	// 닉네임 중복 확인 (ajax로 요청)
 	$.ajax({
 		type : "POST",
 		url : "Membernickcheck.do",

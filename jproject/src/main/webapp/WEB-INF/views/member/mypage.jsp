@@ -28,18 +28,18 @@
 								  <img src="<%=request.getContextPath() %>/upload/${edit.profile}"  height="100" width="100" />
 							</c:if>
 					<tr>
-						<td>${edit.nickname}님,환영합니다!<br> JEJU
+						<td><b>${edit.nickname}님</b>,환영합니다!<br> JEJU
 							FRIEND에서 즐거운 제주 동행 되세요 :)
 						</td>
 					</tr>
 					<tr>
 						<th colspan="2">
 						<input type="button" value="닉네임 변경" class="input_button" onclick="location.href='MemberUpdatenick.do'" /> 
-						<input type="button" value="내 정보 변경" class="input_button" onclick="location.href='MemberUpdate.do'" /> 
-						<input type="button" value="메세지" class="input_button" /> 
-						<input type="button" value="회원탈퇴" class="input_button" onclick="location.href='MemberDel.do'" /> 
-						<input type="submit" value="로그아웃" class="input_button" /> 
-						<input type="button" value="메인페이지로 돌아가기" class="input_button" onclick="location.href='home.do'" /></th>
+						<input type="button" value="비밀번호 변경" class="input_button" onclick="location.href='MemberUpdatepass.do'" /> <!-- add -->
+						<input type="button" value="내 정보 변경" class="input_button" onclick="location.href='MemberUpdate.do'" />  
+						<input type="button" value="메세지" class="input_button" />
+						<input type="submit" value="로그아웃" class="input_button" />  
+						</th>
 					</tr>
 				</table>
 				
@@ -82,18 +82,31 @@
 				<table border="1">
 				<br>
 					<caption>내가 쓴 글</caption>
+					
 					<tr>
 						<td>My QNA</td>
-						<c:forEach var="ml" items="${mytrip}">
-						<c:if test="${ml.qdel =='y'}">
-							<td colspan="5"> 삭제된 글입니다.</td>
-						</c:if>
-						<c:if test="${ml.qdel =='n'}">
-							<td align=center>
-							<a href="./qboardview.do?qno=${ml.qno}">${ml.qsub}</a>
-							</td>
-						</c:if>	
+					</tr>	
+						<c:forEach var="ml" items="${myqna}">
+							<tr>
+								<c:if test="${ml.qdel =='y'}">
+									<td colspan="3" lowspan="5"> 삭제된 글입니다.</td>
+								</c:if>
+								<c:if test="${ml.qdel =='n'}">
+									<td>
+										<a href="./qboardview.do?qno=${ml.qno}">${ml.qsub}</a>
+									</td>
+								</c:if>	
+							</tr>
 						</c:forEach>
+				</table>
+				
+				<table border="1">
+				<br>
+				<tr>
+						<th colspan="2">
+						<input type="button" value="회원탈퇴" class="input_button" onclick="location.href='MemberDel.do'" /> 
+						<input type="button" value="메인페이지로 돌아가기" class="input_button" onclick="location.href='home.do'" />
+						</th>
 					</tr>
 				</table>
 			</form>

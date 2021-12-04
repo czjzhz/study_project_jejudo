@@ -74,6 +74,7 @@
 			<td><input type="checkbox" id="checkall" /><b><font size="4">&nbsp;JEJU FRIEND 모든 이용약관에 동의합니다.</font></b>
 			</td>
 		</tr>
+		
 		<tr>
 			<td>
 			<textarea name="" id="" cols=100 rows=4>여러분을 환영합니다. JEJU FRIEND의 서비스를 이용해 주셔서 감사합니다. 본 약관은 다양한 JEJU FRIEND의 서비스의 이용과 관련하여 JEJU FRIEND의 서비스를 제공하는 TEAM3 주식회사(이하 ‘TEAM3’)와 이를 이용하는 JEJU FRIEND 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 JEJU FRIEND의 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
