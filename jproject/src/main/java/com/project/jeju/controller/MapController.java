@@ -1,8 +1,16 @@
 package com.project.jeju.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.jeju.service.MapService;
 
@@ -35,9 +43,26 @@ public class MapController {
 	}
 	/* 지도 쓰기,수정 완료 */
 	@RequestMapping(value = "/map_action.do")
-	public String map_action() {
+	public String map_action(HttpServletRequest request, Model model) {
+		
+		Enumeration Params = request.getParameterNames();
+		while(Params.hasMoreElements()) {
+			String name = (String) Params.nextElement();
+			System.out.println(name+" : "+request.getParameter(name));
+		}
+		
 		return "map/mapAction";
 	}
+//	public String map_action(HttpServletRequest request, Model model) {
+//
+//		Enumeration Params = request.getParameterNames();
+//		while(Params.hasMoreElements()) {
+//			String name = (String) Params.nextElement();
+//			System.out.println(name+" : "+request.getParameter(name));
+//		}
+//		
+//		return "map/mapAction";
+//	}
 	/* 지도 삭제 */
 	@RequestMapping(value = "/map_delete.do")
 	public String map_delete() {

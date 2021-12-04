@@ -9,6 +9,13 @@
 <title>지도 보기</title>
 </head>
 <body>
+
+서버에서 넘어온 값 
+
+
+
+
+
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7ca06a496d8c916cc2f7a4467704f49e"></script>	
 	<script>
 		function showcont(no) {
@@ -106,6 +113,7 @@
 
 
 	<input type="button" value='지도쓰기' onclick="location.href='map_add.do'">
+	<input type="button" value='지도수정' onclick="location.href='map_update.do'">
 <br>
 	<table border=1 align=center>
 		<thead>
