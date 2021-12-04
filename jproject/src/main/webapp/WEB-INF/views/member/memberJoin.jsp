@@ -153,8 +153,7 @@
 
 				<tr>
 					<th>자기소개</th>
-					<td><textarea id=intro name=intro cols=50
-							rows=10></textarea></td>
+					<td><textarea id=intro name=intro cols=50 rows=10></textarea></td>
 				</tr>
 				<tr>
 				<td colspan="2" align="center" valign="top">

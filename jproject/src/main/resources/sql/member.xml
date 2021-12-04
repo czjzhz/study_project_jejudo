@@ -42,7 +42,7 @@
     <!-- 회원정보수정 -->
  	<update id="updateMember" parameterType="mb">
      update member set <!-- passwd=#{passwd}, -->name=#{name},<!-- nickname=#{nickname}, -->age=#{age},gender=#{gender},
-     zip=#{zip},address1=#{address1},address2=#{address2},email=#{email},phone=#{phone},profile=#{profile,jdbcType=VARCHAR} 
+     zip=#{zip},address1=#{address1},address2=#{address2},email=#{email},phone=#{phone},profile=#{profile,jdbcType=VARCHAR},intro=#{intro} 
      where id=#{id}
     </update> 
     

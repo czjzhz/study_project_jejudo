@@ -457,17 +457,17 @@ public class MemberController {
 	// 회원 비밀번호 수정 폼 (마이페이지)
 	@RequestMapping(value = "/MemberUpdatepass.do")
 	public String memberupdatepass(HttpSession session, MemberBean mb, Model model) throws Exception {
-		System.out.println("비밀번호 수정체크1");
+//		System.out.println("비밀번호 수정체크1");
 //		MemberBean m = (MemberBean) session.getAttribute("mb");
 //		MemberBean edit = ms.userCheck(m.getId());
-		System.out.println("비밀번호 수정체크2");
+//		System.out.println("비밀번호 수정체크2");
 		return "member/memberUpdatepass";
 	}
 	
 	// 회원 비밀번호 수정 저장 (마이페이지)
 	@RequestMapping(value = "/MemberUpdatepassok.do", method = RequestMethod.POST)
 	public String memberupdatepassok(HttpServletRequest request, MemberBean mb, Model model) throws Exception {
-		System.out.println("업데이트패스");
+//		System.out.println("비밀번호 업데이트");
 
 		int result = ms.updatePassMember(mb);   
 		model.addAttribute("result", result);
