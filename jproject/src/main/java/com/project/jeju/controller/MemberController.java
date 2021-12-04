@@ -52,13 +52,6 @@ public class MemberController {
 		// member폴더의 memberLogin.jsp 뷰 페이지 실행
 	}
 
-	// 비밀번호 찾기 폼 뷰
-	@RequestMapping(value = "/PwdFind.do")
-	public String pfind() {
-		return "member/pwdFind";
-		// member 폴더의 pwdFind.jsp 뷰 페이지 실행
-	}
-
 	// 회원가입 폼 뷰1 (회원약관)
 	@RequestMapping("/Agreement.do")
 	public String agree() {
@@ -423,14 +416,6 @@ public class MemberController {
 			return "member/popupDelete";
 		}
 	
-	//
-	//
-	//
-	//
-	//
-	
-
-	
 	// 회원 닉네임 수정 폼 (마이페이지)
 	@RequestMapping(value = "/MemberUpdatenick.do")
 	public String memberupdatenick(HttpSession session, Model model) throws Exception {
@@ -476,13 +461,138 @@ public class MemberController {
 	}	
 	
 	
+	// 비밀번호 찾기 폼 뷰
+	@RequestMapping(value = "/PwdFind.do")
+	public String pfind() {
+		return "member/pwdFind";
+		// member 폴더의 pwdFind.jsp 뷰 페이지 실행
+	}
+
+	
+	// 비밀번호 찾기 변경 완료 (인증번호 이메일 전송)
+	@RequestMapping(value = "/PwdFindok.do", method = RequestMethod.POST)
+	public String pfindok(@ModelAttribute MemberBean pm, HttpServletResponse response, Model model) 
+			throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		MemberBean mb = ms.findpwd(pm);
+
+		if (mb == null) {// 값이 없는 경우
+
+			return "member/pwdResult";
+
+		} else {
+
+		}
+		
+	// Mail Server 설정
+	String charSet = "utf-8";
+	String hostSMTP = "smtp.naver.com";
+	String hostSMTPid =  "czjzhz1111@naver.com"; 					// "jejufriend2021@google.com";
+	String hostSMTPpwd = "choongang1969"; 		// 비밀번호                      //  "happyday2021"; 
+	
+	// 보내는 사람 EMail, 제목, 내용
+	String fromEmail = "czjzhz1111@naver.com"; 					    // "jejufriend2021@gmail.com";
+	String fromName = "JEJU FRIEND";
+	String subject = "제주동행 플랫폼 인증메일입니다.";
+
+	// 받는 사람 E-Mail 주소
+	String mail = mb.getEmail();
+
+		try {
+			HtmlEmail email = new HtmlEmail();
+			email.setDebug(true);
+			email.setCharset(charSet);
+			email.setSSL(true);
+			email.setHostName(hostSMTP);				
+			email.setSmtpPort(587);  								// 465
+
+			email.setAuthentication(hostSMTPid, hostSMTPpwd);
+			email.setTLS(true);
+			email.addTo(mail, charSet);
+			email.setFrom(fromEmail, fromName, charSet);
+			email.setSubject(subject);
+			email.setHtmlMsg("<p align = 'center'>비밀번호 찾기</p><br>" + "<div align='center'> 비밀번호 : "
+					+ mb.getPasswd() + "</div>");
+			email.send();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		model.addAttribute("pwdok", "등록된 이메일로 인증번호를 전송하였습니다. 이메일을 확인 하세요.");
+		return "member/pwdFind";
+
+		}
+
+//////////////
+	
+	// 아이디 찾기 폼 뷰
+	@RequestMapping(value = "/IdFind.do")
+	public String ifind() {
+		System.out.println("아이디 찾기 테스트");
+		return "member/idFind";
+		
+		// member 폴더의 idFind.jsp 뷰 페이지 실행
+	}
+
+	
+	// 아이디 찾기 변경 완료 (인증번호 이메일 전송)
+	@RequestMapping(value = "/IdFindok.do", method = RequestMethod.POST)
+	public String ifindok(@ModelAttribute MemberBean im, HttpServletResponse response, Model model) 
+			throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		System.out.println("아이디 더블체크");
+		MemberBean mb = ms.findid(im);
+
+		if (mb == null) {// 값이 없는 경우
+
+			return "member/idResult";
+
+		} else {
+
+		}
+		
+	// Mail Server 설정
+	String charSet = "utf-8";
+	String hostSMTP = "smtp.naver.com";
+	String hostSMTPid =  "czjzhz1111@naver.com"; 					// "jejufriend2021@google.com";
+	String hostSMTPpwd = "choongang1969"; 		// 비밀번호                      //  "happyday2021"; 
+	
+	// 보내는 사람 EMail, 제목, 내용
+	String fromEmail = "czjzhz1111@naver.com"; 					    // "jejufriend2021@gmail.com";
+	String fromName = "JEJU FRIEND";
+	String subject = "제주동행 플랫폼 인증메일입니다.";
+
+	// 받는 사람 E-Mail 주소
+	String mail = mb.getEmail();
+
+		try {
+			HtmlEmail email = new HtmlEmail();
+			email.setDebug(true);
+			email.setCharset(charSet);
+			email.setSSL(true);
+			email.setHostName(hostSMTP);				
+			email.setSmtpPort(587);  								// 465
+
+			email.setAuthentication(hostSMTPid, hostSMTPpwd);
+			email.setTLS(true);
+			email.addTo(mail, charSet);
+			email.setFrom(fromEmail, fromName, charSet);
+			email.setSubject(subject);
+			email.setHtmlMsg("<p align = 'center'>아이디찾기</p><br>" + "<div align='center'> 아이디 : "
+					+ mb.getId() + "</div>");
+			email.send();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		model.addAttribute("idok", "등록된 이메일로 아이디를 전송하였습니다. 이메일을 확인하세요.");
+		return "member/idFind";
+
+		}	
 	
 	
-    }	
-
-
-	// 회원 비밀번호 변경 폼
-	// 회원 비밀번호 변경
-
-
-
+	
+}

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 <!DOCTYPE html>
 <html>
@@ -22,17 +22,19 @@ function check(){
 	 }
 
 </script>
+<script src="./js/jquery.js"></script>
 </head>
 <body>
 <div id="pwd_wrap">
  
  <c:if test="${empty pwdok}"> 
-  <h2 class="pwd_title">비밀번호 찾기</h2>
+  <h2 class="pwd_title">등록된 회원정보로 찾기</h2>
   <form method="post" action="PwdFindok.do"
   		onsubmit="return check()">  
    <table id="pwd_t">
+
     <tr>
-     <th>ID</th>
+     <th>아이디</th>
      <td><input name="id" id="id" size="14" class="input_box" /></td>
     </tr>
     
@@ -40,23 +42,22 @@ function check(){
      <th>이름</th>
      <td><input name="name" id="name" size="14" class="input_box" /></td>
     </tr>
-    
-    
    </table>
+   
    <div id="pwd_menu">
     <input type="submit" value="비밀번호 찾기" class="input_button" />
     <input type="reset" value="취소" class="input_button" 
-    onclick="location.href='<%=request.getContextPath()%>/MemberLogin.do'">
+    onclick="location.href='MemberLogin.do'" />
    </div>
   </form>
   </c:if>
   
   
   <c:if test="${!empty pwdok}">
-    <h2 class="pwd_title2">비번찾기 결과</h2>
+    <h2 class="pwd_title2">비밀번호 찾기 결과</h2>
     <table id="pwd_t2">
      <tr>
-      <th>검색한 비밀번호</th>
+      <th>JEJU FRIEND의 회원이시군요!</th>
       <td>${pwdok}</td>
      </tr>
     </table>

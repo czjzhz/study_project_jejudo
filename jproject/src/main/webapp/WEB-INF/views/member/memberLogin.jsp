@@ -36,6 +36,7 @@
 
 <body>
 <%@ include file="../navi.jsp" %> 
+
 <main>
 		<div class="container-fluid">
 			<div class="row">

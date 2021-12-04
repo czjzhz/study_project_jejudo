@@ -28,7 +28,7 @@
 								  <img src="<%=request.getContextPath() %>/upload/${edit.profile}"  height="100" width="100" />
 							</c:if>
 					<tr>
-						<td><b>${edit.nickname}님</b>,환영합니다!<br> JEJU
+						<td><b>${edit.nickname}님</b>, 환영합니다!<br> JEJU
 							FRIEND에서 즐거운 제주 동행 되세요 :)
 						</td>
 					</tr>

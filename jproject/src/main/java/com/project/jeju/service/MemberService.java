@@ -36,10 +36,16 @@ public class MemberService {
 			return md.userCheck(id);
 		}
 		
-		public MemberBean findpwd(MemberBean mb)throws Exception {
-			return md.findpwd(mb);
+		// 비밀번호 검색
+		public MemberBean findpwd(MemberBean pm) throws Exception {
+			return md.findpwd(pm);
 		}
 
+		// 아이디 검색
+		public MemberBean findid (MemberBean im) throws Exception {
+			return md.findid(im);
+		}
+		
 		public int updateMember(MemberBean mb) throws Exception{
 			return md.updateMember(mb); 
 		}
