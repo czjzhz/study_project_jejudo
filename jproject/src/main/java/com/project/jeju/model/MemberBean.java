@@ -21,6 +21,16 @@ public class MemberBean {
 	private String state;
 	private String delcont;
 	private Date deldate;
+	private String travel;
+	
+	// page
+	private int startRow;
+	private int endRow;
+
+	// 검색
+	private String search;
+	private String keyword;
+	
 	
 	public String getId() {
 		return id;
@@ -129,6 +139,12 @@ public class MemberBean {
 	}
 	public void setDeldate(Date deldate) {
 		this.deldate = deldate;
+	}
+	public String getTravel() {
+		return travel;
+	}
+	public void setTravel(String travel) {
+		this.travel = travel;
 	}
 	
 }

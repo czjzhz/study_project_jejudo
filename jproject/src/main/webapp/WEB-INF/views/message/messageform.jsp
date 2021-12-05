@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>쪽지 보내기</title>
+<link rel="stylesheet" href="./css/message.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	function send() {
@@ -32,7 +33,7 @@
 </script>
 </head>
 <body>
-	<h1>쪽지 보내기</h1>
+	<div class="messagetitle"><h1>쪽지 보내기</h1></div>
 	<form name="myform" id="myform">
 	<input type="hidden" id="sendid" name="sendid" value="${sessionScope.mb.nickname}">
 	<input type="hidden" id="rcvid" name="rcvid" value="${nickname}"> 

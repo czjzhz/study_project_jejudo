@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
 <!DOCTYPE html>
@@ -9,40 +10,61 @@
 <title>QnA 게시판 글작성</title>
 </head>
 <body>
-<%@ include file="../navi.jsp"%>
-
-	<main class="" id="main-collapse">
-		<div class="container-fluid">
+	<%@ include file="../navi.jsp"%>
+	<!-- breadcrumb start-->
+	<section class="breadcrumb breadcrumb_bg">
+		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
-					<h3>Q & A 글쓰기</h3>
-					<br>
-					<form action="qboardinsert.do" method="post" enctype="multipart/form-data">
-						<table class="table table-hover" >
-							<tr>
-								<td>제목</td>
-								<td><input type="text" name="qsub" required="required"></td>
-							</tr>
-							<tr>
-								<td>내용</td>
-								<td><textarea rows="5" cols="30" name="qcont" required="required"></textarea></td>
-							</tr>
-							<tr>
-								<td>파일첨부</td>
-								<td>
-									<input name="boardqnafile" type="file"/>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2" align="center">
-									<input type="submit" value="글작성" class="btn btn-md btn-warning" style="background-color: #FF8000;">
-								</td>
-							</tr>
-						</table>
-					</form>
+				<div class="col-lg-12">
+					<div class="breadcrumb_iner">
+						<div class="breadcrumb_iner_item text-center">
+							<h2>Q & A</h2>
+							<p>제주에 대한 무엇이든 물어보자!</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</main>
+	</section>
+	<!-- breadcrumb start-->
+
+	<!-- Start Sample Area -->
+	<section class="sample-text-area">
+		<div class="container box_1170">
+			<main class="" id="main-collapse">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
+							<br>
+							<form action="qboardinsert.do" method="post"
+								enctype="multipart/form-data">
+								<table class="table">
+									<tr>
+										<td>제목</td>
+										<td><input size="97" type="text" name="qsub"
+											required="required"></td>
+									</tr>
+									<tr>
+										<td>내용</td>
+										<td><textarea rows="15" cols="100" name="qcont"
+												required="required"></textarea></td>
+									</tr>
+									<tr>
+										<td>파일첨부</td>
+										<td><input name="boardqnafile" type="file" /></td>
+									</tr>
+									<tr>
+										<td colspan="2" align="center"><input type="submit"
+											value="글작성" class="btn btn-md btn-primary"></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</section>
 </body>
 </html>

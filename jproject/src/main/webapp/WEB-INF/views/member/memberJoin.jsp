@@ -29,7 +29,15 @@
 </head>
 
 <body>
+<%@ include file="../navi.jsp"%>
+
+	<!-- Start Sample Area -->
+	<section class="sample-text-area">
+		<div class="container box_1170">
 	<div id="join_wrap">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-6">
 		<h2 class="join_title">회원가입</h2>
 		<form name="f" method="post" action="MemberJoinok.do"
 			onsubmit="return check()" enctype="multipart/form-data">
@@ -156,6 +164,9 @@
 			</div>
 
 		</form>
+		</div>
 	</div>
+	</div>
+	</section>
 </body>
 </html>

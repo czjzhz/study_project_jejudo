@@ -2,5 +2,66 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="brns">
+	<resultMap type="brb" id="boardreview">
+		<result property="rno" column="rno" />
+		<result property="rsub" column="rsub" />
+		<result property="rcont" column="rcont" />
+		<result property="rreg" column="rreg" />
+		<result property="rdel" column="rdel" />
+		<result property="id" column="id" />
+		<result property="rfile" column="rfile" />
+		<result property="rreadcount" column="rreadcount" />
+		<result property="nickname" column="nickname" />
+		<result property="rip" column="rip" />
+	</resultMap>
+
+	<select id="list" parameterType="brb" resultMap="boardreview">
+		select * from (select a.*, rowNum rn from(
+		select * from boardreview
+		<where>
+			<if test="keyword != null and search != 'subcon'">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyword != null and search == 'subcon'">
+				rsub like '%'||#{keyword}||'%' or
+				rcont like '%'||#{keyword}||'%'
+			</if>
+		</where>
+		order by rno desc) a )
+		where rn between #{startRow} and #{endRow}
+	</select>
+
+	<select id="getTotal" parameterType="brb" resultType="int">
+		select count(*) from boardreview
+		<where>
+			<if test="keyword != null and search !='subcon'">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyword != null and search=='subcon'">
+				rsub like '%'||#{keyword}||'%' or
+				rcont like '%'||#{keyword}||'%'
+			</if>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="brb">
+	 	insert into boardreview values (boardreview_seq.nextval,#{rsub},#{rcont},sysdate,'n',#{id},#{rfile,jdbcType=VARCHAR},0,#{nickname},#{rip})
+	</insert>
+
+	<select id="select" parameterType="int" resultMap="boardreview">
+		select * from boardreview where rno=#{rno}
+	</select>
+
+	<update id="selectUpdate" parameterType="brb" >
+		update boardreview set rreadcount = rreadcount+1 where rno=#{rno}
+	</update>
+	
+	<update id="update" parameterType="brb">
+		update boardreview set rsub=#{rsub},rcont=#{rcont},rreg=sysdate,rfile=#{rfile,jdbcType=VARCHAR},rip=#{rip} where rno=#{rno}	
+	</update>
+
+	<update id="delete" parameterType="int">
+		update boardreview set rdel='y' where rno=#{rno}
+	</update>
 
 </mapper>

@@ -5,27 +5,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title>QnA게시판 목록</title>
 
 <script>
 	function message(nickname) {
 //		alert(nickname);
 		var ref = './messageform.do?nickname='+nickname
-		window.open(ref, "mywin", "width=500, height=500, left=800, top=200");
+		window.open(ref, "mywin", "width=500, height=400, left=800, top=200");
 	}
 </script>
 </head>
 <body>
 <%@ include file="../navi.jsp"%>
-	
-	<main class="" id="main-collapse">
-		<div class="container-fluid">
+	<!-- breadcrumb start-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item text-center">
+                            <h2>Q & A</h2>
+                            <p>제주에 대한 무엇이든 물어보자!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+
+	<!-- Start Sample Area -->
+	<section class="sample-text-area">
+		<div class="container box_1170">
+			<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<h3>Q & A 게시판</h3>
-					<button type="button" class="btn btn-md btn-warning"
-						style="background-color: #FF8000;"
+					<button type="button" class="btn btn-md btn-primary"
 						onclick="location.href='qboardinsertForm.do'">글작성</button>
 					<table class="table table-hover">
 						<input type="hidden" name="id" value="" >
@@ -115,6 +130,11 @@
 				</div>
 			</div>
 		</div>
+		</div>
+	</section>
+	<!-- End Sample Area -->
+	<main class="" id="main-collapse">
+		
 	</main>
 </body>
 </html>

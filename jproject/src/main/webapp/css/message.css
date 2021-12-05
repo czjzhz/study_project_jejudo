@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+body {
+}
+
+.messagetitle {
+	width: 100%;
+	display: block;
+	background-color: orange;	
+}
+
+.messagetitle h1 {
+	color: #fff;
+}

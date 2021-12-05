@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.project.jeju.model.BoardAccomBean;
 import com.project.jeju.model.BoardQnaBean;
+import com.project.jeju.model.BoardReviewBean;
 import com.project.jeju.model.MemberBean;
 
 @Repository
@@ -28,12 +30,13 @@ public class MemberDao {
 		return re;
 	}
 
+	
 	// 이메일 중복 검사
 	public int check_email(String email) throws Exception {
 		return sqlSession.selectOne("email_check", email);
-
 	}
 
+	
     // 닉네임 중복 체크 
 	public int checkMemberNick(String nickname) throws Exception {
 //		 		getSession();
@@ -42,9 +45,9 @@ public class MemberDao {
 		if (mb != null)
 			re = 1; // 중복 닉네임
 		return re;
-
 	}
 
+	
 	// 이름 중복 검사
 	public int checkMemberName(String name) throws Exception {
 		return sqlSession.selectOne("name_check", name);
@@ -67,7 +70,7 @@ public class MemberDao {
 	}
 
 	
-	// 비밀번호 검색
+	// 비밀번호 검색 (비밀번호 찾기)
 //@Transactional
 	public MemberBean findpwd(MemberBean mb) throws Exception {
 //		getSession();
@@ -75,7 +78,15 @@ public class MemberDao {
 	}
 
 	
-   // 회원수정
+	// 아이디 검색 (아이디 찾기)
+//@Transactional
+	public MemberBean findid(MemberBean mb) throws Exception {
+//		getSession();
+		return sqlSession.selectOne("idFind", mb);
+	}
+	
+	
+   // 회원정보수정
 //@Transactional
 	public int updateMember(MemberBean mb) throws Exception {
 //     	getSession();
@@ -83,21 +94,47 @@ public class MemberDao {
 	}
 	    
 	
-   // 회원삭제 
+   // 회원닉네임수정
 //@Transactional
-	public void deleteMember(MemberBean mb) throws Exception {
+	public int updateNickMember(MemberBean mb) throws Exception {
+//	     getSession();
+		 return sqlSession.update("memberns.updateNickMember", mb);
+	}	
+	
+	
+	// 회원비밀번호수정
+//@Transactional
+	public int updatePassMember(MemberBean pm) throws Exception {
 //		getSession();
-		sqlSession.update("memberDel", mb);	    
-  	}
-
-	public List<BoardQnaBean> getTrip(String id) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("memberns.qnalist", id);
+		return sqlSession.update("memberns.updatePassMember", pm);
 	}	
   
 	
+    // 회원삭제 
+//@Transactional
+	public void deleteMember(MemberBean mb) throws Exception {
+//		getSession();
+		sqlSession.update("memberns.deleteMember", mb);	    
+  	}
+
+	
+	// ACCOM list
+	public List<BoardAccomBean> getAcc(String id) {
+		return sqlSession.selectList("memberns.accomlist", id);
+	}
+
+	
+	// Review list
+	public List<BoardReviewBean> getRev(String id) {
+		return sqlSession.selectList("memberns.reviewlist", id);
+	}
+	
+	
+	// QNA list 
+	public List<BoardQnaBean> getQna(String id) {
+		return sqlSession.selectList("memberns.qnalist", id);
+	}
+
+	
 	
 }
-	
-
-
