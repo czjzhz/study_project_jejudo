@@ -41,8 +41,17 @@
 				<td><fmt:formatDate value="${q.rreg}" pattern="yy-MM-dd " /></td>
 				<td>${q.id}</td>
 				<td>${q.rdel}</td>
-				<td><input type='button' value='블라인드' onclick="" />
-					<input type='button' value='삭제' onclick="" /></td>
+				<td>
+				<c:if test="${ q.rdel == 'y' }">
+					<input type='button' value='블라인드 취소' 
+						onclick="location.href='admin_review_stop.do?rno=${q.rno}&del=0&pageNum=${pp.currentPage}'" />
+				</c:if>		
+				<c:if test="${ q.rdel == 'n' }">
+					<input type='button' value='블라인드 설정' 
+						onclick="location.href='admin_review_stop.do?rno=${q.rno}&del=1&pageNum=${pp.currentPage}'" />
+				</c:if>		
+					<input type='button' value='삭제' 
+						onclick="if(confirm('삭제하시겠습니까?')) {location.href='admin_review_delete.do?rno=${q.rno}&pageNum=${pp.currentPage}'}" /></td>
 			</tr></tbody>
 		</c:forEach>
 		</c:if>

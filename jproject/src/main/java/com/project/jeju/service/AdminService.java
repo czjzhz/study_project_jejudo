@@ -122,6 +122,22 @@ public class AdminService {
 	public List<AdminQnaReplyBean> Rpview(int qno) {
 		return AdminDao.RpView(qno);
 	} 
+	/* QnA 블라인드 Y>N */
+	public int qnaChangetN(int qno) throws Exception {
+		return AdminDao.qnaChangetN(qno);
+	}
+	/* QnA 블라인드 N>Y */
+	public int qnaChangeY(int qno) throws Exception {
+		return AdminDao.qnaChangeY(qno);
+	}
+	/* QnA 본문 삭제 */
+	public int QnaDelete(int qno) throws Exception {
+		return AdminDao.QnaDelete(qno);
+	}
+	/* QnA 댓글 삭제 */
+	public int QnaRpDelete(int qrno) throws Exception {
+		return AdminDao.QnaRpDelete(qrno);
+	}
 
 	// 리뷰 관리
 	/* 리뷰 수 가져오기 */
@@ -140,4 +156,20 @@ public class AdminService {
 	public List<AdminReviewReplyBean> ReviewRpview(int rno) {
 		return AdminDao.ReviewRpview(rno);
 	} 
+	/* 리뷰 블라인드 Y>N */
+	public int reviewChangetN(int rno) throws Exception {
+		return AdminDao.reviewChangetN(rno);
+	}
+	/* 리뷰 블라인드 N>Y */
+	public int reviewChangeY(int rno) throws Exception {
+		return AdminDao.reviewChangeY(rno);
+	}
+	/* 리뷰 본문 삭제 */
+	public int ReviewDelete(int rno) throws Exception {
+		return AdminDao.ReviewDelete(rno);
+	}
+	/* 리뷰 댓글 삭제 */
+	public int ReviewRpDelete(int rrno) throws Exception {
+		return AdminDao.ReviewRpDelete(rrno);
+	}
 }

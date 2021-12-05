@@ -28,5 +28,17 @@
 	 <select id="Reviewview" parameterType="int" resultMap="adrvrm">
  		select * from boardreview where rno=#{rno}
 	</select>
-
+	
+	<update id="reviewChangetN" parameterType="int">
+		update boardreview set rdel='n' where rno=#{rno}
+	</update>
+	
+	<update id="reviewChangeY" parameterType="int">
+		update boardreview set rdel='y' where rno=#{rno}
+	</update>
+	
+	<delete id="ReviewDelete" parameterType="int">
+		delete from boardreview where rno=#{rno}
+	</delete>
+	
  </mapper>

@@ -122,6 +122,22 @@ public class AdminDao {
 	public List<AdminQnaReplyBean> RpView(int qno) {
 		return sst.selectList("adqnarp.Rpview", qno);
 	}
+	/* QnA 블라인드 Y>N */
+	public int qnaChangetN(int qno) throws Exception {
+		return sst.update("adqna.qnaChangetN", qno);
+	}
+	/* QnA 블라인드 N>Y */
+	public int qnaChangeY(int qno) throws Exception {
+		return sst.update("adqna.qnaChangeY", qno);
+	}
+	/* QnA 본문 삭제 */
+	public int QnaDelete(int qno) throws Exception {
+		return sst.delete("adqna.QnaDelete", qno);
+	}
+	/* QnA 댓글 삭제 */
+	public int QnaRpDelete(int qrno) throws Exception {
+		return sst.delete("adqnarp.QnaRpDelete", qrno);
+	}
 	
 	// 리뷰 관리 
 	/* 전체 리뷰 수 가져오기 */
@@ -139,5 +155,21 @@ public class AdminDao {
 	/* 리뷰 댓글 상세페이지 가져오기 */ 
 	public List<AdminReviewReplyBean> ReviewRpview(int rno) {
 		return sst.selectList("adrvrpns.ReviewRpview", rno);
+	}
+	/* 리뷰 블라인드 Y>N */
+	public int reviewChangetN(int rno) throws Exception {
+		return sst.update("adrvns.reviewChangetN", rno);
+	}
+	/* 리뷰 블라인드 N>Y */
+	public int reviewChangeY(int rno) throws Exception {
+		return sst.update("adrvns.reviewChangeY", rno);
+	}
+	/* 리뷰 본문 삭제 */
+	public int ReviewDelete(int rno) throws Exception {
+		return sst.delete("adrvns.ReviewDelete", rno);
+	}
+	/* 리뷰 댓글 삭제 */
+	public int ReviewRpDelete(int rno) throws Exception {
+		return sst.delete("adrvrpns.ReviewRpDelete", rno);
 	}
 }

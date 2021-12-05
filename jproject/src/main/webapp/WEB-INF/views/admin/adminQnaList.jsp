@@ -41,8 +41,17 @@
 				<td><fmt:formatDate value="${q.qreg}" pattern="yy-MM-dd " /></td>
 				<td>${q.id}</td>
 				<td>${q.qdel}</td>
-				<td><input type='button' value='블라인드' onclick="" />
-					<input type='button' value='삭제' onclick="" /></td>
+				<td>
+				<c:if test="${ q.qdel == 'y' }">
+					<input type='button' value='블라인드 취소' 
+						onclick="location.href='admin_qna_stop.do?qno=${q.qno}&del=0&pageNum=${pp.currentPage}'" />
+				</c:if>		
+				<c:if test="${ q.qdel == 'n' }">
+					<input type='button' value='블라인드 설정' 
+						onclick="location.href='admin_qna_stop.do?qno=${q.qno}&del=1&pageNum=${pp.currentPage}'" />
+				</c:if>	
+					<input type='button' value='삭제' 
+						onclick="if(confirm('삭제하시겠습니까?')) {location.href='admin_qna_delete.do?qno=${q.qno }&pageNum=${pp.currentPage }'}" /></td>
 			</tr></tbody>
 		</c:forEach>
 		</c:if>

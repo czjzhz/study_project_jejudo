@@ -447,7 +447,7 @@ public class AdminController {
     /* qna 리스트 가져오기 */
     @RequestMapping(value = "/admin_qna.do")
 	public String admin_qna(String pageNum, AdminQnaBean adminqna, 
-							HttpSession session, Model model) throws Exception {
+								HttpSession session, Model model) throws Exception {
 		
 		final int rowPerPage = 10;						// 화면에 출력할 데이터 갯수
 		if (pageNum == null || pageNum.equals("")) {
@@ -477,7 +477,7 @@ public class AdminController {
     /* qna 상세페이지 */
     @RequestMapping(value = "/admin_qna_view.do")
 	public String admin_qna_view(String pageNum, int qno, AdminQnaBean adminqna, AdminQnaReplyBean adminqnar,
-							HttpSession session, Model model) throws Exception {
+									HttpSession session, Model model) throws Exception {
     	
     	List<AdminQnaBean> qnaview = adminservice.Qnaview(qno);
     	List<AdminQnaReplyBean> rpview = adminservice.Rpview(qno);
@@ -487,12 +487,49 @@ public class AdminController {
     	model.addAttribute("pageNum", pageNum);
     	return "admin/adminQnaView";
     }
+	/* qna 블라인드 설정 및 해제 */
+    @RequestMapping(value = "/admin_qna_stop.do")
+	public String admin_qna_stop (String pageNum, int qno, int del, 
+									HttpSession session, Model model) throws Exception {
+		int result = 0;
+		if (del == 0) {
+			System.out.println("0 qdel : "+del);
+			result = adminservice.qnaChangetN(qno);
+		}else{
+			System.out.println("1 qdel : "+del);
+			result = adminservice.qnaChangeY(qno);			
+		}
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "admin/adminQnaStop";
+	}
+	/* qna 본문 삭제 */
+	@RequestMapping(value = "/admin_qna_delete.do")
+	public String admin_qna_delete (int qno, HttpSession session, Model model) throws Exception {
+
+		int result = 0;
+		result = adminservice.QnaDelete(qno);
+		model.addAttribute("result", result);
+		
+		return "admin/adminQnaStop";
+	}
+	/* qna 댓글 삭제 */
+	@RequestMapping(value = "/admin_qnarp_delete.do")
+	public String admin_qnarp_delete (int qrno, HttpSession session, Model model) throws Exception {
+
+		int result = 0;
+		result = adminservice.QnaRpDelete(qrno);
+		model.addAttribute("result", result);
+		
+		return "admin/adminQnaStop";
+	}
     
     // 리뷰 관리
     /* 리뷰 리스트 가져오기 */
     @RequestMapping(value = "/admin_review.do")
     public String admin_review(String pageNum, AdminReviewBean adminrv, 
-    		HttpSession session, Model model) throws Exception {
+    								HttpSession session, Model model) throws Exception {
     	
     	final int rowPerPage = 10;						// 화면에 출력할 데이터 갯수
     	if (pageNum == null || pageNum.equals("")) {
@@ -522,7 +559,7 @@ public class AdminController {
     /* 리뷰 상세페이지 */
     @RequestMapping(value = "/admin_review_view.do")
     public String admin_review_view(String pageNum, int rno, AdminReviewBean adminrv, AdminReviewReplyBean adminrvrp,
-    		HttpSession session, Model model) throws Exception {
+    								HttpSession session, Model model) throws Exception {
     	
     	List<AdminReviewBean> reviewview = adminservice.Reviewview(rno);
     	List<AdminReviewReplyBean> rpview = adminservice.ReviewRpview(rno);
@@ -532,5 +569,41 @@ public class AdminController {
     	model.addAttribute("pageNum", pageNum);
     	return "admin/adminReviewView";
     }
+	/* 리뷰 블라인드 설정 및 해제 */
+    @RequestMapping(value = "/admin_review_stop.do")
+	public String admin_review_stop (String pageNum, int rno, int del, 
+									HttpSession session, Model model) throws Exception {
+		int result = 0;
+		if (del == 0) {
+			System.out.println("1 del : "+del);
+			result = adminservice.reviewChangetN(rno);
+		}else{
+			System.out.println("0 del : "+del);
+			result = adminservice.reviewChangeY(rno);			
+		}
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
 		
+		return "admin/adminReviewStop";
+	}	
+	/* 리뷰 본문 삭제 */
+	@RequestMapping(value = "/admin_review_delete.do")
+	public String admin_review_delete (int rno, HttpSession session, Model model) throws Exception {
+
+		int result = 0;
+		result = adminservice.ReviewDelete(rno);
+		model.addAttribute("result", result);
+		
+		return "admin/adminReviewStop";
+	}	
+	/* 리뷰 댓글 삭제 */
+	@RequestMapping(value = "/admin_rreviewrp_delete.do")
+	public String admin_reviewrp_delete (int rrno, HttpSession session, Model model) throws Exception {
+
+		int result = 0;
+		result = adminservice.ReviewRpDelete(rrno);
+		model.addAttribute("result", result);
+		
+		return "admin/adminReviewStop";
+	}
 }

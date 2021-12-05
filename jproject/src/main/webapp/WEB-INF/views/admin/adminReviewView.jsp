@@ -40,8 +40,17 @@
 			<tr><td>내용</td>
 				<td colspan=5>${q.rcont}</td>
 			</tr>
-			<tr><td colspan=6 align=center>	<input type='button' value='블라인드' onclick="" />
-											<input type='button' value='삭제' onclick="" /></td>
+			<tr><td colspan=6 align=center>	
+				<c:if test="${ q.rdel == 'y' }">
+					<input type='button' value='블라인드 취소' 
+						onclick="location.href='admin_review_stop.do?rno=${q.rno}&del=0&pageNum=${pageNum}'" />
+				</c:if>		
+				<c:if test="${ q.rdel == 'n' }">
+					<input type='button' value='블라인드 설정' 
+						onclick="location.href='admin_review_stop.do?rno=${q.rno}&del=1&pageNum=${pageNum}'" />
+				</c:if>	
+					<input type='button' value='삭제' 
+						onclick="if(confirm('삭제하시겠습니까?')) {location.href='admin_review_delete.do?rno=${q.rno}&pageNum=${pageNum}'}" /></td>
 			</tr></tbody>
 		</c:forEach>	
 	</table>
@@ -67,7 +76,8 @@
 		<tr><td>내용</td>
 			<td colspan=3>${q.rrcont}</td>
 		</tr>
-		<tr><td colspan=4 align=center><input type=button onclick="" value="삭제"></td></tr>
+		<tr><td colspan=4 align=center><input type='button' value='삭제' 
+						onclick="if(confirm('삭제하시겠습니까?')) {location.href='admin_reviewrp_delete.do?rrno=${q.rrno}&pageNum=${pageNum}'}" /></td>
 	</table>
 		</c:forEach>
 </body>

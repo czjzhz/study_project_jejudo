@@ -15,7 +15,6 @@
 		<result property="qip"	 	  	column="qip" />
 	</resultMap> 
 	
-	
  	<select id="QnaList" parameterType="adqa" resultMap="adminqna">
  		select * from (select a.*, rowNum rn from(
  			select * from boardqna order by qno desc) a )
@@ -30,8 +29,16 @@
  		select * from boardqna where qno=#{qno}
 	</select>
 	
-<!--	<delete id="NoticeDelete" parameterType="int">
-		delete from adminnotice where nno=#{nno}
-	</delete> -->
+	<update id="qnaChangetN" parameterType="int">
+		update boardqna set qdel='n' where qno=#{qno}
+	</update>
+	
+	<update id="qnaChangeY" parameterType="int">
+		update boardqna set qdel='y' where qno=#{qno}
+	</update>
+	
+	<delete id="QnaDelete" parameterType="int">
+		delete from boardqna where qno=#{qno}
+	</delete>
 	
  </mapper>

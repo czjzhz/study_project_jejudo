@@ -40,8 +40,17 @@
 			<tr><td>내용</td>
 				<td colspan=5>${q.qcont}</td>
 			</tr>
-			<tr><td colspan=6 align=center>	<input type='button' value='블라인드' onclick="" />
-											<input type='button' value='삭제' onclick="" /></td>
+			<tr><td colspan=6 align=center>	
+				<c:if test="${ q.qdel == 'y' }">
+					<input type='button' value='블라인드 취소' 
+						onclick="location.href='admin_qna_stop.do?qno=${q.qno}&del=0&pageNum=${pageNum}'" />
+				</c:if>		
+				<c:if test="${ q.qdel == 'n' }">
+					<input type='button' value='블라인드 설정' 
+						onclick="location.href='admin_qna_stop.do?qno=${q.qno}&del=1&pageNum=${pageNum}'" />
+				</c:if>	
+					<input type='button' value='삭제' 
+						onclick="if(confirm('삭제하시겠습니까?')) {location.href='admin_qna_delete.do?qno=${q.qno}&pageNum=${pageNum}'}" /></td>
 			</tr></tbody>
 		</c:forEach>	
 	</table>
@@ -67,7 +76,9 @@
 		<tr><td>내용</td>
 			<td colspan=3>${q.qrcont}</td>
 		</tr>
-		<tr><td colspan=4 align=center><input type=button onclick="" value="삭제"></td></tr>
+		<tr><td colspan=4 align=center>
+				<input type='button' value='삭제' 
+						onclick="if(confirm('삭제하시겠습니까?')) {location.href='admin_qnarp_delete.do?qrno=${q.qrno}&pageNum=${pageNum}'}" /></td>
 	</table>
 		</c:forEach>
 </body>

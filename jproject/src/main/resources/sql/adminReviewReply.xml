@@ -16,5 +16,9 @@
  		select * from boardreviewreply where rno=#{rno} order by rrreg desc
 	</select>
 	
+	<delete id="ReviewRpDelete" parameterType="int">
+		delete from boardreviewreply where rrno=#{rrno}
+	</delete>
+	
 	
  </mapper>

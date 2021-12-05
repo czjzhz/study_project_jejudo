@@ -16,5 +16,9 @@
  		select * from boardqnareply where qno=#{qno} order by qrreg desc
 	</select>
 	
+	<delete id="QnaRpDelete" parameterType="int">
+		delete from boardqnareply where qrno=#{qrno}
+	</delete>
+	
 	
  </mapper>
