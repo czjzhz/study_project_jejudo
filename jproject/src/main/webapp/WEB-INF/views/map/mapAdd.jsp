@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
@@ -11,7 +10,7 @@
 </head>
 <body>
 
-<form method="post" action="map_action.do">
+<form method="post" action="map_add_action.do">
 	<!-- 지도,좌표 table -->
 	<table align=center width=80% >
 		<tr><td align=center><div id="map" style="width:100%;height:400px;"></div> 
@@ -23,8 +22,13 @@
 	<!-- 내용입력 table -->
 	<table id="mapTable" border=0 align=center>
 		<tr>
-			<th align=center colspan=4>연결 게시물 번호 : <input type="text" id="ano" name="ano" size="10">
-			<input type=hidden id='mapLoc' name='mapLoc' value='1' size='2'/></th>
+			<td align=center colspan=4>연결 게시물 번호 : 
+				<input type="text" id="ano" name="ano" size="10"/>
+				<input type=hidden id='mloc' name='mloc' value='1' size='2'/>
+				<input type=button onclick='addRow()' value='Row +'/>
+				<input type=button onclick='delRow(-1)' value='Row -'/>
+				<input type="submit" value="작성완료">
+			</td>
 		</tr>
 		<tr>
 			<th>No</th>
@@ -34,20 +38,12 @@
 		</tr>
 		<tr>
 			<td align=center>1</td>
-			<td><input type=text placeholder='이름' name='mapMemo1' id='mapMemo1' size='15'/></td>
-			<td><input type=text placeholder='주소' name='mapAddress1' id='mapAddress1' size='40' readonly="readonly"/>
-				<input type=text placeholder='위도(lat)' name='mapLat1' id='mapLat1' size='10' readonly="readonly"/>
-				<input type=text placeholder='경도(lng))' name='mapLng1' id='mapLng1' size='10' readonly="readonly"/></td>
+			<td><input type=text placeholder='이름' name='memo' id='mapMemo1' size='15'/></td>
+			<td><input type=text placeholder='주소' name='mapAddress' id='mapAddress1' size='40' readonly='readonly'/>
+				<input type=text placeholder='위도(lat)' name='lat' id='mapLat1' size='10' readonly='readonly'/>
+				<input type=text placeholder='경도(lng))' name='lng' id='mapLng1' size='10' readonly='readonly'/></td>
 			<td><input type=button id=addupdate1 name=addupdate1 onclick='addupdate(1)' value='입력'></td>
 		</tr>
-	</table>
-	<!-- 버튼 table -->	   
-	<table align=center>
-		<tr><td>
-				<input type=button onclick='addRow()' value='목적지 추가'/>
-				<input type=button onclick='delRow(-1)' value='마지막줄 지우기'/>
-				<input type="submit" value="작성완료">
-		</td></tr>	
 	</table>
 </form>
 	
@@ -66,7 +62,7 @@
 	        });
 	    }); */
 	    
-	    var mapLoc = document.getElementById('mapLoc');
+	    var mloc = document.getElementById('mloc');
         var mapNo = 2;
         var address;
         var lng;
@@ -90,16 +86,16 @@
               
             // Cell에 텍스트 추가
             newCell1.innerHTML = mapNo;
-            newCell2.innerHTML = "<input type=text placeholder='이름' name='mapMemo"+mapNo+"' id='mapMemo"+mapNo+"' size='15'/>";
-            newCell3.innerHTML = "<input type=text placeholder='주소' name='mapAddress"+mapNo+"' id='mapAddress"+mapNo+"' size='40'/> "+
-            					 "<input type=text placeholder='위도(lat)' name='mapLat"+mapNo+"' id='mapLat"+mapNo+"' size='10'/> "+
-								 "<input type=text placeholder='경도(lng))' name='mapLng"+mapNo+"' id='mapLng"+mapNo+"' size='10'/>";
-            newCell4.innerHTML = "<input type=button id=addupdate"+mapNo+" name=addupdate"+mapNo+" onclick='addupdate("+mapNo+")' value='입력'>";
+            newCell2.innerHTML = "<input type=text placeholder='이름' name='memo' id='mapMemo"+mapNo+"' size='15'/>";
+            newCell3.innerHTML = "<input type=text placeholder='주소' name='mapAddress' id='mapAddress"+mapNo+"' size='40' readonly='readonly'/> "+
+            					 "<input type=text placeholder='위도(lat)' name='lat' id='mapLat"+mapNo+"' size='10' readonly='readonly'/> "+
+								 "<input type=text placeholder='경도(lng))' name='lng' id='mapLng"+mapNo+"' size='10' readonly='readonly'/>";
+            newCell4.innerHTML = "<input type=button id=addupdate"+mapNo+" name='addupdate"+mapNo+"' onclick='addupdate("+mapNo+")' value='입력'>";
    
             //mapNo값 +1
             mapNo++;
-            // mapLoc 값 변경
-            mapLoc.value = mapNo-1;
+            // mloc 값 변경
+            mloc.value = mapNo-1;
             };
         
         
@@ -109,8 +105,8 @@
             var newRow = table.deleteRow(rownum);
             // mapNo값 -1
             mapNo--;
-            // mapLoc 값 변경
-            mapLoc.value = mapNo-1;
+            // mloc 값 변경
+            mloc.value = mapNo-1;
         };
         
         // 입력버튼
@@ -132,7 +128,7 @@
         };
 
         var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-        var geocoder = new kakao.maps.services.Geocoder();
+        var geocoder = new kakao.maps.services.Geocoder(); // 서비스 라이브러리 - 주소 
         
         // 지도를 클릭한 위치에 표출할 마커입니다
         var marker = new kakao.maps.Marker({position : map.getCenter()});
@@ -149,7 +145,6 @@
             // 위도-경도 변수입력
             lat = latlng.getLat();
             lng = latlng.getLng();
-            
 		    
             // 좌표로 주소연산 후 변수입력
           	searchAddress(mouseEvent.latLng, function(result, status){

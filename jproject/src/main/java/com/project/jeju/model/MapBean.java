@@ -9,6 +9,10 @@ public class MapBean {
 	private String mlat;
 	private String mlng;
 	
+	// page
+	private int startRow;
+	private int endRow;
+	
 	public int getAno() {
 		return ano;
 	}
@@ -44,6 +48,18 @@ public class MapBean {
 	}
 	public void setMlng(String mlng) {
 		this.mlng = mlng;
+	}
+	public int getStartRow() {
+		return startRow;
+	}
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+	public int getEndRow() {
+		return endRow;
+	}
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
 	}
 	
 }

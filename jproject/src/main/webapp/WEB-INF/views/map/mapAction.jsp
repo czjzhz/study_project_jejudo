@@ -14,7 +14,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("작성 성공");
-			location.href = "map_view.do";
+			location.href = "map_list.do";
 		</script>
 	</c:if>
 	<c:if test="${result <= 0 }">

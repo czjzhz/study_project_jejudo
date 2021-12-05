@@ -3,14 +3,34 @@
 
 <mapper namespace="mapns">
 	<resultMap id="maprm" type="maps">
-		<result property="mapno"		column="mapno" />
-		<result property="ano"   		column="ano" />
-		<result property="maplatlng"	column="maplatlng" />
-		<result property="mapmemo"		column="mapmemo" />
+		<result property="ano"   	column="ano" />
+		<result property="mapno"	column="mapno" />
+		<result property="mloc"		column="mloc" />
+		<result property="mmemo"	column="mmemo" />
+		<result property="mlat"		column="mlat" />
+		<result property="mlng"		column="mlng" />
 	</resultMap> 
 
-<!--     <select id="123" parameterType="String" resultType="maprm">
-     	select * from map 
-    </select> -->
-    
+	<insert id="MapAdd" parameterType="maps">
+		insert into map values (#{ano},#{mapno},#{mloc},#{mmemo},#{mlat},#{mlng})
+	</insert> 
+	
+	<select id="MapList" parameterType="maps" resultMap="maprm">
+ 		select * from (select a.*, rowNum rn from(
+ 			select * from map order by ano desc, mapno desc) a )
+			where rn between #{startRow} and #{endRow}
+	</select>
+
+	<select id="getMapTotal" parameterType="maps" resultType="int">
+		select count(*) from map
+	</select>
+	
+	<select id="MapUpdateList" parameterType="int" resultMap="maprm">
+ 		select a.*, rowNum rn from (select * from map where ano=#{ano} order by mapno asc) a
+	</select>
+	
+	<delete id="MapDelete" parameterType="int">
+		delete from map where ano=#{ano}
+	</delete>
+	
 </mapper>
