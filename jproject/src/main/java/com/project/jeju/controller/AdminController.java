@@ -33,6 +33,8 @@ import com.project.jeju.model.AdminQnaBean;
 import com.project.jeju.model.AdminQnaReplyBean;
 import com.project.jeju.model.AdminReviewBean;
 import com.project.jeju.model.AdminReviewReplyBean;
+import com.project.jeju.model.AdminWithBean;
+import com.project.jeju.model.AdminWithReplyBean;
 import com.project.jeju.service.AdminService;
 import com.project.jeju.service.PagingPgm;
 
@@ -474,6 +476,7 @@ public class AdminController {
 		
 		return "admin/adminQnaList";
 	} 
+    
     /* qna 상세페이지 */
     @RequestMapping(value = "/admin_qna_view.do")
 	public String admin_qna_view(String pageNum, int qno, AdminQnaBean adminqna, AdminQnaReplyBean adminqnar,
@@ -487,7 +490,8 @@ public class AdminController {
     	model.addAttribute("pageNum", pageNum);
     	return "admin/adminQnaView";
     }
-	/* qna 블라인드 설정 및 해제 */
+	
+    /* qna 블라인드 설정 및 해제 */
     @RequestMapping(value = "/admin_qna_stop.do")
 	public String admin_qna_stop (String pageNum, int qno, int del, 
 									HttpSession session, Model model) throws Exception {
@@ -504,7 +508,8 @@ public class AdminController {
 		
 		return "admin/adminQnaStop";
 	}
-	/* qna 본문 삭제 */
+	
+    /* qna 본문 삭제 */
 	@RequestMapping(value = "/admin_qna_delete.do")
 	public String admin_qna_delete (int qno, HttpSession session, Model model) throws Exception {
 
@@ -514,6 +519,7 @@ public class AdminController {
 		
 		return "admin/adminQnaStop";
 	}
+	
 	/* qna 댓글 삭제 */
 	@RequestMapping(value = "/admin_qnarp_delete.do")
 	public String admin_qnarp_delete (int qrno, HttpSession session, Model model) throws Exception {
@@ -556,6 +562,7 @@ public class AdminController {
     	
     	return "admin/adminReviewList";
     } 
+    
     /* 리뷰 상세페이지 */
     @RequestMapping(value = "/admin_review_view.do")
     public String admin_review_view(String pageNum, int rno, AdminReviewBean adminrv, AdminReviewReplyBean adminrvrp,
@@ -569,7 +576,8 @@ public class AdminController {
     	model.addAttribute("pageNum", pageNum);
     	return "admin/adminReviewView";
     }
-	/* 리뷰 블라인드 설정 및 해제 */
+	
+    /* 리뷰 블라인드 설정 및 해제 */
     @RequestMapping(value = "/admin_review_stop.do")
 	public String admin_review_stop (String pageNum, int rno, int del, 
 									HttpSession session, Model model) throws Exception {
@@ -586,7 +594,8 @@ public class AdminController {
 		
 		return "admin/adminReviewStop";
 	}	
-	/* 리뷰 본문 삭제 */
+	
+    /* 리뷰 본문 삭제 */
 	@RequestMapping(value = "/admin_review_delete.do")
 	public String admin_review_delete (int rno, HttpSession session, Model model) throws Exception {
 
@@ -596,6 +605,7 @@ public class AdminController {
 		
 		return "admin/adminReviewStop";
 	}	
+	
 	/* 리뷰 댓글 삭제 */
 	@RequestMapping(value = "/admin_rreviewrp_delete.do")
 	public String admin_reviewrp_delete (int rrno, HttpSession session, Model model) throws Exception {
@@ -605,5 +615,91 @@ public class AdminController {
 		model.addAttribute("result", result);
 		
 		return "admin/adminReviewStop";
+	}
+	
+	// 동행 관리
+	/* 동행 리스트 가져오기 */
+	@RequestMapping(value = "/admin_with.do")
+	public String admin_with(String pageNum, AdminWithBean adminwt, 
+			HttpSession session, Model model) throws Exception {
+		
+		final int rowPerPage = 10;						// 화면에 출력할 데이터 갯수
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);	// 현재페이지
+		
+		int total = adminservice.getWithTotal(adminwt); // 검색
+		System.out.println("total:"+total);
+		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		
+		PagingPgm pp = new PagingPgm(total, rowPerPage, currentPage);
+		adminwt.setStartRow(startRow);
+		adminwt.setEndRow(endRow);
+		
+		int no = total - startRow + 1;					// 화면 출력 번호
+		List<AdminWithBean> withlist = adminservice.WithList(adminwt);
+		
+		model.addAttribute("withlist", withlist);
+		model.addAttribute("no", no);
+		model.addAttribute("pp", pp);
+		
+		return "admin/adminWithList";
+	} 
+	
+	/* 동행 상세페이지 */
+	@RequestMapping(value = "/admin_with_view.do")
+	public String admin_with_view(String pageNum, int ano, AdminWithBean adminwt, AdminWithReplyBean adminwtrp,
+			HttpSession session, Model model) throws Exception {
+		
+		List<AdminWithBean> withview = adminservice.Withview(ano);
+		List<AdminWithReplyBean> withrpview = adminservice.WithRpview(ano);
+		
+		model.addAttribute("withview", withview);
+		model.addAttribute("withrpview", withrpview);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminWithView";
+	}
+	
+	/* 동행 블라인드 설정 및 해제 */
+	@RequestMapping(value = "/admin_with_stop.do")
+	public String admin_with_stop (String pageNum, int ano, int del, 
+			HttpSession session, Model model) throws Exception {
+		int result = 0;
+		if (del == 0) {
+			System.out.println("1 del : "+del);
+			result = adminservice.withChangetN(ano);
+		}else{
+			System.out.println("0 del : "+del);
+			result = adminservice.withChangeY(ano);			
+		}
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "admin/adminWithStop";
+	}	
+	
+	/* 동행 본문 삭제 */
+	@RequestMapping(value = "/admin_with_delete.do")
+	public String admin_with_delete (int ano, HttpSession session, Model model) throws Exception {
+		
+		int result = 0;
+		result = adminservice.WithDelete(ano);
+		model.addAttribute("result", result);
+		
+		return "admin/adminWithStop";
+	}	
+	
+	/* 동행 댓글 삭제 */
+	@RequestMapping(value = "/admin_withrp_delete.do")
+	public String admin_withrp_delete (int arno, HttpSession session, Model model) throws Exception {
+		
+		int result = 0;
+		result = adminservice.WithRpDelete(arno);
+		model.addAttribute("result", result);
+		
+		return "admin/adminWithStop";
 	}
 }

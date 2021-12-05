@@ -14,8 +14,8 @@
 	<div id="map" style="width: 100%; height: 350px;" align=center></div>
 	<table align="center">
 		<tr>
-			<td colspan=3 align=center>	게시글 번호 : <input type=text id="ano" name="ano" value="${ano}" size=3/>
-										목적지 수 : <input type=text id="mloc" name="mloc" value="${mloc}" size=3/> </td></tr>
+			<td colspan=3 align=center>	게시글 번호 : <input type=text id="ano" name="ano" value="${ano}" size=3 readonly='readonly' />
+										목적지 수 : <input type=text id="mloc" name="mloc" value="${mloc}" size=3 readonly='readonly' /> </td></tr>
 		<tr>
 			<th>번호</th>
 			<th>목적지</th>

@@ -14,6 +14,8 @@ import com.project.jeju.model.AdminQnaBean;
 import com.project.jeju.model.AdminQnaReplyBean;
 import com.project.jeju.model.AdminReviewBean;
 import com.project.jeju.model.AdminReviewReplyBean;
+import com.project.jeju.model.AdminWithBean;
+import com.project.jeju.model.AdminWithReplyBean;
 
 @Service
 public class AdminService {
@@ -171,5 +173,39 @@ public class AdminService {
 	/* 리뷰 댓글 삭제 */
 	public int ReviewRpDelete(int rrno) throws Exception {
 		return AdminDao.ReviewRpDelete(rrno);
+	}
+
+	// 동행 관리
+	/* 동행 수 가져오기 */
+	public int getWithTotal(AdminWithBean adminwt) {
+		return AdminDao.getWithTotal(adminwt);
+	}
+	/* 동행 리스트 가져오기 */
+	public List<AdminWithBean> WithList(AdminWithBean adminwt) {
+		return AdminDao.WithList(adminwt);
+	} 
+	/* 동행 본문 상세페이지 가져오기 */
+	public List<AdminWithBean> Withview(int ano) {
+		return AdminDao.Withview(ano);
+	} 
+	/* 동행 댓글 상세페이지 가져오기 */
+	public List<AdminWithReplyBean> WithRpview(int ano) {
+		return AdminDao.WithRpview(ano);
+	} 
+	/* 동행 블라인드 Y>N */
+	public int withChangetN(int ano) throws Exception {
+		return AdminDao.withChangetN(ano);
+	}
+	/* 동행 블라인드 N>Y */
+	public int withChangeY(int ano) throws Exception {
+		return AdminDao.withChangeY(ano);
+	}
+	/* 동행 본문 삭제 */
+	public int WithDelete(int ano) throws Exception {
+		return AdminDao.WithDelete(ano);
+	}
+	/* 동행 댓글 삭제 */
+	public int WithRpDelete(int arno) throws Exception {
+		return AdminDao.WithRpDelete(arno);
 	}
 }

@@ -14,6 +14,8 @@ import com.project.jeju.model.AdminQnaBean;
 import com.project.jeju.model.AdminQnaReplyBean;
 import com.project.jeju.model.AdminReviewBean;
 import com.project.jeju.model.AdminReviewReplyBean;
+import com.project.jeju.model.AdminWithBean;
+import com.project.jeju.model.AdminWithReplyBean;
 
 @Repository
 public class AdminDao {
@@ -169,7 +171,41 @@ public class AdminDao {
 		return sst.delete("adrvns.ReviewDelete", rno);
 	}
 	/* 리뷰 댓글 삭제 */
-	public int ReviewRpDelete(int rno) throws Exception {
-		return sst.delete("adrvrpns.ReviewRpDelete", rno);
+	public int ReviewRpDelete(int rrno) throws Exception {
+		return sst.delete("adrvrpns.ReviewRpDelete", rrno);
+	}
+
+	// 동행 관리 
+	/* 전체 동행 수 가져오기 */
+	public int getWithTotal(AdminWithBean adminwt) {
+		return sst.selectOne("adwtns.getWithTotal", adminwt);
+	}
+	/* 동행 리스트 가져오기 */ 
+	public List<AdminWithBean> WithList(AdminWithBean adminwt) {
+		return sst.selectList("adwtns.WithList", adminwt);
+	}
+	/* 동행 본문 상세페이지 가져오기 */ 
+	public List<AdminWithBean> Withview(int ano) {
+		return sst.selectList("adwtns.Withview", ano);
+	}
+	/* 동행 댓글 상세페이지 가져오기 */ 
+	public List<AdminWithReplyBean> WithRpview(int ano) {
+		return sst.selectList("adwtrpns.WithRpview", ano);
+	}
+	/* 동행 블라인드 Y>N */
+	public int withChangetN(int ano) throws Exception {
+		return sst.update("adwtns.withChangetN", ano);
+	}
+	/* 동행 블라인드 N>Y */
+	public int withChangeY(int ano) throws Exception {
+		return sst.update("adwtns.withChangeY", ano);
+	}
+	/* 동행 본문 삭제 */
+	public int WithDelete(int ano) throws Exception {
+		return sst.delete("adwtns.WithDelete", ano);
+	}
+	/* 동행 댓글 삭제 */
+	public int WithRpDelete(int arno) throws Exception {
+		return sst.delete("adwtrpns.WithRpDelete", arno);
 	}
 }

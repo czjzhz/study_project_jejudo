@@ -21,6 +21,8 @@
 		<typeAlias type="com.project.jeju.model.AdminQnaReplyBean" alias="adrp"></typeAlias>
 		<typeAlias type="com.project.jeju.model.AdminReviewBean" alias="adrv"></typeAlias>
 		<typeAlias type="com.project.jeju.model.AdminReviewReplyBean" alias="adrr"></typeAlias>
+		<typeAlias type="com.project.jeju.model.AdminWithBean" alias="adwt"></typeAlias>
+		<typeAlias type="com.project.jeju.model.AdminWithReplyBean" alias="adwr"></typeAlias>
 		
 		
 		<typeAlias type="com.project.jeju.model.MapBean" alias="maps"></typeAlias>
