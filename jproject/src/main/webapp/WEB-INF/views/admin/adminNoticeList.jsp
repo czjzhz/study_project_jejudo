@@ -40,6 +40,7 @@
 <hr/>
 	<input type="button" value='공지쓰기' onclick="location.href='admin_notice_add.do'">
 <br>
+<h2 align=center>공지 리스트</h2>
 	<table border=1 align=center>
 		<thead>
 			<tr>

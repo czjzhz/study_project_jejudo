@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>여러개 마커에 이벤트 등록하기1</title>
+<title>지도 상세페이지</title>
 
 </head>
 <body>

@@ -29,10 +29,12 @@ import com.project.jeju.model.AdminAdBean;
 import com.project.jeju.model.AdminBean;
 import com.project.jeju.model.AdminMemberBean;
 import com.project.jeju.model.AdminNoticeBean;
+import com.project.jeju.model.AdminQnaBean;
+import com.project.jeju.model.AdminQnaReplyBean;
+import com.project.jeju.model.AdminReviewBean;
+import com.project.jeju.model.AdminReviewReplyBean;
 import com.project.jeju.service.AdminService;
 import com.project.jeju.service.PagingPgm;
-
-
 
 @Controller
 public class AdminController {
@@ -78,7 +80,7 @@ public class AdminController {
 	}
 	
 	// 회원관리
-	/* 회원관리 */
+	/* 회원관리 리스트 */
 	@RequestMapping(value = "/admin_member.do")
 	public String admin_member(String pageNum, AdminMemberBean adminmember, 
 							HttpSession session, Model model) throws Exception {
@@ -440,4 +442,95 @@ public class AdminController {
     			}
     		}
     }
+
+    // QnA 관리
+    /* qna 리스트 가져오기 */
+    @RequestMapping(value = "/admin_qna.do")
+	public String admin_qna(String pageNum, AdminQnaBean adminqna, 
+							HttpSession session, Model model) throws Exception {
+		
+		final int rowPerPage = 10;						// 화면에 출력할 데이터 갯수
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);	// 현재페이지
+		
+		int total = adminservice.getQnaTotal(adminqna); // 검색
+		System.out.println("total:"+total);
+		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		
+		PagingPgm pp = new PagingPgm(total, rowPerPage, currentPage);
+		adminqna.setStartRow(startRow);
+		adminqna.setEndRow(endRow);
+		
+		int no = total - startRow + 1;					// 화면 출력 번호
+		List<AdminQnaBean> qnalist = adminservice.Qnalist(adminqna);
+		
+		model.addAttribute("qnalist", qnalist);
+		model.addAttribute("no", no);
+		model.addAttribute("pp", pp);
+		
+		return "admin/adminQnaList";
+	} 
+    /* qna 상세페이지 */
+    @RequestMapping(value = "/admin_qna_view.do")
+	public String admin_qna_view(String pageNum, int qno, AdminQnaBean adminqna, AdminQnaReplyBean adminqnar,
+							HttpSession session, Model model) throws Exception {
+    	
+    	List<AdminQnaBean> qnaview = adminservice.Qnaview(qno);
+    	List<AdminQnaReplyBean> rpview = adminservice.Rpview(qno);
+    	
+    	model.addAttribute("qnaview", qnaview);
+    	model.addAttribute("rpview", rpview);
+    	model.addAttribute("pageNum", pageNum);
+    	return "admin/adminQnaView";
+    }
+    
+    // 리뷰 관리
+    /* 리뷰 리스트 가져오기 */
+    @RequestMapping(value = "/admin_review.do")
+    public String admin_review(String pageNum, AdminReviewBean adminrv, 
+    		HttpSession session, Model model) throws Exception {
+    	
+    	final int rowPerPage = 10;						// 화면에 출력할 데이터 갯수
+    	if (pageNum == null || pageNum.equals("")) {
+    		pageNum = "1";
+    	}
+    	int currentPage = Integer.parseInt(pageNum);	// 현재페이지
+    	
+    	int total = adminservice.getReviewTotal(adminrv); // 검색
+    	System.out.println("total:"+total);
+    	
+    	int startRow = (currentPage - 1) * rowPerPage + 1;
+    	int endRow = startRow + rowPerPage - 1;
+    	
+    	PagingPgm pp = new PagingPgm(total, rowPerPage, currentPage);
+    	adminrv.setStartRow(startRow);
+    	adminrv.setEndRow(endRow);
+    	
+    	int no = total - startRow + 1;					// 화면 출력 번호
+    	List<AdminReviewBean> reviewlist = adminservice.ReviewList(adminrv);
+    	
+    	model.addAttribute("reviewlist", reviewlist);
+    	model.addAttribute("no", no);
+    	model.addAttribute("pp", pp);
+    	
+    	return "admin/adminReviewList";
+    } 
+    /* 리뷰 상세페이지 */
+    @RequestMapping(value = "/admin_review_view.do")
+    public String admin_review_view(String pageNum, int rno, AdminReviewBean adminrv, AdminReviewReplyBean adminrvrp,
+    		HttpSession session, Model model) throws Exception {
+    	
+    	List<AdminReviewBean> reviewview = adminservice.Reviewview(rno);
+    	List<AdminReviewReplyBean> rpview = adminservice.ReviewRpview(rno);
+    	
+    	model.addAttribute("reviewview", reviewview);
+    	model.addAttribute("rpview", rpview);
+    	model.addAttribute("pageNum", pageNum);
+    	return "admin/adminReviewView";
+    }
+		
 }

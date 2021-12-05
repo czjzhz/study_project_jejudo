@@ -20,6 +20,7 @@
 <input type="button" onclick="location.href='./admin_qna.do'" value="Q&A관리">
 &ensp;|&ensp;&nbsp;<input type="button" onclick="location.href='./admin_logout.do'" value="로그아웃">
 <hr/>
+<h2 align=center>회원 리스트</h2>
 	<table border=1 align=center>
 		<thead>
 			<tr>

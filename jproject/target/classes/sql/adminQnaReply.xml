@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="adqnarp">
+ 	<resultMap id="adminQnaRp" type="adrp" >
+		<result property="qrno"	 	   	column="qnro" />
+		<result property="qrcont"	 	   	column="qrcont" />
+		<result property="qrnickname"	 	   	column="qrnickname" />
+		<result property="qrreg"	 	   	column="qrreg" />
+		<result property="qrupdate"	 	   	column="qrupdate" />
+		<result property="qno"	 	   	column="qro" />
+	</resultMap> 
+	
+	
+ 	<select id="Rpview" parameterType="int" resultMap="adminQnaRp">
+ 		select * from boardqnareply where qno=#{qno} order by qrreg desc
+	</select>
+	
+	
+ </mapper>

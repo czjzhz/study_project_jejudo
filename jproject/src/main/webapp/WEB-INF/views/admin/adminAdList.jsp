@@ -38,6 +38,7 @@
 <hr/>
 	<input type="button" value='광고쓰기' onclick="location.href='admin_ad_add.do'">
 <br>
+<h2 align=center>광고 리스트</h2>
 	<table border=1 align=center>
 		<thead>
 			<tr>

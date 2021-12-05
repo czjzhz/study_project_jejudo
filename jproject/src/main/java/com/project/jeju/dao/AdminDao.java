@@ -10,6 +10,10 @@ import com.project.jeju.model.AdminAdBean;
 import com.project.jeju.model.AdminBean;
 import com.project.jeju.model.AdminMemberBean;
 import com.project.jeju.model.AdminNoticeBean;
+import com.project.jeju.model.AdminQnaBean;
+import com.project.jeju.model.AdminQnaReplyBean;
+import com.project.jeju.model.AdminReviewBean;
+import com.project.jeju.model.AdminReviewReplyBean;
 
 @Repository
 public class AdminDao {
@@ -99,5 +103,41 @@ public class AdminDao {
 	/* 광고 삭제 */
 	public int AdDelete(AdminAdBean adminad) {
 		return sst.delete("adad.AdDelete", adminad);
+	}
+	
+	// QnA 관리 
+	/* 전체 QnA 수 가져오기 */
+	public int getQnaTotal(AdminQnaBean adminqna) {
+		return sst.selectOne("adqna.getQnaTotal", adminqna);
+	}
+	/* QnA 리스트 가져오기 */ 
+	public List<AdminQnaBean> QnaList(AdminQnaBean adminqna) {
+		return sst.selectList("adqna.QnaList", adminqna);
+	}
+	/* QnA 본문 상세페이지 가져오기 */ 
+	public List<AdminQnaBean> QnaView(int qno) {
+		return sst.selectList("adqna.Qnaview", qno);
+	}
+	/* QnA 댓글 상세페이지 가져오기 */ 
+	public List<AdminQnaReplyBean> RpView(int qno) {
+		return sst.selectList("adqnarp.Rpview", qno);
+	}
+	
+	// 리뷰 관리 
+	/* 전체 리뷰 수 가져오기 */
+	public int getReviewTotal(AdminReviewBean adminrv) {
+		return sst.selectOne("adrvns.getReviewTotal", adminrv);
+	}
+	/* 리뷰 리스트 가져오기 */ 
+	public List<AdminReviewBean> ReviewList(AdminReviewBean adminrv) {
+		return sst.selectList("adrvns.ReviewList", adminrv);
+	}
+	/* 리뷰 본문 상세페이지 가져오기 */ 
+	public List<AdminReviewBean> Reviewview(int rno) {
+		return sst.selectList("adrvns.Reviewview", rno);
+	}
+	/* 리뷰 댓글 상세페이지 가져오기 */ 
+	public List<AdminReviewReplyBean> ReviewRpview(int rno) {
+		return sst.selectList("adrvrpns.ReviewRpview", rno);
 	}
 }

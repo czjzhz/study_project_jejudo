@@ -17,6 +17,10 @@
 		<typeAlias type="com.project.jeju.model.AdminMemberBean" alias="admb"></typeAlias>
 		<typeAlias type="com.project.jeju.model.AdminNoticeBean" alias="adnt"></typeAlias>
 		<typeAlias type="com.project.jeju.model.AdminAdBean" alias="adad"></typeAlias>
+		<typeAlias type="com.project.jeju.model.AdminQnaBean" alias="adqa"></typeAlias>
+		<typeAlias type="com.project.jeju.model.AdminQnaReplyBean" alias="adrp"></typeAlias>
+		<typeAlias type="com.project.jeju.model.AdminReviewBean" alias="adrv"></typeAlias>
+		<typeAlias type="com.project.jeju.model.AdminReviewReplyBean" alias="adrr"></typeAlias>
 		
 		
 		<typeAlias type="com.project.jeju.model.MapBean" alias="maps"></typeAlias>

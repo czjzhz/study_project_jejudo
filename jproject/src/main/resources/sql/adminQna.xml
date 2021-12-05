@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="adqna">
+ 	<resultMap id="adminqna" type="adqa" >
+		<result property="qno"	 	   	column="qno" />
+		<result property="qsub"	 	   	column="qsub" />
+		<result property="qcont"	 	column="qcont" />
+		<result property="qreq"	 	  	column="qreq" />
+		<result property="qdel"	 	  	column="qdel" />
+		<result property="id"	 	   	column="id" />
+		<result property="qfile"	 	column="qfile" />
+		<result property="qreadcount"	column="qreadcount" />
+		<result property="nickname"	 	column="nickname" />
+		<result property="qip"	 	  	column="qip" />
+	</resultMap> 
+	
+	
+ 	<select id="QnaList" parameterType="adqa" resultMap="adminqna">
+ 		select * from (select a.*, rowNum rn from(
+ 			select * from boardqna order by qno desc) a )
+			where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getQnaTotal" parameterType="adqa" resultType="int">
+		select count(*) from boardqna
+	</select>
+	
+	 <select id="Qnaview" parameterType="int" resultMap="adminqna">
+ 		select * from boardqna where qno=#{qno}
+	</select>
+	
+<!--	<delete id="NoticeDelete" parameterType="int">
+		delete from adminnotice where nno=#{nno}
+	</delete> -->
+	
+ </mapper>

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 - 공지수정</title>
+<title>관리자 - 광고수정</title>
 </head>
 <body>
 
@@ -23,7 +23,7 @@
 	<input type="button" onclick="location.href='./admin_qna.do'" value="Q&A관리">
 	&ensp;|&ensp;&nbsp;<input type="button" onclick="location.href='./admin_logout.do'" value="로그아웃">
 	<hr/>
-	
+	<h2 align=center>광고 수정</h2>
 	<form method="post" action="admin_ad_update_action.do">
 		<input type="hidden" name="adno" value='${adno}' >
 		<table align=center border=1>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="adrvns">
+ 	<resultMap id="adrvrm" type="adrv" >
+		<result property="rno"	 	   	column="rno" />
+		<result property="rsub"	 	   	column="rsub" />
+		<result property="rcont"	 	column="rcont" />
+		<result property="rreq"	 	  	column="rreq" />
+		<result property="rdel"	 	  	column="rdel" />
+		<result property="id"	 	   	column="id" />
+		<result property="rfile"	 	column="rfile" />
+		<result property="rreadcount"	column="rreadcount" />
+		<result property="nickname"	 	column="nickname" />
+		<result property="rip"	 	  	column="rip" />
+	</resultMap> 
+	
+ 	<select id="ReviewList" parameterType="adrv" resultMap="adrvrm">
+ 		select * from (select a.*, rowNum rn from(
+ 			select * from boardreview order by rno desc) a )
+			where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getReviewTotal" parameterType="adrv" resultType="int">
+		select count(*) from boardreview
+	</select>
+	
+	 <select id="Reviewview" parameterType="int" resultMap="adrvrm">
+ 		select * from boardreview where rno=#{rno}
+	</select>
+
+ </mapper>

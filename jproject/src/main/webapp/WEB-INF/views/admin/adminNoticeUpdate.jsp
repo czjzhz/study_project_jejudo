@@ -22,7 +22,7 @@
 	<input type="button" onclick="location.href='./admin_qna.do'" value="Q&A관리">
 	&ensp;|&ensp;&nbsp;<input type="button" onclick="location.href='./admin_logout.do'" value="로그아웃">
 	<hr/>
-	
+	<h2 align=center>공지 수정</h2>
 	<form method="post" action="admin_notice_update_action.do">
 		<input type="hidden" name="nno" value='${nno}' >
 		<table align=center border=1>
