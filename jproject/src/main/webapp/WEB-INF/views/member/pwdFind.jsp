@@ -28,10 +28,9 @@ function check(){
 <div id="pwd_wrap">
  
  <c:if test="${empty pwdok}"> 
-  <h2 class="pwd_title">등록된 회원정보로 찾기</h2>
-  <form method="post" action="PwdFindok.do"
-  		onsubmit="return check()">  
-   <table id="pwd_t">
+  <h2 class="pwd_title">등록된 회원정보로 비밀번호 찾기</h2>
+  <form method="post" action="PwdFindok.do" onsubmit="return check()">  
+   <table id="pwd_t" border="1">
 
     <tr>
      <th>아이디</th>
@@ -44,10 +43,9 @@ function check(){
     </tr>
    </table>
    
-   <div id="pwd_menu">
+   <div id="pwd_menu"><br>
     <input type="submit" value="비밀번호 찾기" class="input_button" />
-    <input type="reset" value="취소" class="input_button" 
-    onclick="location.href='MemberLogin.do'" />
+    <input type="reset" value="취소" class="input_button" onclick="location.href='MemberLogin.do'" />
    </div>
   </form>
   </c:if>
@@ -55,16 +53,17 @@ function check(){
   
   <c:if test="${!empty pwdok}">
     <h2 class="pwd_title2">비밀번호 찾기 결과</h2>
-    <table id="pwd_t2">
+    <table id="pwd_t2" >
      <tr>
-      <th>JEJU FRIEND의 회원이시군요!</th>
+      <td><b>JEJU FRIEND의 회원이시군요!</b></td>
+      </tr>
+      <tr>
       <td>${pwdok}</td>
      </tr>
     </table>
     <div id="pwd_close2">
-    <input type="button" value="닫기" class="input_button"
-    onclick="self.close();" />
-    <!-- close()메서드로 공지창을 닫는다. self.close()는 자바스크립트이다. -->
+    <br>
+    <input type="button" value="확인" class="input_button" onclick="location.href='MemberLogin.do'" />
     </div>
   </c:if> 
   

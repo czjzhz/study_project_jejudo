@@ -29,25 +29,22 @@ function check(){
  
  <c:if test="${empty idok}"> 
   <h2 class="pwd_title">등록된 회원정보로 아이디 찾기</h2>
-  <form method="post" action="IdFindok.do"
-  		onsubmit="return check()">  
-   <table id="pwd_t">
-
+  <form method="post" action="IdFindok.do" onsubmit="return check()">  
+  		
+   <table id="pwd_t" border="1">
+	<tr>
+     <th>이름</th>
+     <td><input name="name" id="name" size="14" class="input_box" /></td>
+    </tr>
     <tr>
      <th>이메일</th>
      <td><input name="email" id="email" size="14" class="input_box" /></td>
     </tr>
-    
-    <tr>
-     <th>이름</th>
-     <td><input name="name" id="name" size="14" class="input_box" /></td>
-    </tr>
    </table>
    
-   <div id="pwd_menu">
+   <div id="pwd_menu"><br>
     <input type="submit" value="아이디 찾기" class="input_button" />
-    <input type="reset" value="취소" class="input_button" 
-    onclick="location.href='MemberLogin.do'" />
+    <input type="reset" value="취소" class="input_button" onclick="location.href='MemberLogin.do'" />
    </div>
   </form>
   </c:if>
@@ -56,14 +53,16 @@ function check(){
   <c:if test="${!empty idok}">
     <h2 class="pwd_title2">아이디 찾기 결과</h2>
     <table id="pwd_t2">
-     <tr>
-      <th>JEJU FRIEND의 회원이시군요!</th>
+    <tr>
+      <td><b>JEJU FRIEND의 회원이시군요!</b></td>
+      </tr>
+      <tr>
       <td>${idok}</td>
      </tr>
     </table>
     <div id="pwd_close2">
+    <br>
  	<input type="button" value="확인" class="input_button" onclick="location.href='MemberLogin.do'" />
-    <!-- close()메서드로 공지창을 닫는다. self.close()는 자바스크립트이다. -->
     </div>
   </c:if> 
   

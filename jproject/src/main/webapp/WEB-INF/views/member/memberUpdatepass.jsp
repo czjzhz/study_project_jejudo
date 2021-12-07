@@ -36,11 +36,8 @@
 					<td>
 					<input type="password" name="passwd2" id="passwd2" size="14" class="input_box" /></td>
 				</tr>
-
-
-		
 			</table>
-
+			<br>
 			<div id="join_menu">
 			<input type="submit" value="비밀번호 변경" class="input_button" /> 
 			<input type="reset" value="취소" class="input_button" onclick="location='Mypage.do'" />

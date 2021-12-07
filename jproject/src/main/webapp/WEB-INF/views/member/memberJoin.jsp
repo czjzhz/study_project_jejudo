@@ -158,7 +158,7 @@
 				<tr>
 				<td colspan="2" align="center" valign="top">
 				<input type="button" value="취소" class="btn btn-primary" id="join_button" style="background-color: gray; border-style:none;"
-					   onclick="location.href='<%=request.getContextPath()%>/home.do'">
+					   onclick="location.href='Agreement.do'">
 				<input type="submit" value="회원가입" class="btn btn-primary" id="join_button" style="background-color: #FF8000; border-style:none;" />
 				</td>
 				</tr>

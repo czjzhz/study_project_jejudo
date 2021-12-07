@@ -1,6 +1,8 @@
 /** 유효성 체크 및 Ajax 아이디 체크 * */
 
 // 닉네임 중복 체크 끝
+
+	// 닉네임 중복체크
 function validate_nickname(nickname) {
 	var pattern = new RegExp(/^[a-z0-9가-힣]+$/)
 	// 영문 소문자,숫자,한글 가능 정규표현식
@@ -15,18 +17,33 @@ function validate_name(name) {
 	return pattern.test(name);
 }
 
+////////////////////////////////////
+	// 비밀번호 체크
+function validate_passwd(passwd) {
+	var pattern = new RegExp(/^[a-z0-9]+$/)
+	// 영문 소문자,숫자 가능 정규표현식
+	return pattern.test(passwd);
+}
+///////////////////////////////////
 
 var idYN = 'N';
 var nickYN = 'N';
 
 
-	// 아이디 중복체크
+	// 아이디 유효성 검사
 function check() {
 	if ($.trim($("#id").val()) == "") {
 		alert("아이디를 입력하세요.");
 		$("#id").val("").focus();
 		return false;
 	}
+	// 아이디 입력글자 길이 체크 (유효성 검사)
+	if($.trim($("#id").val()).length < 2) {
+		alert("2자 이상의 아이디를 입력하세요.");            
+		$("#id").val("").focus();
+		return false;
+	}
+	
 	if ($.trim($("#passwd1").val()) == "") {
 		alert("비밀번호를 입력하세요.");
 		$("#passwd1").val("").focus();
@@ -330,7 +347,41 @@ function nick_check() {
 	}); // $.ajax
 }
 
+///////////////////////////////////////////////
+//1. 비밀번호 입력글자 길이 체크 (유효성 검사)
+if ($.trim($("#passwd").val()).length < 4) {
+	var newtext = '<font color="red">비밀번호는 4자 이상 입력해주세요.</font>';
+	$("#pwcheck").text('');
+	$("#pwcheck").show();
+	$("#pwcheck").append(newtext);// span 비밀번호 영역에 경고문자 추가
+	$("#passwd").val("").focus();
+	return false;
+}
 
+if ($.trim($("#passwd").val()).length > 15) {
+	var newtext = '<font color="red">비밀번호는 15자 이하로 입력해주세요.</font>';
+	$("#pwcheck").text('');
+	$("#pwcheck").show();
+	$("#pwcheck").append(newtext); // span 비밀번호 영역에 경고문자 추가
+	$("#passwd").val("").focus();
+	return false;
+}
+
+
+// 입력 비밀번호 유효성 검사 (정규 표현식 검사)
+if (!(validate_id(mid))) {
+	var newtext = '<font color="red">비밀번호는 영문 소문자,숫자,_ 조합만 가능합니다.</font>';
+	$("#pwcheck").text(''); // 문자 초기화
+	$("#pwcheck").show(); // span 아이디 영역을 보이게 한다.
+	$("#pwcheck").append(newtext);
+	$("#passwd").val("").focus();
+	return false;
+}
+
+
+
+
+//////////////////////////////////////////////
 
 	
 	//도메인값 저장
