@@ -1,1 +1,1 @@
-#  jejudo
+# study project jejudo
